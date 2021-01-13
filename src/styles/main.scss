@@ -1,0 +1,329 @@
+body{
+  margin: 0 auto;
+}
+@media (min-width: 1200px) {
+  .body{
+      width: 1199px;
+      margin: 0 auto;
+      background-color: rgba(42, 163, 163, 0.3);
+  }
+}
+@media (max-width: 1199px) {
+  .body{
+      background-color: rgba(42, 163, 163, 0.3);
+  }
+}
+
+
+
+
+
+//------------------------HEADER
+.navbar{
+  background-color:  $background-color-1;
+}
+.navbar-brand{
+  margin-right: 14%;
+  font-size: 1.5rem !important;
+  color: $color-1;
+}
+.navbar-brand:hover{
+  color: $color-2;
+}
+.navbar-collapse  {
+  justify-content: flex-end !important;
+  padding-right: 10px;
+}
+.mr-auto{
+  margin-right: 0 !important;
+}
+#logo{
+  width: 25%;
+}
+#icon:hover, #icon:target, #icon:focus {
+  border: 1.5px solid $color-2;
+}
+#navbarSupportedContent{
+  font-size: 1.2rem !important;
+}
+#navbarSupportedContent a:hover{
+  color: $color-2;
+  background-color:  $background-color-1;
+}
+.dropdown-menu{
+  border: none !important;
+}
+#dropdownMenuNav{
+  background-color:  $background-color-1;
+}
+#dropdownMenuNav a:hover{
+  color:  $color-2;
+}
+.none {
+  display: none !important;
+}
+@media (max-width: 441px) {
+  .navbar-brand{
+      margin-right: 0;
+  }
+}
+@media (max-width: 381px) {
+  #logo{
+      width: 0;
+  }
+}
+.text-muted{
+  color: rgb(255, 0, 0) !important;
+}
+
+
+
+
+// ----------------------SLIDER
+
+.carousel-control-next, .carousel-control-prev{
+  transform: scale(1.5, 2.5);
+  opacity: 0.9 !important;
+} 
+.carousel-control-next:hover, .carousel-control-prev:hover{
+  transform: scale(2.5, 3.5);
+} 
+.carousel-item h1 {
+  position: absolute;
+  margin: 0;
+  color: black;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.carousel-item {
+  display: block;
+}
+
+
+
+
+
+//-------------------CONTROL_BUTTONS
+.control_buttons {
+  display: flex;
+  justify-content: flex-start;
+}
+#adult{
+  background-color: $background-color-1;
+  @include id_album();
+}
+#kids{
+  background-color: $background-color-2;
+  @include id_album();
+}
+#slippers{
+  background-color: $background-color-3;
+  @include id_album();
+}
+#kids:hover, #kids:focus, #kids:active {
+  color: $color-2;
+  outline: none !important;
+  border: none !important;
+}
+#adult:hover{
+  color: $color-2;
+}
+#slippers:hover{
+  color: $color-2;
+}
+.btn {
+  border-radius: 0;
+}
+button:hover, button:focus, button:visited, button:active{
+  box-shadow: none !important;
+  outline: none !important;
+  cursor: pointer;
+}
+small:hover, small:focus, small:visited, small:active, small:target{
+  cursor: pointer;
+}
+
+
+
+
+//------------------------ALBUM
+.adult {
+  background-color: $background-color-1;
+}
+.kids {
+  background-color: $background-color-2;
+}
+.slippers {
+  background-color: $background-color-3;
+}
+// @media (max-width: 650px) {
+//   .mb-4 {
+//       margin: 4% 10% 4% 10% !important;
+//   }
+// }
+#card_btn-BUY:hover,
+#card_btn-BUY:focus{
+  background-color: $color-3;
+  color: $color-2;
+  font-weight: 400;
+  border-color: $color-3;
+}
+.btn #left{
+  padding-right: 10px;
+  font-weight: 500 !important;
+}
+.btn #right{
+  padding-left: 10px;
+  font-weight: 500 !important;
+  font-size: 1rem;
+}
+#right:hover, #right:target, #right:focus{
+  color: rgb(60, 201, 211) !important;
+}
+#left:hover, #left:target, #left:focus{
+  color: rgb(60, 201, 211) !important;
+}
+.button_span:hover{
+  color: $color-3;
+}
+#card_btn-sizes:hover,
+#card_btn-sizes:focus{
+  background-color: $color-3;
+  color: $color-2;
+  font-weight: 400;
+  border-color: $color-3;
+}
+#card_btn-sizes{
+  background-color: $color-2 !important;
+  line-height: 1.8;
+}
+#price{
+  color: #6c757d !important;
+}
+#heart{
+  color: rgb(60, 201, 211) !important;
+  text-align: right !important;
+  font-size: 2rem !important;
+}
+#sizeDroppdownMenu{
+  background-color: rgb(224, 253, 245) !important;
+}
+//--------------------------- Overright default bootstrap bg colors to album
+// .bg-light {
+//   background-color: $background-color-1;
+// }
+// .bg-danger {
+//   background-color: $background-color-2;
+// }
+// .bg-primary {
+//   background-color: $background-color-3;
+// }
+
+
+
+
+// ----------------FOOTER
+.page-footer {
+  background-color: rgba(44, 138, 138, 0.5) !important;
+}
+.list-unstyled a{
+  text-decoration: none !important;
+  color: rgba(44, 138, 138, 1) !important;;
+}
+.list-unstyled a:hover{
+  text-decoration: none !important;
+  color: rgb(255, 255, 255) !important;;
+}
+.footer-copyright {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#logo {
+  width: 70px;
+  padding-right: 1%;
+}
+.inline {
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 1%;
+}
+.inline a {
+  padding-left: 1%;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#text-column-2 {
+  padding-left: 7%;
+}
+@media (max-width: 768px) {
+  .container-fluid{
+      padding: 0 20px 0 20px !important;
+  }
+  #text-column-1{
+      padding: 0 20px 0 20px !important;
+  }
+  #text-column-2{
+      padding: 0 20px 0 20px !important;
+  }
+  #text-column-3{
+      padding: 0 20px 0 20px !important;
+  }
+}
+@media (max-width: 550px) {
+  .footer-copyright {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+  }
+  #logo {
+      width: 50px;
+  }
+  .inline {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+  }
+  .inline a {
+      padding-left: 0;
+  }
+}
+
+
+
+
+// --------------------MODAL WINDOWS
+.modal-footer{
+  border-top: none;
+}
+.modal-header{
+  border-bottom: none;
+}
+#signUpBtn{
+  background-color: $background-color-1;
+  border-color: $background-color-1;
+  opacity: 0.7;
+}
+#loginBtn{
+  background-color: $background-color-1;
+  border-color: $background-color-1;
+  opacity: 0.7;
+}
+#signUpBtn:hover, #signUpBtn:target, #signUpBtn:focus{
+  background-color: $background-color-1;
+  border-color: $background-color-1;
+  opacity: 1;
+}
+#loginBtn:hover, #loginBtn:target, #loginBtn:focus{
+  background-color: $background-color-1;
+  border-color: $background-color-1;
+  opacity: 1;
+}
