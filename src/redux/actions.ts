@@ -1,7 +1,7 @@
 import { backendServer } from '../consts';
 //import { SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_COLOR } from "./actionTypes";
 import { FETCH_CARDS, FETCH_CATEGORIES } from './actionTypes';
-import { DispatchCards } from './cardsReducer';
+import { DispatchAlbum } from './albumReducer';
 import { DispatchCategory } from './controlsReducer';
 
 // interface Idispatch {
@@ -29,7 +29,7 @@ export function fetchCategories() {
 
 export function chooseCategory(categoryName: string) {
     //console.log(id);
-    return async (dispatch: DispatchCards) => {
+    return async (dispatch: DispatchAlbum) => {
         try {            
             //dispatch(showLoader())
             const response = await fetch(`${backendServer}/${categoryName}`)

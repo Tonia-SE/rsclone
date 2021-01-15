@@ -21,6 +21,7 @@ body{
 //------------------------HEADER
 .navbar{
   background-color:  $background-color-1;
+  //flex-wrap: nowrap;
 }
 .navbar-brand{
   margin-right: 14%;
@@ -31,8 +32,11 @@ body{
   color: $color-2;
 }
 .navbar-collapse  {
-  justify-content: flex-end !important;
+  //justify-content: flex-end !important;
   padding-right: 10px;
+}
+.navbar-nav{
+  padding-bottom: 7px;
 }
 .mr-auto{
   margin-right: 0 !important;
@@ -40,8 +44,63 @@ body{
 #logo{
   width: 25%;
 }
+// .navbar-toggler{
+//   padding-left: 10px !important;
+// }
+.navWrapper{
+  width: 50%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.shoppingCart{
+  width: 20px;
+  padding-bottom: 5px;
+}
+.shoppingCard-quantity{
+  position: absolute;
+  top: 10px;
+  left: 38px;
+  background-color: rgb(179, 236, 232);
+  border-radius: 50%;
+  width: 11px;
+  height: 11px;
+}
+#shoppingCard-quantity {
+  position: absolute;
+  top: 0px;
+  left: 3px;
+  font-size: 8px;
+}
+
+// <li className="nav-item active">
+//             <div className="soppingCard-wrapper">
+//               <a className="nav-link" href="/">
+//                 <img className="soppingCart add-width" src="./assets/images/sopping-cart-empty.svg" alt="Sopping cart" />
+//               </a>
+//               <div className="soppingCard-quantity">
+//                 <span id="soppingCard-quantity">+</span>
+//               </div>
+//             </div>
+//           </li>
+// .soppingCart:hover{
+//   transform: scale(1.2)
+// }
+.nav-link{
+  font-size: 1.3rem;
+  font-weight: 400;
+  padding-bottom: 3px;
+}
+.nav-link:hover{
+  color:  $color-2;
+}
+#icon {
+  border: 1px solid $color-3;
+}
 #icon:hover, #icon:target, #icon:focus {
-  border: 1.5px solid $color-2;
+  border: 1px solid $color-2;
 }
 #navbarSupportedContent{
   font-size: 1.2rem !important;
@@ -62,31 +121,124 @@ body{
 .none {
   display: none !important;
 }
-@media (max-width: 441px) {
+#Russia{
+  width: 20px;
+  margin-left: 15px
+}
+#USA{
+  width: 20px;
+  margin-left: 31px;
+}
+@media (max-width: 767px) {
   .navbar-brand{
-      margin-right: 0;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem !important;
+    margin-right: 0;
   }
-}
-@media (max-width: 381px) {
   #logo{
-      width: 0;
+    max-width: 40px;
+  }
+  .navWrapper{
+    width: 300px;
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .navbar-toggler{
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+  .navbar-toggler-icon {
+    width: 20px;
+  }
+  .shoppingCard-quantity{
+    top: 8px;
   }
 }
-.text-muted{
-  color: rgb(255, 0, 0) !important;
+@media (max-width: 576px) {
+  .row-direction {
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .navWrapper{
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+  }
+  .add-font-size{
+    font-size: 1.1rem !important;
+  }
+  .add-width{
+    width: 17px
+  }
+  .shoppingCard-quantity{
+    top: 17px;
+    left: 28px;
+  }
+}
+@media (max-width: 500px) {
+  .row-direction {
+    width: 125px;
+  }
+  .navWrapper{
+    width: 190px;
+    height: 25px;
+  }
+  .add-font-size{
+    font-size: 0.9rem !important;
+  }
+  .add-width{
+    width: 15px
+  }
+  .navbar-toggler{
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .navbar-toggler-icon {
+    width: 17px;
+  }
+  .navbar-brand{
+    font-size: 0.65rem !important;
+  }
+  .padding-none {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .row-direction{
+    margin-left: 20px;
+    margin-top: 3px;
+  }
+  .shoppingCard-wrapper{
+    margin-right: 10px;
+  }
+  .shoppingCard-quantity{
+    top: 20px;
+    left: 30px;
+  }
 }
 
 
 
 
 // ----------------------SLIDER
-
 .carousel-control-next, .carousel-control-prev{
-  transform: scale(1.5, 2.5);
+  max-width: 120px;
   opacity: 0.9 !important;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon{
+  transform: scale(1.5, 2.5);
 } 
-.carousel-control-next:hover, .carousel-control-prev:hover{
-  transform: scale(2.5, 3.5);
+.carousel-control-next-icon:hover, .carousel-control-prev-icon:hover{
+  transform: scale(2, 3);
 } 
 .carousel-item h1 {
   position: absolute;
@@ -99,7 +251,14 @@ body{
 .carousel-item {
   display: block;
 }
-
+@media (max-width: 600px) {
+  .carousel-control-next-icon, .carousel-control-prev-icon{
+    transform: scale(1.2, 1.8);
+  } 
+  .carousel-control-next-icon:hover, .carousel-control-prev-icon:hover{
+    transform: scale(1.4, 2.2);
+  } 
+}
 
 
 
@@ -143,11 +302,45 @@ button:hover, button:focus, button:visited, button:active{
 small:hover, small:focus, small:visited, small:active, small:target{
   cursor: pointer;
 }
+@media (max-width: 767px) {
+  .col-md-4 {
+    padding: 20px 50px;
+  }
+  #adult, #kids, #slippers{
+    padding: 7px 20px;
+  }
+}
+@media (max-width: 600px) {
+  #adult, #kids, #slippers{
+    padding: 5px 20px;
+    font-size: 16px;
+  }
+}
+@media (max-width: 475px) {
+  #adult, #kids, #slippers{
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+}
+@media (max-width: 415px) {
+  #adult, #kids, #slippers{
+    font-size: 14px;
+  }
+}
+@media (max-width: 365px) {
+  #adult, #kids, #slippers{
+    font-size: 11px;
+  }
+}
 
 
 
 
 //------------------------ALBUM
+// .container {
+//   margin-left: 0 auto !important;
+//   margin-left: 0 auto !important;
+// }
 .adult {
   background-color: $background-color-1;
 }
@@ -157,58 +350,130 @@ small:hover, small:focus, small:visited, small:active, small:target{
 .slippers {
   background-color: $background-color-3;
 }
-// @media (max-width: 650px) {
-//   .mb-4 {
-//       margin: 4% 10% 4% 10% !important;
-//   }
-// }
-#card_btn-BUY:hover,
-#card_btn-BUY:focus{
+.title-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card_btn-BUY{
+  width: 80px;
+  height: 40px;
+}
+.card_btn-BUY:hover,
+.card_btn-BUY:focus{
   background-color: $color-3;
   color: $color-2;
   font-weight: 400;
   border-color: $color-3;
 }
-.btn #left{
+.btn .left{
   padding-right: 10px;
   font-weight: 500 !important;
 }
-.btn #right{
+.btn .btn-sm .btn-outline-secondary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn .right{
   padding-left: 10px;
   font-weight: 500 !important;
   font-size: 1rem;
 }
-#right:hover, #right:target, #right:focus{
+.right:hover, .right:target, .right:focus{
   color: rgb(60, 201, 211) !important;
 }
-#left:hover, #left:target, #left:focus{
+.left:hover, .left:target, .left:focus{
   color: rgb(60, 201, 211) !important;
 }
 .button_span:hover{
   color: $color-3;
 }
-#card_btn-sizes:hover,
-#card_btn-sizes:focus{
+.card_btn-sizes:hover,
+.card_btn-sizes:focus{
   background-color: $color-3;
   color: $color-2;
   font-weight: 400;
   border-color: $color-3;
 }
-#card_btn-sizes{
+.card_btn-sizes{
   background-color: $color-2 !important;
   line-height: 1.8;
 }
 #price{
+  font-size: 2.5rem !important;
   color: #6c757d !important;
 }
-#heart{
+.card-text{
+  margin-top: 7px !important;
+  font-size: 1.5rem !important;
+}
+.text-muted{
   color: rgb(60, 201, 211) !important;
   text-align: right !important;
   font-size: 2rem !important;
+  margin-right: 7%;
+  margin-top: 3%;
 }
 #sizeDroppdownMenu{
   background-color: rgb(224, 253, 245) !important;
 }
+@media (max-width: 1200px) {
+  .text{
+    font-size: 1.3rem !important;
+  }
+}
+@media (max-width: 992px) {
+  .btn-group .btn {
+    font-size: 12px !important;
+  }
+  .text-muted{
+    margin-top: 0px !important;
+    font-size: 1.5rem !important;
+  }
+  #price{
+    font-size: 1.8rem !important;
+    color: #6c757d !important;
+  }
+  .card-text{
+    //margin-top: 10px !important;
+    font-size: 1.3rem !important;
+    margin-top: 0px !important;
+    margin-bottom: 10px !important;
+  }
+  .card-body{
+    padding-top: 0 !important;
+  }
+  .text{
+    font-size: 1rem !important;
+  }
+  .card_btn-BUY{
+    width: 50px;
+    height: 30px;
+  }
+}
+@media (max-width: 767px) {
+  .col-md-4 {
+    padding: 20px 50px;
+  }
+  .text{
+    font-size: 1.5rem !important;
+  }
+  .card_btn-BUY{
+    width: 80px;
+    height: 40px;
+  }
+}
+@media (max-width: 480px) {
+  .text{
+    font-size: 1rem !important;
+  }
+  .card_btn-BUY{
+    width: 50px;
+    height: 30px;
+  }
+}
+
 //--------------------------- Overright default bootstrap bg colors to album
 // .bg-light {
 //   background-color: $background-color-1;
@@ -223,9 +488,44 @@ small:hover, small:focus, small:visited, small:active, small:target{
 
 
 
+
+//-------------------------SHOPPING CART---------------------------
+.empty-shoppingCart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 66vh;
+}
+.empty-shoppingCart_wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.big-size {
+  width: 80px;
+  margin-bottom: 2vh;
+}
+.empty-shoppingCart_message{
+  font-size: 2rem;
+}
+.main-page-link{
+  color: $color-1;
+  font-size: 3rem;
+}
+@media (max-width: 767px) {
+  .empty-shoppingCart{
+    height: 50vh;
+  }
+}
+
+
+
+
+
+
 // ----------------FOOTER
 .page-footer {
-  background-color: rgba(44, 138, 138, 0.5) !important;
+  background-color: rgba(44, 138, 138, 0.3) !important;
 }
 .list-unstyled a{
   text-decoration: none !important;
@@ -301,6 +601,12 @@ small:hover, small:focus, small:visited, small:active, small:target{
 
 
 // --------------------MODAL WINDOWS
+// .none {
+//   display: none !important;
+// }
+// .block {
+//   display: block !important;
+// }
 .modal-footer{
   border-top: none;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Footer: React.FC = () => {
   return (
-    <div className="container-fluid text-center text-md-left pt-3">
+    <div className="container-fluid text-center text-md-left pt-3 page-footer">
       <div className="row">
         <div className="col-md-6 mt-md-0 mt-3 pl-4" id="text-column-1">
           <h5>KIGURUMI me</h5>
@@ -57,12 +57,14 @@ export const Footer: React.FC = () => {
       </div>
       <div className="footer-copyright text-left py-3">
         <div className="inline">
-          © 2020 Copyright:
+          © 2021 Copyright:
           <a href="https://github.com/Tonia-SE" target="blank">
             https://github.com/Tonia-SE
           </a>
         </div>
-        <img id="logo" alt="RS school" src="https://rs.school/images/rs_school_js.svg" />
+        <a href="https://rs.school" target="blank">
+          <img id="logo" alt="RS school" src="https://rs.school/images/rs_school_js.svg" />
+        </a> 
       </div>
     </div>
   );

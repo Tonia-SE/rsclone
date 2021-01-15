@@ -16,35 +16,43 @@ import { FETCH_CARDS } from './actionTypes';
 // }
 
 //import { FETCH_CATEGORIES } from './actionTypes';
-
-interface ICards {
-  amount: Array<Object>;
+interface ICard {
   _id: string;
-  id: string;
   imageUrl: string;
   title: string;
   price: string;
   __v: number;
 }
 
-export interface ICardsState {
+// interface ICard {
+//   amount: Array<[string, number]>;
+//   _id: string;
+//   id: string;
+//   imageUrl: string;
+//   title: string;
+//   price: string;
+//   __v: number;
+//   currentSize: 'SIZE';
+// }
+
+export interface IAlbumState {
   album: {
-    cards: Array<ICards>;
+    cards: Array<ICard>;
     color: string;
   };
 }
 
-interface ICardsAction {
+interface IAlbumAction {
   type: string;
   payload: {
-    cards: Array<ICards>;
+    cards: Array<ICard>;
     color: string;
   };
 }
 
-export type DispatchCards = (args: ICardsAction) => ICardsAction;
+export type DispatchAlbum = (args: IAlbumAction) => IAlbumAction;
 
-const initialState: ICardsState = {
+const initialState: IAlbumState = {
   album: {
     cards: [],
     color: 'adult',
@@ -61,7 +69,7 @@ const initialState: ICardsState = {
 //   }
 // };
 
-export const cardsReducer = (state: ICardsState = initialState, action: ICardsAction) => {
+export const albumReducer = (state: IAlbumState = initialState, action: IAlbumAction) => {
   switch (action.type) {
     case FETCH_CARDS:
       return { ...state, album: action.payload };
