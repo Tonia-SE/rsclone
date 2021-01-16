@@ -60,6 +60,9 @@ body{
   padding-bottom: 5px;
 }
 .shoppingCard-quantity{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 10px;
   left: 38px;
@@ -69,9 +72,6 @@ body{
   height: 11px;
 }
 #shoppingCard-quantity {
-  position: absolute;
-  top: 0px;
-  left: 3px;
   font-size: 8px;
 }
 
@@ -355,7 +355,14 @@ small:hover, small:focus, small:visited, small:active, small:target{
   justify-content: space-between;
   align-items: center;
 }
-.card_btn-BUY{
+.page_wrapper{
+  display: flex;
+  justify-content: center;
+}
+.single-card{
+  width: 50%;
+}
+.card_btn-BUY, .card_btn-sizes{
   width: 80px;
   height: 40px;
 }
@@ -447,7 +454,7 @@ small:hover, small:focus, small:visited, small:active, small:target{
   .text{
     font-size: 1rem !important;
   }
-  .card_btn-BUY{
+  .card_btn-BUY, .card_btn-sizes{
     width: 50px;
     height: 30px;
   }
@@ -459,7 +466,7 @@ small:hover, small:focus, small:visited, small:active, small:target{
   .text{
     font-size: 1.5rem !important;
   }
-  .card_btn-BUY{
+  .card_btn-BUY, .card_btn-sizes{
     width: 80px;
     height: 40px;
   }
@@ -468,7 +475,7 @@ small:hover, small:focus, small:visited, small:active, small:target{
   .text{
     font-size: 1rem !important;
   }
-  .card_btn-BUY{
+  .card_btn-BUY, .card_btn-sizes{
     width: 50px;
     height: 30px;
   }
@@ -511,6 +518,10 @@ small:hover, small:focus, small:visited, small:active, small:target{
 .main-page-link{
   color: $color-1;
   font-size: 3rem;
+  text-decoration: underline;
+}
+.main-page-link:hover{
+  color: $color-3;
 }
 @media (max-width: 767px) {
   .empty-shoppingCart{

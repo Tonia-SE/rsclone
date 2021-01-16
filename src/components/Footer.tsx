@@ -62,9 +62,6 @@ export const Footer: React.FC = () => {
             https://github.com/Tonia-SE
           </a>
         </div>
-        <a href="https://rs.school" target="blank">
-          <img id="logo" alt="RS school" src="https://rs.school/images/rs_school_js.svg" />
-        </a> 
       </div>
     </div>
   );

@@ -1,8 +1,10 @@
-import { backendServer } from '../consts';
+import { backendServer, rateUrl } from '../consts';
 //import { SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_COLOR } from "./actionTypes";
-import { FETCH_CARDS, FETCH_CATEGORIES } from './actionTypes';
+import { FETCH_CARDS, FETCH_CARD_INFO, FETCH_CATEGORIES, SET_CURRENCY } from './actionTypes';
 import { DispatchAlbum } from './albumReducer';
+import { DispatchCard } from './cardReducer';
 import { DispatchCategory } from './controlsReducer';
+import { DispatchCurrency } from './currencyReducer';
 
 // interface Idispatch {
 //   dispatch (type: string, payload: string) {
@@ -17,7 +19,22 @@ export function fetchCategories() {
       //dispatch(showLoader())
       const response = await fetch(`${backendServer}/categories`);
       const json = await response.json();
-      dispatch({ type: FETCH_CATEGORIES, payload: json });
+      dispatch({ type: FETCH_CATEGORIES, payload: json });      
+      //dispatch(hideLoader())
+    } catch (e) {
+      //dispatch(showAlert('Ошибка загрузки'))
+      //dispatch(hideLoader())
+    }
+  };
+}
+
+export function fetchCard(cardId: string) {
+  return async (dispatch: DispatchCard) => {
+    try {
+      //dispatch(showLoader())
+      const response = await fetch(`${backendServer}/cards?_id=${cardId}`);
+      const json = await response.json();      
+      dispatch({ type: FETCH_CARD_INFO, payload: json[0] });
       console.log(json);
       //dispatch(hideLoader())
     } catch (e) {
@@ -26,6 +43,7 @@ export function fetchCategories() {
     }
   };
 }
+
 
 export function chooseCategory(categoryName: string) {
     //console.log(id);
@@ -41,6 +59,28 @@ export function chooseCategory(categoryName: string) {
             // dispatch(hideLoader())
         }
     }
+}
+
+export function setCurrency(value: string) {
+  return async (dispatch: DispatchCurrency) => {
+    try {
+      //dispatch(showLoader())
+      let rate = 1;
+      if(value !== '$') {
+        const response = await fetch(rateUrl);
+        const json = await response.json();
+        rate = json.Valute.USD.Value;
+      }
+      dispatch({ type: SET_CURRENCY, payload: {
+        value: value,
+        rate: rate
+      }});      
+      //dispatch(hideLoader())type: string;
+    } catch (e) {
+      //dispatch(showAlert('Ошибка загрузки'))
+      //dispatch(hideLoader())
+    }
+  };
 }
 
 // export function showLoader() {

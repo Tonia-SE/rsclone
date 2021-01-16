@@ -1,7 +1,12 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { SET_CURRENCY } from '../redux/actionTypes';
+import { ApplicationState } from '../redux/rootReducer';
+import { setCurrency } from '../redux/actions'
 
 export const Navbar: React.FC = () => {
+  const dispatch = useDispatch();
   return (
     <div className="header">
       <div className="navbar navbar navbar-light bg-light">
@@ -107,14 +112,14 @@ export const Navbar: React.FC = () => {
               Shopping in
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown" id="dropdownMenuNav">
-              <a className="dropdown-item" href="/" target="blank">
+              <div className="dropdown-item" onClick={() => {dispatch(setCurrency('₽'))}}>
                 Russia
                 <img id="Russia" src="./assets/images/russiaFlag.ico" alt="Russia flag"/>
-              </a>
-              <a className="dropdown-item" href="/" target="blank">
+              </div>
+              <div className="dropdown-item" onClick={() => {dispatch(setCurrency('$'))}}>
                 USA
                 <img id="USA" src="./assets/images/UnitedStatesFlag.ico" alt="USA flag"/>
-              </a>
+              </div>
             </div>
           </li>
         </ul>
