@@ -14,13 +14,14 @@ import { rootReducer } from './redux/rootReducer';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { compose, createStore, applyMiddleware, Store } from 'redux';
-import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
+import {Route, BrowserRouter as Router, Switch, RouteProps} from 'react-router-dom'
 import App from './App';
-import ShoppingCart from './components/ShoppingCart'
-import { Navbar } from './components/Navbar';
-import { LogInForm, SignUpForm } from './components/Regforms';
-import Card from './components/Card';
-import { Footer } from './components/Footer';
+import ShoppingCart from './components/ShoppingCart/ShoppingCart'
+import { Navbar } from "./components/Navbar/Navbar"
+import { LogInForm, SignUpForm } from './components/Regforms/Regforms';
+import Card from './components/Card/Card';
+import { Footer } from './components/Footer/Footer';
+import { toggleNavbarDropdownMenu } from './redux/actions';
 
 // import { spamWordsMiddleWare } from './redux/middleWare';
 
@@ -65,10 +66,10 @@ const routing = (
           <Navbar />
           <LogInForm />
           <SignUpForm />
-            <div className="page">
+            <div className="page" onClick={()=>{toggleNavbarDropdownMenu()}}>
                 <Switch>
                     <Route exact path="/" component={App} />
-                    <Route exact path="/shopping_cart" component={ShoppingCart} />
+                    <Route exact path="/shopping_cart" render={(props:RouteProps)=><ShoppingCart/>} />
                     <Route exact path="/card" component={Card} />
                 </Switch>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { backendServer } from '../consts';
+import { backendServer } from '../../consts';
 
 const carouselImges: Array<string> = [];
 for (let i: number = 1; i < 7; i++) {

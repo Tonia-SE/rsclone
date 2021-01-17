@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { backendServer } from '../consts';
-import { fetchCard } from '../redux/actions';
-import { ApplicationState } from '../redux/rootReducer';
+import { backendServer } from '../../consts';
+import { fetchCard } from '../../redux/actions';
+import { ApplicationState } from '../../redux/rootReducer';
 //import {useSelector} from 'react-redux'
 
 const Album = () => {
@@ -33,7 +33,7 @@ const Album = () => {
             const imageUrl = `${backendServer}${card.imageUrl}`
             let priceCurrent = `${card.price} ${currency.value}`
             if (currency.value !== '$') {
-              priceCurrent = `${Math.trunc(parseFloat(card.price) * currency.rate)} ${currency.value}`
+              priceCurrent = `${Math.round((Math.trunc(parseFloat(card.price) * currency.rate)/100)) * 100 - 1} ${currency.value}`
             }
             //const priceValue = Math.trunc(parseFloat(card.price) * currency.rate)
             //const priceCurrent = `${priceValue} ${currency.value}`

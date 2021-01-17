@@ -1,16 +1,24 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { SET_CURRENCY } from '../redux/actionTypes';
-import { ApplicationState } from '../redux/rootReducer';
-import { setCurrency } from '../redux/actions'
+import { SET_CURRENCY } from '../../redux/actionTypes';
+import { ApplicationState } from '../../redux/rootReducer';
+import { setCurrency, toggleNavbarDropdownMenu } from '../../redux/actions'
+import { IPosition } from '../../redux/shoppingCartReducer';
 
 export const Navbar: React.FC = () => {
+
+  const shopCart = useSelector((state: ApplicationState)  => state.shopCart);
+  let qty = 0;
+  if (shopCart.positions.length !== 0) {
+    qty = shopCart.positions.map((position) => position.quantity).reduce((a, b)=> a + b)
+  }
+
   const dispatch = useDispatch();
   return (
     <div className="header">
       <div className="navbar navbar navbar-light bg-light">
-        <a className="navbar-brand" href="http://localhost:4000/">
+        <a className="navbar-brand" href="/">
           <img id="logo" src="./assets/images/logo.svg" width="30" height="30" className="d-inline-block align-top" alt="" />
           KIGURUMI me
         </a>
@@ -20,12 +28,12 @@ export const Navbar: React.FC = () => {
           <li className="nav-item active">
             <div className="shoppingCard-wrapper">
               <Link to='/shopping_cart'>
-                <a className="nav-link" href="/">
+                <div className="nav-link">
                   <img className="shoppingCart add-width" src="./assets/images/shopping-cart-empty.svg" alt="shopping cart" />
-                </a>
+                </div>
               </ Link> 
               <div className="shoppingCard-quantity">
-                <span id="shoppingCard-quantity">0</span>
+                <span id="shoppingCard-quantity">{qty}</span>
               </div>
             </div>
           </li>
@@ -61,12 +69,12 @@ export const Navbar: React.FC = () => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <a className="nav-link" href="https://ru.wikipedia.org/wiki/%D0%9A%D0%B8%D0%B3%D1%83%D1%80%D1%83%D0%BC%D0%B8" target="blank">
+            <a className="nav-link" href="https://ru.wikipedia.org/wiki/%D0%9A%D0%B8%D0%B3%D1%83%D1%80%D1%83%D0%BC%D0%B8" target="blank" onClick={()=>{toggleNavbarDropdownMenu()}}>
               About us<span className="sr-only">(current)</span>
             </a>
           </li>
           <li className="nav-item active">
-            <a className="nav-link" href="https://boxberry.ru/" target="blank">
+            <a className="nav-link" href="https://boxberry.ru/" target="blank" onClick={()=>{toggleNavbarDropdownMenu()}}>
               Delivery
             </a>
           </li>
@@ -75,16 +83,16 @@ export const Navbar: React.FC = () => {
               Contacts
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown" id="dropdownMenuNav">
-              <a className="dropdown-item" href="https://www.google.ru/maps" target="blank">
+              <a className="dropdown-item" href="https://www.google.ru/maps" target="blank" onClick={()=>{toggleNavbarDropdownMenu()}}>
                 Address
               </a>
-              <a className="dropdown-item" href="https://www.google.com/intl/ru/gmail/about/" target="blank">
+              <a className="dropdown-item" href="https://www.google.com/intl/ru/gmail/about/" target="blank" onClick={()=>{toggleNavbarDropdownMenu()}}>
                 E-mail
               </a>
             </div>
           </li>
           <li className="nav-item active">
-            <a className="nav-link" href="https://pay.google.com/intl/ru_ru/about/" target="blank">
+            <a className="nav-link" href="https://pay.google.com/intl/ru_ru/about/" target="blank" onClick={()=>{toggleNavbarDropdownMenu()}}>
               Payment
             </a>
           </li>
@@ -93,16 +101,16 @@ export const Navbar: React.FC = () => {
               Sizes
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown" id="dropdownMenuNav">
-              <a className="dropdown-item" href="/" target="blank">
+              <a className="dropdown-item" href="/" target="blank" onClick={()=>{toggleNavbarDropdownMenu()}}>
                 Men
               </a>
-              <a className="dropdown-item" href="/" target="blank">
+              <a className="dropdown-item" href="/" target="blank" onClick={()=>{toggleNavbarDropdownMenu()}}>
                 Women
               </a>
-              <a className="dropdown-item" href="/" target="blank">
+              <a className="dropdown-item" href="/" target="blank" onClick={()=>{toggleNavbarDropdownMenu()}}>
                 Kids
               </a>
-              <a className="dropdown-item" href="/" target="blank">
+              <a className="dropdown-item" href="/" target="blank" onClick={()=>{toggleNavbarDropdownMenu()}}>
                 Shoes
               </a>
             </div>
@@ -112,11 +120,15 @@ export const Navbar: React.FC = () => {
               Shopping in
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown" id="dropdownMenuNav">
-              <div className="dropdown-item" onClick={() => {dispatch(setCurrency('₽'))}}>
+              <div className="dropdown-item country" onClick={() => {
+                toggleNavbarDropdownMenu()
+                dispatch(setCurrency('₽'))}}>
                 Russia
                 <img id="Russia" src="./assets/images/russiaFlag.ico" alt="Russia flag"/>
               </div>
-              <div className="dropdown-item" onClick={() => {dispatch(setCurrency('$'))}}>
+              <div className="dropdown-item country" onClick={() => {
+                toggleNavbarDropdownMenu()
+                dispatch(setCurrency('$'))}}>
                 USA
                 <img id="USA" src="./assets/images/UnitedStatesFlag.ico" alt="USA flag"/>
               </div>

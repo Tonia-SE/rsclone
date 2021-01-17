@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { chooseCategory } from '../redux/actions';
+import { chooseCategory } from '../../redux/actions';
 //import {chooseCategory} from '../redux/actions';
-import { ApplicationState } from '../redux/rootReducer';
+import { ApplicationState } from '../../redux/rootReducer';
 
 interface ICategory {
   title: string;

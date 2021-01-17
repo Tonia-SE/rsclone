@@ -4,7 +4,7 @@ export const Footer: React.FC = () => {
   return (
     <div className="container-fluid text-center text-md-left pt-3 page-footer">
       <div className="row">
-        <div className="col-md-6 mt-md-0 mt-3 pl-4" id="text-column-1">
+        <div className="col-md-6 mt-md-0 mt-3 pl-4 font-16" id="text-column-1">
           <h5>KIGURUMI me</h5>
           <p>
             A costumed character wears a costume that usually (but not always) covers the performer's face. These range from theme park "walk-around" or "meetable" characters, the
@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
             leave the performer's face visible.
           </p>
         </div>
-        <div className="col-md-3 mb-md-0 mb-3" id="text-column-2">
+        <div className="col-md-3 mb-md-0 mb-3 font-16" id="text-column-2">
           <h5 className="text-uppercase">Contacts</h5>
           <ul className="list-unstyled">
             <li>
@@ -22,12 +22,12 @@ export const Footer: React.FC = () => {
             </li>
             <li>
               <a href="https://play.google.com/store/apps/details?id=com.google.android.dialer&hl=ru&gl=US" target="blank">
-                +7-499-951-84-43
+                +7-499-951-84
               </a>
             </li>
           </ul>
         </div>
-        <div className="col-md-3 mb-md-0 mb-3" id="text-column-3">
+        <div className="col-md-3 mb-md-0 mb-3 font-16" id="text-column-3">
           <h5>KIGURUMI me</h5>
           <ul className="list-unstyled">
             <li>
@@ -55,7 +55,7 @@ export const Footer: React.FC = () => {
           </ul>
         </div>
       </div>
-      <div className="footer-copyright text-left py-3">
+      <div className="footer-copyright py-3 font-16">
         <div className="inline">
           © 2021 Copyright:
           <a href="https://github.com/Tonia-SE" target="blank">

@@ -1,10 +1,13 @@
+import { useSelector } from 'react-redux';
 import { backendServer, rateUrl } from '../consts';
 //import { SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_COLOR } from "./actionTypes";
-import { FETCH_CARDS, FETCH_CARD_INFO, FETCH_CATEGORIES, SET_CURRENCY } from './actionTypes';
+import { ADD_TO_SHOPCART, FETCH_CARDS, FETCH_CARD_INFO, FETCH_CATEGORIES, REMOVE_FROM_CART, SET_CURRENCY, SET_QUANTITY, SET_SIZE } from './actionTypes';
 import { DispatchAlbum } from './albumReducer';
-import { DispatchCard } from './cardReducer';
+import { DispatchCard, ICardState } from './cardReducer';
 import { DispatchCategory } from './controlsReducer';
 import { DispatchCurrency } from './currencyReducer';
+import { ApplicationState } from './rootReducer';
+import { DispatchShopCart, IPosition } from './shoppingCartReducer';
 
 // interface Idispatch {
 //   dispatch (type: string, payload: string) {
@@ -83,6 +86,91 @@ export function setCurrency(value: string) {
   };
 }
 
+export function setSize(size: string) {
+  return (dispatch: DispatchCard) => {
+    if(size !== 'SIZE') {
+      dispatch({ type: SET_SIZE, currentSize: size });
+    }
+  };
+}
+
+export function setQuantity(quantity: number, key: string)  {
+  const [id, size] = key.split('_');
+  return (dispatch: DispatchShopCart) => {
+    if (quantity >= 0) {
+      dispatch({type: SET_QUANTITY, payload: {
+          id: id,
+          size: size,
+          quantity: quantity
+        }
+      })
+    } else {
+      console.log("Add alert here: ");
+    }
+  };
+} 
+
+export function addPosition(id: string, size: string, currentPositions:Array<IPosition>) {
+  return async (dispatch: DispatchShopCart) => {
+    if(size !== 'SIZE') {
+      try {
+        const response = await fetch(`${backendServer}/cards?_id=${id}`);
+        const json = await response.json();
+        const isPositionAlreadyExists = currentPositions.find((position: IPosition) => {
+          if(position.id === id && position.size === size) {
+            return true
+          }
+          return false
+        })
+        if (isPositionAlreadyExists === undefined) {
+          dispatch({ type: ADD_TO_SHOPCART, payload: {
+            id: id,
+            title: json[0].title,
+            imageUrl: json[0].imageUrl,
+            price: json[0].price,
+            size: size,
+            quantity: 1
+            }  
+          });
+        } else {
+          console.log("Add alert here: the same position is already in cart");
+        }
+      } catch (e) {
+      }
+    } else {
+      console.log("Add alert here: Choose size !");
+    }
+  };
+}
+
+export function removeFromCart(key: string) {
+  const [id, size] = key.split('_');
+  return (dispatch: DispatchShopCart) => {
+    dispatch({ type: REMOVE_FROM_CART, payload: {id: id, size: size, quantity: 0} });
+  };
+}
+
+export function toggleNavbarDropdownMenu() {
+  const menu = document.getElementById('navbarSupportedContent');
+  if(menu.classList.toString().includes('show')) {
+    menu.classList.toggle('show');
+  }
+}
+
+// export function removeFromCart(id: string, size: string, currentPositions: Array<IPosition>) {
+//   const isPositionAlreadyExists = currentPositions.find((position: IPosition) => {
+//     if(position.id === id && position.size === size) {
+//       return true
+//     }
+//     return false
+//   });
+//   if (isPositionAlreadyExists !== undefined) {
+//     const positions = currentPositions.replase(isPositionAlreadyExists, "")
+//   }
+//   arr = arr.filter(function(item) { 
+//     return item !== value
+// })
+// }
 // export function showLoader() {
 //     return {
 //         type: SHOW_LOADER
