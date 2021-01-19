@@ -1,5 +1,5 @@
 //import { SET_COLOR } from "./types"
-import { FETCH_CARDS } from './actionTypes';
+import { ADD_STAR, FETCH_CARDS, REMOVE_STAR, SET_CARDID } from './actionTypes';
 
 // const initialState = {
 //     fetchedCards: [],
@@ -16,12 +16,14 @@ import { FETCH_CARDS } from './actionTypes';
 // }
 
 //import { FETCH_CATEGORIES } from './actionTypes';
-interface ICard {
+export interface ICard {
   _id: string;
   imageUrl: string;
   title: string;
   price: string;
   __v: number;
+  star: boolean;
+  size?: Array<string>
 }
 
 // interface ICard {
@@ -44,10 +46,11 @@ export interface IAlbumState {
 
 interface IAlbumAction {
   type: string;
-  payload: {
+  payload?: {
     cards: Array<ICard>;
     color: string;
-  };
+  };  
+  cardId?: string
 }
 
 export type DispatchAlbum = (args: IAlbumAction) => IAlbumAction;
@@ -72,7 +75,24 @@ const initialState: IAlbumState = {
 export const albumReducer = (state: IAlbumState = initialState, action: IAlbumAction) => {
   switch (action.type) {
     case FETCH_CARDS:
+      action.payload.cards.forEach((card:ICard) => {card.star = false})
       return { ...state, album: action.payload };
+    case ADD_STAR:
+      return { ...state, album: 
+        {cards: state.album.cards.map((card:ICard) => {
+          if (card._id === action.cardId) {
+            card.star = true
+          }
+          return card;
+        }), color: state.album.color }};
+    case REMOVE_STAR:      
+      return { ...state, album: 
+        {cards: state.album.cards.map((card:ICard) => {
+          if (card._id === action.cardId) {
+            card.star = false
+          }
+          return card;
+        }), color: state.album.color }};
     default:
       return state;
   }

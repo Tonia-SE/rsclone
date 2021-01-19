@@ -3,6 +3,7 @@ import React from 'react';
 
 const tabIndex:number = -1;
 
+
 export const LogInForm: React.FC = () => {
   return (
     <div className="modal" tabIndex={tabIndex} id="logInModal" aria-hidden="true">

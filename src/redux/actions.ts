@@ -1,13 +1,16 @@
 import { useSelector } from 'react-redux';
-import { backendServer, rateUrl } from '../consts';
+import { alertTimeout, backendServer, rateUrl } from '../consts';
 //import { SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_COLOR } from "./actionTypes";
-import { ADD_TO_SHOPCART, FETCH_CARDS, FETCH_CARD_INFO, FETCH_CATEGORIES, REMOVE_FROM_CART, SET_CURRENCY, SET_QUANTITY, SET_SIZE } from './actionTypes';
+import { ADD_STAR, ADD_TO_SHOPCART, FETCH_CARDS, FETCH_CARD_INFO, FETCH_CATEGORIES, HIDE_ALERT, HIDE_LOADER, REMOVE_FROM_CART, REMOVE_STAR, SET_CARDID, SET_CURRENCY, SET_LANG, SET_QUANTITY, SET_SIZE, SHOW_ALERT, SHOW_LOADER } from './actionTypes';
 import { DispatchAlbum } from './albumReducer';
 import { DispatchCard, ICardState } from './cardReducer';
 import { DispatchCategory } from './controlsReducer';
 import { DispatchCurrency } from './currencyReducer';
+import { DispatchLang } from './langReducer';
+import { DispatchMessage } from './messageReducer';
 import { ApplicationState } from './rootReducer';
 import { DispatchShopCart, IPosition } from './shoppingCartReducer';
+import { DispatchStar } from './starReducer';
 
 // interface Idispatch {
 //   dispatch (type: string, payload: string) {
@@ -86,6 +89,16 @@ export function setCurrency(value: string) {
   };
 }
 
+export function changeLang(value: string) {
+  return (dispatch: DispatchLang) => {
+    if(value !== 'eng') {
+      dispatch({ type: SET_LANG, value: value });
+    } else {
+      dispatch({ type: SET_LANG, value: 'eng' });
+    }
+  };
+}
+
 export function setSize(size: string) {
   return (dispatch: DispatchCard) => {
     if(size !== 'SIZE') {
@@ -110,37 +123,46 @@ export function setQuantity(quantity: number, key: string)  {
   };
 } 
 
-export function addPosition(id: string, size: string, currentPositions:Array<IPosition>) {
-  return async (dispatch: DispatchShopCart) => {
-    if(size !== 'SIZE') {
-      try {
-        const response = await fetch(`${backendServer}/cards?_id=${id}`);
-        const json = await response.json();
-        const isPositionAlreadyExists = currentPositions.find((position: IPosition) => {
-          if(position.id === id && position.size === size) {
-            return true
-          }
-          return false
-        })
-        if (isPositionAlreadyExists === undefined) {
-          dispatch({ type: ADD_TO_SHOPCART, payload: {
-            id: id,
-            title: json[0].title,
-            imageUrl: json[0].imageUrl,
-            price: json[0].price,
-            size: size,
-            quantity: 1
-            }  
-          });
-        } else {
-          console.log("Add alert here: the same position is already in cart");
-        }
-      } catch (e) {
+export function addPosition(id: string, size: string, currentPositions:Array<IPosition>, lang: string) {
+  if(size !== 'SIZE') {
+    const isPositionAlreadyExists = currentPositions.find((position: IPosition) => {
+      if(position.id === id && position.size === size) {
+        return true
       }
+      return false
+    })
+    if (isPositionAlreadyExists === undefined) {
+      return async (dispatch: DispatchShopCart) => {    
+          try {
+            const response = await fetch(`${backendServer}/cards?_id=${id}`);
+            const json = await response.json();
+            
+              dispatch({ type: ADD_TO_SHOPCART, payload: {
+                id: id,
+                title: json[0].title,
+                imageUrl: json[0].imageUrl,
+                price: json[0].price,
+                size: size,
+                quantity: 1
+                }  
+              });
+          } catch (e) {
+          }
+      };
     } else {
-      console.log("Add alert here: Choose size !");
+      if (lang === 'eng') {
+        return showAlert("The same position is already in cart");
+      } else {
+        return showAlert("Товар уже добавлен в корзину");
+      }
     }
-  };
+  } else {
+    if (lang === 'eng') {
+      return showAlert('Choose a size, please')
+    } else {
+      return showAlert("Выберите размер, пожалуйста");
+    }
+  }
 }
 
 export function removeFromCart(key: string) {
@@ -157,6 +179,63 @@ export function toggleNavbarDropdownMenu() {
   }
 }
 
+export function showLoader() {
+    return {
+        type: SHOW_LOADER
+    }
+}
+
+export function hideLoader() {
+    return {
+        type: HIDE_LOADER
+    }
+}
+
+export function showAlert(text: string) {
+    return (dispatch: DispatchMessage) => {
+        dispatch({
+            type: SHOW_ALERT,
+            text: text
+        })
+        setTimeout(() => {
+            dispatch({type: HIDE_ALERT})
+        }, alertTimeout)
+    }
+}
+
+export function proceedToCheckout(lang: string) {
+  if(lang === 'eng') {
+    return showAlert("Login first, please")
+  }
+  return showAlert("Войдите в личный кабинет, пожалуйста")
+}
+
+export function addStar(id: string) {
+  return (dispatch: DispatchAlbum) => {
+    dispatch({
+      type: ADD_STAR,
+      cardId: id
+    })
+  }
+}
+
+export function removeStar(id: string) {
+  return (dispatch: DispatchAlbum) => {
+      dispatch({
+          type: REMOVE_STAR,
+          cardId: id
+      })
+  }
+}
+
+// export function starSetID(id: string) {
+//   return (dispatch: DispatchStar) => {
+//     dispatch({
+//         type: SET_CARDID,
+//         id: id
+//     })
+// }
+// }
 // export function removeFromCart(id: string, size: string, currentPositions: Array<IPosition>) {
 //   const isPositionAlreadyExists = currentPositions.find((position: IPosition) => {
 //     if(position.id === id && position.size === size) {
@@ -170,34 +249,4 @@ export function toggleNavbarDropdownMenu() {
 //   arr = arr.filter(function(item) { 
 //     return item !== value
 // })
-// }
-// export function showLoader() {
-//     return {
-//         type: SHOW_LOADER
-//     }
-// }
-
-// export function hideLoader() {
-//     return {
-//         type: HIDE_LOADER
-//     }
-// }
-
-// export function showAlert(text: string): Idispatch {
-//     return dispatch => {
-//         dispatch({
-//             type: SHOW_ALERT,
-//             payload: text
-//         })
-
-//         setTimeout(() => {
-//             dispatch(hideAlert())
-//         }, 1000)
-//     }
-// }
-
-// export function hideAlert() {
-//     return {
-//         type: HIDE_ALERT
-//     }
 // }

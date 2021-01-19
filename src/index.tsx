@@ -17,7 +17,8 @@ import { compose, createStore, applyMiddleware, Store } from 'redux';
 import {Route, BrowserRouter as Router, Switch, RouteProps} from 'react-router-dom'
 import App from './App';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart'
-import { Navbar } from "./components/Navbar/Navbar"
+import { Navbar } from "./components/Navbar/Navbar";
+import { Message } from './components/Message/Message';
 import { LogInForm, SignUpForm } from './components/Regforms/Regforms';
 import Card from './components/Card/Card';
 import { Footer } from './components/Footer/Footer';
@@ -44,20 +45,8 @@ const store = createStore(
     // applyMiddleware(thunk, spamWordsMiddleWare),
     applyMiddleware(thunk),
     composeEnhancers()
-    //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
-
-//saga.run(sagaWatcher)
-
-// const app = (
-//   <Provider store={store}>
-//     <App />
-//   </Provider>
-// );
-
-// render(app, document.getElementById('body'));
-// import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 
 const routing = (
     <Router>
@@ -69,8 +58,8 @@ const routing = (
             <div className="page" onClick={()=>{toggleNavbarDropdownMenu()}}>
                 <Switch>
                     <Route exact path="/" component={App} />
-                    <Route exact path="/shopping_cart" render={(props:RouteProps)=><ShoppingCart/>} />
-                    <Route exact path="/card" component={Card} />
+                    <Route exact path="/shopping_cart" component={ShoppingCart} />
+                    <Route exact path="/card:cardId" component={Card} />
                 </Switch>
             </div>
           <Footer />
@@ -79,3 +68,14 @@ const routing = (
     </Router>
 )
 render(routing, document.getElementById('body'))
+
+//saga.run(sagaWatcher)
+
+// const app = (
+//   <Provider store={store}>
+//     <App />
+//   </Provider>
+// );
+
+// render(app, document.getElementById('body'));
+// import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'

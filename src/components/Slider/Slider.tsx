@@ -1,6 +1,7 @@
 import React from 'react';
 import { backendServer } from '../../consts';
 
+
 const carouselImges: Array<string> = [];
 for (let i: number = 1; i < 7; i++) {
   carouselImges.push(`${backendServer}/static/images/slider__${i}.jpg`);
@@ -10,12 +11,14 @@ export const Slider: React.FC = () => {
     <section className="slider">
       <div className="carousel slide" id="carouselExampleControls" data-ride="carousel">
         <div className="carousel-inner">
-          {carouselImges.map((image) => {
-            return (
-              <div className="carousel-item" key={image}>
+          {carouselImges.map((image, index) => {
+            
+              return (
+              <div className="carousel-item" id={index.toString()} key={index.toString()}>
                 <img className="d-block w-100" alt="KIGURUMI" src={image} key={image} />
               </div>
-            );
+              )
+            
           })}
           <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev" key="2">
             <span className="carousel-control-prev-icon" aria-hidden="true" key="3"></span>

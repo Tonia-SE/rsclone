@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { backendServer } from '../../consts';
 import { ApplicationState } from '../../redux/rootReducer';
 import { IPosition } from '../../redux/shoppingCartReducer';
-import { fetchCard, removeFromCart, setQuantity } from '../../redux/actions';
+import { fetchCard, proceedToCheckout, removeFromCart, setQuantity, showAlert } from '../../redux/actions';
 import { ICardState } from '../../redux/cardReducer';
 import { Link } from 'react-router-dom';
+import { Message } from '../Message/Message';
 
-interface IShoppingCartProps {
-  goods: Array<string>
-}
+// interface IShoppingCartProps {
+//   goods: Array<string>
+// }
 
 const ShoppingCart: React.FC = () => {
   //const loading = useSelector(state => state.app.loading)
@@ -17,6 +18,15 @@ const ShoppingCart: React.FC = () => {
   const cart = useSelector((state: ApplicationState)  => state.shopCart)
   const currency = useSelector((state: ApplicationState) => state.currency.info)
   const totalOrderPrice: Array<number> = [];
+  const colSpanOrder = 1;
+  const colSpanMessage = 4;
+  const lang = useSelector((state: ApplicationState)  => state.lang);
+  let title = (lang.value === 'eng')?'Title': 'Модель'
+  let size = (lang.value === 'eng')?'Size': 'Размер'
+  let quantity = (lang.value === 'eng')?'Quantity': 'Количество'
+  let price = (lang.value === 'eng')?'Price': 'Цена'
+  let checkout = (lang.value === 'eng')?'CHECKOUT': 'КУПИТЬ'
+  let total = (lang.value === 'eng')?'Total:': 'Сумма:'
   
   const countTotal = () => {
     const total = totalOrderPrice.reduce((a, b) => a + b);  
@@ -28,15 +38,27 @@ const ShoppingCart: React.FC = () => {
   }
   
   if (cart.positions.length === 0) {
-    return (    
-      <div className="empty-shoppingCart">
-        <div className="empty-shoppingCart_wrapper">
-          <img className="shoppingCart add-width big-size" src="./assets/images/shopping-cart-empty.svg" alt="shopping cart" />
-          <p className="empty-shoppingCart_message">Your cart is empty...</p>
-          <a className="main-page-link" href="/">SHOP NOW</a>
+    if(lang.value === 'eng') {
+      return (    
+        <div className="empty-shoppingCart">
+          <div className="empty-shoppingCart_wrapper">
+            <img className="shoppingCart add-width big-size" src="./assets/images/shopping-cart-empty.svg" alt="shopping cart" />
+            <p className="empty-shoppingCart_message">Your cart is empty...</p>
+            <a className="main-page-link" href="/">SHOP NOW</a>
+          </div>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return (    
+        <div className="empty-shoppingCart">
+          <div className="empty-shoppingCart_wrapper">
+            <img className="shoppingCart add-width big-size" src="./assets/images/shopping-cart-empty.svg" alt="shopping cart" />
+            <p className="empty-shoppingCart_message">Ваша корзина пуста...</p>
+            <a className="main-page-link" href="/">К ПОКУПКАМ</a>
+          </div>
+        </div>
+      )
+    }
   } else {
     return (
       <div className="table-wrapper">
@@ -44,10 +66,10 @@ const ShoppingCart: React.FC = () => {
           <thead className="light">
             <tr>
               <th scope="col"></th>
-              <th scope="col">Title</th>
-              <th scope="col">Size</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Price</th>
+              <th scope="col">{title}</th>
+              <th scope="col">{size}</th>
+              <th scope="col">{quantity}</th>
+              <th scope="col">{price}</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -68,11 +90,11 @@ const ShoppingCart: React.FC = () => {
           return ( 
             <tr key={key} id={key} className="position">
               <td scope="row" className="align-middle">
-              <Link to='/card' id={position.id}>
+              <Link to={`/card:${position.id}`} id={position.id} onClick={(event)=> {dispatch(fetchCard(event.currentTarget.id))}}>
                 <img className="shoppingCart-image" src={imageUrl}/>
               </Link>
               </td>
-              <td className="align-middle">{position.title}</td>
+              <td className="align-middle number">{position.title}</td>
               <td className="align-middle number">{position.size}</td>
               <td id="quantity">
                 <div className="quantity-wrapper number">
@@ -112,15 +134,23 @@ const ShoppingCart: React.FC = () => {
               <td></td>
               <td className="align-middle">
                 <div className="right">
-                  Total:
+                  {total}
                 </div>
               </td>
               <td className="align-middle total-price">{countTotal()}</td>
               <td className="align-middle center">
-                <button className="btn checkout">
-                CHECKOUT
+              </td>
+            </tr>
+            <tr className="table-borderless">
+              <td colSpan={colSpanMessage} className="">
+                <Message />
+              </td>
+              <td colSpan={colSpanOrder} className="align-middle">
+                <button className="btn checkout center" onClick={() => dispatch(proceedToCheckout(lang.value))}>
+                  {checkout}
                 </button>
               </td>
+              <td></td>
             </tr>
           </tbody>
         </table>

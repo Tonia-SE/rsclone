@@ -3,7 +3,9 @@ import { albumReducer, IAlbumState } from './albumReducer';
 import { cardReducer, ICardState } from './cardReducer';
 import { controlsReducer, ICategoryState } from './controlsReducer';
 import { currencyReducer, ICurrencyState } from './currencyReducer';
-import { IShopCartState, shopCartReducer } from './shoppingCartReducer';
+import { messageReducer, IMessageState } from './messageReducer';
+import { shopCartReducer, IShopCartState } from './shoppingCartReducer';
+import { langReducer, ILangState } from './langReducer';
 
 export interface ApplicationState {
   controls: ICategoryState;
@@ -11,6 +13,9 @@ export interface ApplicationState {
   card: ICardState;
   currency: ICurrencyState;
   shopCart: IShopCartState;
+  message: IMessageState;
+  lang: ILangState;
+  //star: IStarState;
 }
 
 export const rootReducer: Reducer<ApplicationState> = combineReducers<ApplicationState>({
@@ -18,5 +23,7 @@ export const rootReducer: Reducer<ApplicationState> = combineReducers<Applicatio
   album: albumReducer,
   card: cardReducer,
   currency: currencyReducer,
-  shopCart: shopCartReducer
+  shopCart: shopCartReducer,
+  message: messageReducer,
+  lang: langReducer,
 });

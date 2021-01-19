@@ -4,14 +4,18 @@ import { Link } from 'react-router-dom';
 import { backendServer } from '../../consts';
 import { fetchCard } from '../../redux/actions';
 import { ApplicationState } from '../../redux/rootReducer';
+import { Star } from '../Star/Star';
 //import {useSelector} from 'react-redux'
 
 const Album = () => {
 
+  const dispatch = useDispatch();
   const album = useSelector((state: ApplicationState)  => state.album.album)
   const currency = useSelector((state: ApplicationState) => state.currency.info)
-  const classColor = `${album.color} pt-5`;
-  const dispatch = useDispatch();
+  const lang = useSelector((state: ApplicationState) => state.currency.info)
+  const language = useSelector((state: ApplicationState)  => state.lang)
+  let buyBtn = (language.value === 'eng')?'BUY': 'КУПИТЬ'
+
 
 
   //const loading = useSelector(state => state.app.loading)
@@ -25,7 +29,7 @@ const Album = () => {
   // }
 
   return (
-    <div className={classColor}>
+    <div className={`${album.color} pt-5`}>
       <div className="container">
         <div className="row">
           {album.cards.map((card) => {
@@ -39,11 +43,9 @@ const Album = () => {
             //const priceCurrent = `${priceValue} ${currency.value}`
             return (              
                 <div className="col-md-4 pt-3" key={card._id}>
-                  <div className="card mb-4 shadow-sm" key={card._id}>
-                    <small className="text-muted" id="star">
-                      ☆
-                    </small>
-                    <Link to='/card' id={card._id} onClick={(event)=> {dispatch(fetchCard(event.currentTarget.id))}}>
+                  <div className="card mb-4 shadow-sm" key={card._id}>                    
+                    <Star id={card._id}/>
+                    <Link to={`/card:${card._id}`} id={card._id} onClick={(event)=> {dispatch(fetchCard(event.currentTarget.id))}}>
                       <img src={imageUrl} alt="KIGURUMI me" className="bd-placeholder-img card-img-top" width="0" />
                     </Link>
                     <div className="card-body">
@@ -52,9 +54,9 @@ const Album = () => {
                       </small>
                       <div className="title-wrapper">
                         <p className="card-text text">{card.title}</p>      
-                        <Link to='/card' onClick={()=> {dispatch(fetchCard(card._id))}}>
+                        <Link to={`/card:${card._id}`} onClick={()=> {dispatch(fetchCard(card._id))}}>
                           <button className="btn btn-sm btn-outline-secondary card_btn-BUY" id={card._id} type="button" onClick={(event) => {event.currentTarget.getAttribute("id")}}>
-                            BUY
+                            {buyBtn}
                           </button>
                         </Link>
                       </div>

@@ -1,7 +1,7 @@
 // import { showAlert } from "./actions"
 // import { CREATE_POST } from "./types"
 
-// const spam = ['fuck', 'suck']
+// const spam = []
 
 // export function spamWordsMiddleWare({dispatch}) {
 //     return function(next) {
