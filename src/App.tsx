@@ -24,7 +24,7 @@ import { initialCategoryName } from './consts';
 import { Footer } from './components/Footer/Footer';
 import { Navbar } from './components/Navbar/Navbar';
 import { LogInForm, SignUpForm } from './components/Regforms/Regforms';
-import { Slider } from './components/Slider/Slider';
+import { KigurumiSlider } from './components/Slider/Slider';
 import './index.scss';
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
   dispatch(chooseCategory(initialCategoryName));
   return (    
     <>
-      <Slider />
+      <KigurumiSlider />
       <ControlButtons />
       <Album />
     </>

@@ -73,15 +73,15 @@ export const Footer: React.FC = () => {
     return (
       <div className="container-fluid text-center text-md-left pt-3 page-footer">
         <div className="row">
-          <div className="col-md-6 mt-md-0 mt-3 pl-4 font-16" id="text-column-1">
-            <h5>KIGURUMI</h5>
-            <p>
-              Костюмы в виде животных, героев мультфильмов и других персонажей, используемые главным образом костюмированными исполнителями. Артисты, одетые в кигуруми, появляются
-              в торговых центрах, парках и аниме-фестивалях. Костюмированных персонажей очень много в Диснейленде на детских шоу. 
-              Часто они участвуют в спортивных событиях в качестве талисманов.  
+          <div className="col-md-6 mt-3 pl-4 font-16 mb-2" id="text-column-1">
+            <h5 className="text-uppercase">KIGURUMI</h5>
+            <p className="">
+            Это мега популярная одежда для дома и сна родом из Японии. 
+            Она представляет собой удобный цельный комбинезон, изображающий животного или персонажа мультфильма. 
+            Есть даже кигуруми в виде фруктов. С японского название переводится как «носить мягкую игрушку».    
             </p>
           </div>
-          <div className="col-md-3 mb-md-0 mb-3 font-16" id="text-column-2">
+          <div className="col-md-3 mb-3 font-16" id="text-column-2">
             <h5 className="text-uppercase">Контакты</h5>
             <ul className="list-unstyled">
               <li>

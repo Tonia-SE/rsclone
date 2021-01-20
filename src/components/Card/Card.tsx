@@ -20,7 +20,10 @@ const Card: React.FC<ICardProps> = (props) => {
   const album = useSelector((state: ApplicationState)  => state.album.album)
   const currentPositions = useSelector((state: ApplicationState)  => state.shopCart.positions)
   const lang = useSelector((state: ApplicationState)  => state.lang)
+  const titleEng = card.info.titleEng;
+  const titleRu = card.info.titleRu;
   let buyBtn = (lang.value === 'eng')?'BUY': 'КУПИТЬ'
+  
 
 
 
@@ -50,10 +53,10 @@ const Card: React.FC<ICardProps> = (props) => {
           <small className="text-muted price mb-3" id="price">
             {priceCurrent}
           </small>
-          <p className="card-text">{card.info.title}</p>
+          <p className="card-text">{(lang.value === 'eng')? titleEng: titleRu}</p>
           <Message />
           <div className="d-flex justify-content-between align-items-center">
-            <div className="btn-group mb-3">
+            <div className="btn-group mt-2 mb-3">
               {/* <a className="buttonBuy" href="/"> */}
               
               <button className="btn btn-sm btn-outline-secondary card_btn-BUY" id={card.info._id} type="button"

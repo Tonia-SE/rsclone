@@ -9,30 +9,26 @@
   border: 1px solid transparent;
   border-radius: .25rem;
   font-size: 16px;
-  width: 70%;
+  max-width: 60%;
   display: flex;
   flex-wrap: wrap;
+  background-color: none;
+  color: rgb(194, 22, 22);
+  padding: 0;
+  margin-bottom: 0;
+  height: 24px;
 }
 .message-text{
   margin: 0px;
 }
-#close{
-  position: absolute;
-  top: 5px;
-  right: 5px;
-}
 @media (max-width: 850px){
   .alert {
-    width: 90%;
+    max-width: 90%;
   }
 }
 @media (max-width: 700px){
   .alert {
-    width: 100%;
-  }
-  .close button{
-    position: relative;
-    top: 3px;
-    padding: 3px 3px 30px 3px;
+    font-size: 0.7rem;
+    line-height: 14px;
   }
 }

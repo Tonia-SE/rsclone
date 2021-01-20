@@ -11,6 +11,9 @@
 body{
   margin: 0 auto;
 }
+p{
+  margin-bottom: 0 !important
+}
 @media (min-width: 1200px){
   .body{
       width: 1199px;

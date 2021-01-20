@@ -21,6 +21,7 @@ const ShoppingCart: React.FC = () => {
   const colSpanOrder = 1;
   const colSpanMessage = 4;
   const lang = useSelector((state: ApplicationState)  => state.lang);
+  //const card = useSelector((state: ApplicationState)  => state.card)
   let title = (lang.value === 'eng')?'Title': 'Модель'
   let size = (lang.value === 'eng')?'Size': 'Размер'
   let quantity = (lang.value === 'eng')?'Quantity': 'Количество'
@@ -75,6 +76,7 @@ const ShoppingCart: React.FC = () => {
           </thead>
           <tbody>
           { cart.positions.map((position: IPosition) => {
+            let positionTitle = (lang.value === 'eng')? position.titleEng: position.titleRu;
             const imageUrl = backendServer + position.imageUrl;
             let total = '';
             if (currency.value !== '$') {
@@ -94,7 +96,7 @@ const ShoppingCart: React.FC = () => {
                 <img className="shoppingCart-image" src={imageUrl}/>
               </Link>
               </td>
-              <td className="align-middle number">{position.title}</td>
+              <td className="align-middle number">{positionTitle}</td>
               <td className="align-middle number">{position.size}</td>
               <td id="quantity">
                 <div className="quantity-wrapper number">
@@ -142,7 +144,7 @@ const ShoppingCart: React.FC = () => {
               </td>
             </tr>
             <tr className="table-borderless">
-              <td colSpan={colSpanMessage} className="">
+              <td colSpan={colSpanMessage} id="shopCart-message">
                 <Message />
               </td>
               <td colSpan={colSpanOrder} className="align-middle">

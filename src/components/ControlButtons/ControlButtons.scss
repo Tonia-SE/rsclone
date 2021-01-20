@@ -5,14 +5,17 @@
   justify-content: flex-start;
 }
 #adult{
+  max-width: 33.33vw;
   background-color: $background-color-1;
   @include id_album();
 }
 #kids{
+  max-width: 40vw;
   background-color: $background-color-2;
   @include id_album();
 }
 #slippers{
+  max-width: 33.33vw;
   background-color: $background-color-3;
   @include id_album();
 }
@@ -38,33 +41,28 @@ button:hover, button:focus, button:visited, button:active{
 small:hover, small:focus, small:visited, small:active, small:target{
   cursor: pointer;
 }
-@media (max-width: 767px){
+@media (max-width: 800px){
   .col-md-4 {
     padding: 20px 50px;
   }
   #adult, #kids, #slippers{
+    font-size: 0.9rem;
     padding: 7px 20px;
   }
 }
 @media (max-width: 600px){
   #adult, #kids, #slippers{
     padding: 5px 20px;
-    font-size: 16px;
+    font-size: 0.8rem;
   }
 }
 @media (max-width: 475px){
   #adult, #kids, #slippers{
     padding: 5px 10px;
-    font-size: 16px;
   }
 }
-@media (max-width: 415px){
+@media (max-width: 380px){
   #adult, #kids, #slippers{
-    font-size: 14px;
-  }
-}
-@media (max-width: 365px){
-  #adult, #kids, #slippers{
-    font-size: 11px;
+    font-size: 10px;
   }
 }

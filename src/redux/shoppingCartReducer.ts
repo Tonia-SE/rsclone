@@ -8,7 +8,8 @@ export interface IPosition{
   id: string,
   size: string,
   quantity: number
-  title?: string,
+  titleEng?: string,
+  titleRu?: string,
   imageUrl?: string,
   price?: number
 }
@@ -19,7 +20,8 @@ interface IShopCartAction {
     id: string,
     size: string,
     quantity: number
-    title?: string,
+    titleEng?: string,
+    titleRu?: string,
     imageUrl?: string,
     price?: number
   };

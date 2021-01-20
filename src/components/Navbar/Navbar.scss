@@ -21,7 +21,7 @@
   margin-right: 0 !important;
 }
 #logo{
-  width: 25%;
+  max-width: 40px;
 }
 .navWrapper{
   width: 40%;
@@ -59,10 +59,13 @@
   color:  $color-2;
 }
 #icon{
-  border: 1px solid $color-3;
+  border: none;
 }
-#icon:hover, #icon:target, #icon:focus{
-  border: 1px solid $color-2;
+#icon1{
+  border: none;
+}
+#auth{
+  width: 30px;
 }
 #navbarSupportedContent{
   font-size: 1.2rem !important;
@@ -92,19 +95,6 @@
   width: 20px;
   margin-left: 31px;
 }
-@media (max-width: 850px){
-  #logo{
-    max-width: 40px;
-  }
-  .navWrapper{
-    width: 300px;
-    height: 40px;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-}
 @media (max-width: 767px){
   .navbar-brand{
     display: flex;
@@ -112,91 +102,18 @@
     font-size: 0.8rem !important;
     margin-right: 0;
   }
-  .navbar-toggler{
-    padding-left: 9px;
-    padding-right: 9px;
-  }
-  .navbar-toggler-icon{
-    width: 20px;
-  }
-  .shoppingCard-quantity{
-    top: 8px;
+  .add-font-size{
+    font-size: 1rem;
   }
 }
 @media (max-width: 576px){
-  .row-direction{
-    width: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  .navWrapper{
-    width: 250px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-  }
-  .add-font-size{
-    font-size: 1.1rem !important;
-  }
-  .add-width{
-    width: 17px
-  }
-  .shoppingCard-quantity{
-    top: 17px;
-    left: 28px;
-  }
-}
-@media (max-width: 500px){
-  .row-direction{
-    width: 125px;
-  }
-  .navWrapper{
-    width: 190px;
-    height: 25px;
-  }
-  .add-font-size{
-    font-size: 0.9rem !important;
-  }
-  .add-width{
-    width: 15px
-  }
-  .navbar-toggler{
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-  .navbar-toggler-icon{
-    width: 17px;
-  }
-  .navbar-brand{
-    font-size: 0.65rem !important;
-  }
-  .padding-none{
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  .row-direction{
-    margin-left: 20px;
-    margin-top: 3px;
-  }
-  .shoppingCard-wrapper{
-    margin-right: 10px;
-  }
-  .shoppingCard-quantity{
-    width: 8px;
-    height: 8px;
-    top: 23px;
-    left: 30px;
-    font-size: 5px
-  }
-  #shoppingCard-quantity{
-    font-size: 7px;
-    padding-top: 2px;
-  }
-  .nav-link{
+  .shoppingCart{
+    padding-bottom: 10px;
     font-size: 1rem;
+  }
+  #shoppingCart{
+    position: relative;
+    bottom: 5px;
+    left: 9px;
   }
 }

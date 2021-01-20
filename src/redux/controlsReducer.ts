@@ -2,7 +2,8 @@ import { FETCH_CATEGORIES } from './actionTypes';
 
 interface ICategory {
   _id: string;
-  title: string;
+  titleEng: string;
+  titleRu: string;
   color: string;
   __v: number;
 }

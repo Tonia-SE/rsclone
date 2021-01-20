@@ -6,7 +6,8 @@ export interface ICardState {
     _id: string;    
     catgory: string;
     imageUrl: string;
-    title: string;
+    titleEng: string;
+    titleRu: string;
     price: number
   }
   currentSize: string;
@@ -19,7 +20,8 @@ interface ICardAction {
     _id: string;
     catgory: string;
     imageUrl: string;
-    title: string;
+    titleEng: string;
+    titleRu: string;
     price: number
   };
   currentSize?: string;
@@ -33,10 +35,11 @@ const initialState: ICardState = {
     _id: "",    
     catgory: "",
     imageUrl: "",
-    title: "",
+    titleRu: "",
+    titleEng: "",
     price: 0
   },
-  currentSize: 'SIZE'
+  currentSize: ''
 };
 
 export const cardReducer = (state: ICardState = initialState, action: ICardAction ) => {

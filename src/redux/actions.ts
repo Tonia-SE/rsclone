@@ -101,7 +101,7 @@ export function changeLang(value: string) {
 
 export function setSize(size: string) {
   return (dispatch: DispatchCard) => {
-    if(size !== 'SIZE') {
+    if(size !== 'SIZE' && size !== 'РАЗМЕР') {
       dispatch({ type: SET_SIZE, currentSize: size });
     }
   };
@@ -139,7 +139,8 @@ export function addPosition(id: string, size: string, currentPositions:Array<IPo
             
               dispatch({ type: ADD_TO_SHOPCART, payload: {
                 id: id,
-                title: json[0].title,
+                titleEng: json[0].titleEng,
+                titleRu: json[0].titleRu,
                 imageUrl: json[0].imageUrl,
                 price: json[0].price,
                 size: size,
@@ -153,7 +154,7 @@ export function addPosition(id: string, size: string, currentPositions:Array<IPo
       if (lang === 'eng') {
         return showAlert("The same position is already in cart");
       } else {
-        return showAlert("Товар уже добавлен в корзину");
+        return showAlert("Такой размер уже есть в корзине");
       }
     }
   } else {
@@ -174,6 +175,10 @@ export function removeFromCart(key: string) {
 
 export function toggleNavbarDropdownMenu() {
   const menu = document.getElementById('navbarSupportedContent');
+  const auth = document.getElementById('navbarSupportedRegForms');
+  if(auth.classList.toString().includes('show')) {
+    auth.classList.toggle('show');
+  }
   if(menu.classList.toString().includes('show')) {
     menu.classList.toggle('show');
   }
