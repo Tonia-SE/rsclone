@@ -1,23 +1,60 @@
 @import '../../_variables';
 
-.control_buttons{
-  display: flex;
-  justify-content: flex-start;
+// .control_buttons{
+//   display: flex;
+//   justify-content: flex-start;
+// }
+.col-4{
+  max-width: 25%;
+  height: 160px;
 }
 #adult{
-  max-width: 33.33vw;
+  // max-width: 33.33vw;
   background-color: $background-color-1;
   @include id_album();
+  @include center();
 }
 #kids{
-  max-width: 40vw;
+  // max-width: 40vw;
   background-color: $background-color-2;
   @include id_album();
+  @include center();
 }
 #slippers{
-  max-width: 33.33vw;
+  // max-width: 33.33vw;
   background-color: $background-color-3;
   @include id_album();
+  @include center();
+}
+#color1{
+  // max-width: 33.33vw;
+  background-color: $color-6;
+  @include id_album();
+  @include center();
+}
+#color2{
+  // max-width: 33.33vw;
+  background-color: $color-7;
+  @include id_album();
+  @include center();
+}
+#color3{
+  // max-width: 33.33vw;
+  background-color: $color-8;
+  @include id_album();
+  @include center();
+}
+#color4{
+  // max-width: 33.33vw;
+  background-color: $color-9;
+  @include id_album();
+  @include center();
+}
+#color5{
+  // max-width: 33.33vw;
+  background-color: $color-10;
+  @include id_album();
+  @include center();
 }
 #kids:hover, #kids:focus, #kids:active{
   color: $color-2;
@@ -30,9 +67,13 @@
 #slippers:hover{
   color: $color-2;
 }
-.btn{
-  border-radius: 0;
+.jc{
+  justify-content: space-between;
+  align-items: center;
 }
+// .btn{
+//   border-radius: 0;
+// }
 button:hover, button:focus, button:visited, button:active{
   box-shadow: none !important;
   outline: none !important;
@@ -41,28 +82,61 @@ button:hover, button:focus, button:visited, button:active{
 small:hover, small:focus, small:visited, small:active, small:target{
   cursor: pointer;
 }
-@media (max-width: 800px){
-  .col-md-4 {
-    padding: 20px 50px;
+@media (max-width: 850px){
+  // .col-md-4 {
+  //   padding: 20px 50px;
+  // }
+  #adult, #kids, #slippers,
+  #color1, #color2, #color3,
+  #color4, #color5{
+    font-size: 1rem;
   }
-  #adult, #kids, #slippers{
-    font-size: 0.9rem;
-    padding: 7px 20px;
+}
+.col-4{
+  height: 120px !important;
+}
+@media (max-width: 600px){
+  // .col-md-4 {
+  //   padding: 20px 50px;
+  // }
+  #adult, #kids, #slippers,
+  #color1, #color2, #color3,
+  #color4, #color5{
+    font-size: 0.8rem;
+  }
+  .p-5{
+    padding: 25px !important;
   }
 }
 @media (max-width: 600px){
-  #adult, #kids, #slippers{
-    padding: 5px 20px;
-    font-size: 0.8rem;
+  // .col-md-4 {
+  //   padding: 20px 50px;
+  // }
+  #adult, #kids, #slippers,
+  #color1, #color2, #color3,
+  #color4, #color5{
+    font-size: 0.7rem;
+  }
+  .col-4{
+    height: 90px !important;
+  }
+  .p-5{
+    padding: 15px !important;
   }
 }
-@media (max-width: 475px){
-  #adult, #kids, #slippers{
-    padding: 5px 10px;
-  }
-}
-@media (max-width: 380px){
-  #adult, #kids, #slippers{
-    font-size: 10px;
-  }
-}
+// @media (max-width: 600px){
+//   #adult, #kids, #slippers{
+//     padding: 5px 20px;
+//     font-size: 0.8rem;
+//   }
+// }
+// @media (max-width: 475px){
+//   #adult, #kids, #slippers{
+//     padding: 5px 10px;
+//   }
+// }
+// @media (max-width: 380px){
+//   #adult, #kids, #slippers{
+//     font-size: 10px;
+//   }
+// }

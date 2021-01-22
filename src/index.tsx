@@ -8,7 +8,7 @@
 // $('#carouselExampleControls').carousel({
 //   interval: 3000
 // })
-import React from 'react';
+import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { rootReducer } from './redux/rootReducer';
 import { Provider } from 'react-redux';
@@ -19,10 +19,12 @@ import App from './App';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart'
 import { Navbar } from "./components/Navbar/Navbar";
 import { Message } from './components/Message/Message';
-import { LogInForm, SignUpForm } from './components/Regforms/Regforms';
 import Card from './components/Card/Card';
+import { Delivery } from './components/Delivery/Delivery';
+import { Warranty } from './components/Warranty/Warranty';
 import { Footer } from './components/Footer/Footer';
 import { toggleNavbarDropdownMenu } from './redux/actions';
+import { LogInForm, SignUpForm } from './components/Regforms/Regforms';
 
 // import { spamWordsMiddleWare } from './redux/middleWare';
 
@@ -59,7 +61,9 @@ const routing = (
                 <Switch>
                     <Route exact path="/" component={App} />
                     <Route exact path="/shopping_cart" component={ShoppingCart} />
-                    <Route exact path="/card:cardId" component={Card} />
+                    <Route exact path="/card" component={Card} />
+                    <Route exact path="/delivery" component={Delivery} />
+                    <Route exact path="/warranty" component={Warranty} />
                 </Switch>
             </div>
           <Footer />

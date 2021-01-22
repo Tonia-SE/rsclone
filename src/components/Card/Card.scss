@@ -1,5 +1,8 @@
 @import '../../_variables';
 
+.card-bg-color{
+  background-color: $background-color-2
+}
 #sizeDroppdownMenu{
   background-color: $background-color-4;
 }
@@ -12,4 +15,45 @@
 }
 .card-text p{
   margin: 0px
+}
+.card_btn-sizes,
+.card_btn-buy{
+  max-width: 20vw;
+  height: 40px;
+  background-color: $color-2 !important;
+  line-height: 1.8;
+}
+.card_btn-sizes:hover,
+.card_btn-buy:hover,
+.card_btn-sizes:focus,
+.card_btn-buy:focus{
+  background-color: $color-3;
+  color: $color-2;
+  font-weight: 400;
+  border-color: $color-3;
+}
+// .card_btn-BUY{
+//   max-width: 20vw;
+//   height: 40px;
+// }
+// .card_btn-buy:hover,
+// .card_btn-BUY:focus{
+//   background-color: $color-3;
+//   color: $color-2;
+//   font-weight: 400;
+//   border-color: $color-3;
+// }
+@media (max-width: 767px){
+  .cd-txt{
+    font-size: 1.3rem;
+  }
+}
+@media (max-width: 480px){
+  .card_btn-sizes{
+    max-width: 40vw;
+    // font-size: 10px !important;
+  }
+  .my-padding{
+    padding: 0px 5px 0px 5px;
+  }
 }

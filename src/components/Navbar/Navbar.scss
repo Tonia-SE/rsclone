@@ -50,13 +50,25 @@
 #shoppingCard-quantity {
   font-size: 8px;
 }
+div.nav-link{
+  max-width: 80px;
+  font-size: 1.3rem;
+  font-weight: 400;
+  padding-bottom: 3px;
+  color: rgba(0,0,0,.9);
+}
+.react-link{
+  max-width: 80px;
+}
 .nav-link{
+  max-width: 150px;
   font-size: 1.3rem;
   font-weight: 400;
   padding-bottom: 3px;
 }
 .nav-link:hover{
   color:  $color-2;
+  text-decoration: underline;
 }
 #icon{
   border: none;
@@ -80,8 +92,13 @@
 #dropdownMenuNav{
   background-color:  $background-color-1;
 }
-#dropdownMenuNav a:hover{
-  color:  $color-2;
+// #dropdownMenuNav a:hover{
+//   text-decoration: none;
+//   color: $color-2;
+// }
+#dropdownMenuNav div:hover{
+  text-decoration: none;
+  color: $color-2;
 }
 .country:hover{
   color:  $color-2;
@@ -102,7 +119,7 @@
     font-size: 0.8rem !important;
     margin-right: 0;
   }
-  .add-font-size{
+  a, div .add-font-size{
     font-size: 1rem;
   }
 }

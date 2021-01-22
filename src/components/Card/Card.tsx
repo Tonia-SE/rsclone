@@ -1,36 +1,49 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { backendServer } from '../../consts';
+import { backendServer, initialCategoryName } from '../../consts';
 import { ApplicationState } from '../../redux/rootReducer';
-import {Redirect} from 'react-router-dom';
-import { addPosition, addStar, setSize, showAlert } from '../../redux/actions';
+import { addPosition, chooseCategory, fetchCard, setSize } from '../../redux/actions';
 import { Message } from '../Message/Message';
 import { Star } from '../Star/Star';
-import { ICard } from '../../redux/albumReducer';
+import { useLocation } from 'react-router-dom';
 
-interface ICardProps {
-  cardId: string;
+
+// interface ICardProps {
+//   cardId: string;
+// }
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
 }
 
-const Card: React.FC<ICardProps> = (props) => {
+const Card: React.FC = () => { 
+  const cardId = useQuery().get('id');
 
   const dispatch = useDispatch();
-  const card = useSelector((state: ApplicationState)  => state.card)
-  const album = useSelector((state: ApplicationState)  => state.album.album)
-  const currentPositions = useSelector((state: ApplicationState)  => state.shopCart.positions)
-  const lang = useSelector((state: ApplicationState)  => state.lang)
-  const titleEng = card.info.titleEng;
-  const titleRu = card.info.titleRu;
-  let buyBtn = (lang.value === 'eng')?'BUY': 'КУПИТЬ'
+  const currentSize = useSelector((state: ApplicationState)  => state.card.currentSize)
+  const cards = useSelector((state: ApplicationState)  => state.album.album.cards)
+
+  let card = cards.find(card => {
+    if (card._id === cardId) {
+      return true
+    }
+    return false
+  })
+
+  // if ( card === undefined ) {
+  //   dispatch(fetchCard(cardId))
+  //   card = useSelector((state: ApplicationState)  => state.card)
+  // }
+
   
 
-
-
+  
+  const currentPositions = useSelector((state: ApplicationState)  => state.shopCart.positions)
+  const lang = useSelector((state: ApplicationState)  => state.lang)
+  const titleEng = card.titleEng;
+  const titleRu = card.titleRu;
+  let buyBtn = (lang.value === 'eng')?'BUY': 'КУПИТЬ'
   //const loading = useSelector(state => state.app.loading)
-
-  const imageUrl = backendServer + card.info.imageUrl
-
   // if(loading) {
   //     return (
   //         <div classNameName="spinner-border text-primary" role="status">
@@ -38,43 +51,44 @@ const Card: React.FC<ICardProps> = (props) => {
   //         </div>
   //     )
   // }
+  const imageUrl = backendServer + card.imageUrl
   const currency = useSelector((state: ApplicationState) => state.currency.info)
-  let priceCurrent = `${card.info.price} ${currency.value}`
+  let priceCurrent = `${card.price} ${currency.value}`
   if (currency.value !== '$') {
-    const price = Math.round((Math.trunc(card.info.price * currency.rate)/100)) * 100 - 1
+    const price = Math.round((Math.trunc(+card.price * currency.rate)/100)) * 100 - 1
     priceCurrent = `${price} ${currency.value}`
   }
   return ( 
-    <div className="page_wrapper">         
+    <div className="page_wrapper card-bg-color">         
       <div className="card mb-4 shadow-sm single-card mt-4">
-        <Star id={card.info._id}/>
+        <Star id={card._id}/>
         <img src={imageUrl} alt="KIGURUMI me" className="bd-placeholder-img card-img-top single-card_img" />
         <div className="card-body">
           <small className="text-muted price mb-3" id="price">
             {priceCurrent}
           </small>
-          <p className="card-text">{(lang.value === 'eng')? titleEng: titleRu}</p>
+          <p className="card-text cd-txt">{(lang.value === 'eng')? titleEng: titleRu}</p>
           <Message />
           <div className="d-flex justify-content-between align-items-center">
             <div className="btn-group mt-2 mb-3">
               {/* <a className="buttonBuy" href="/"> */}
               
-              <button className="btn btn-sm btn-outline-secondary card_btn-BUY" id={card.info._id} type="button"
+              <button className="btn btn-outline-secondary card_btn-buy my-padding" id={card._id} type="button"
                   onClick={() => {
-                    dispatch(addPosition(card.info._id, card.currentSize, currentPositions, lang.value))
-                  }
-                }>
+                    dispatch(addPosition(card._id, currentSize, currentPositions, lang.value))
+                  }}
+                  >
                 {buyBtn}
               </button>
               <button
-                className="btn btn-sm btn-outline-secondary dropdown-toggle dropdown card_btn-sizes"
+                className="btn btn-outline-secondary dropdown-toggle dropdown card_btn-sizes my-padding"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button">
-                {card.currentSize}
+                {currentSize}
               </button>
               <div className="dropdown-menu" id="sizeDroppdownMenu" aria-labelledby="dropdownMenuButton">
-                {card.info.amount.map((element) => {
+                {card.amount.map((element) => {
                   return (
-                    <div className="dropdown-item sizeItem" key={element[0]} id={card.info._id} 
+                    <div className="dropdown-item sizeItem" key={element[0]} id={card._id} 
                     onClick={(event) => { 
                       dispatch(setSize(event.currentTarget.textContent))
                     }}

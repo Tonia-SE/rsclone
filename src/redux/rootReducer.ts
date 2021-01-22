@@ -6,6 +6,7 @@ import { currencyReducer, ICurrencyState } from './currencyReducer';
 import { messageReducer, IMessageState } from './messageReducer';
 import { shopCartReducer, IShopCartState } from './shoppingCartReducer';
 import { langReducer, ILangState } from './langReducer';
+import { authReducer, IAuthState } from './authReducer';
 
 export interface ApplicationState {
   controls: ICategoryState;
@@ -15,7 +16,7 @@ export interface ApplicationState {
   shopCart: IShopCartState;
   message: IMessageState;
   lang: ILangState;
-  //star: IStarState;
+  auth: IAuthState
 }
 
 export const rootReducer: Reducer<ApplicationState> = combineReducers<ApplicationState>({
@@ -26,4 +27,5 @@ export const rootReducer: Reducer<ApplicationState> = combineReducers<Applicatio
   shopCart: shopCartReducer,
   message: messageReducer,
   lang: langReducer,
+  auth: authReducer
 });

@@ -24,9 +24,11 @@
 .card-body{
   padding: 20px 30px 20px 30px;
 }
-.card_btn-BUY, .card_btn-sizes{
+.card_btn-BUY{
+  //background-color: $color-6;
   max-width: 20vw;
   height: 40px;
+  color: $color-1
 }
 .card_btn-BUY:hover,
 .card_btn-BUY:focus{
@@ -35,47 +37,30 @@
   font-weight: 400;
   border-color: $color-3;
 }
-.btn .left{
-  padding-right: 10px;
-  font-weight: 500 !important;
-}
-.btn .btn-sm .btn-outline-secondary{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.button_span:hover{
-  color: $color-3;
-}
-.card_btn-sizes:hover,
-.card_btn-sizes:focus{
-  background-color: $color-3;
-  color: $color-2;
-  font-weight: 400;
-  border-color: $color-3;
-}
-.card_btn-sizes{
-  background-color: $color-2 !important;
-  line-height: 1.8;
-}
+// .btn .left{
+//   padding-right: 10px;
+//   font-weight: 500 !important;
+// }
+// .btn .btn-sm .btn-outline-secondary{
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// }
+// .button_span:hover{
+//   color: $color-3;
+// }
+
 #price{
   font-size: 2.5rem;
   color: #6c757d !important;
 }
 .card-text{
   margin-top: 7px !important;
-  font-size: 1.5rem !important;
-}
-.text-muted{
-  color: $color-4;
-  text-align: right !important;
-  font-size: 2rem !important;
-  margin-right: 7%;
-  margin-top: 3%;
+  font-size: 1.5rem;
 }
 @media (max-width: 1200px){
   .text{
-    font-size: 1.3rem !important;
+    font-size: 1.3rem;
   }
 }
 @media (max-width: 992px){
@@ -85,27 +70,34 @@
   .card-body{
     padding: 15px;
   }
-  .text-muted{
-    margin-top: 0px !important;
-    font-size: 1.5rem !important;
-  }
   #price{
     font-size: 1.8rem;
     color: #6c757d !important;
   }
   .card-text{
-    font-size: 1.3rem !important;
     margin-top: 0px !important;
   }
   .card-body{
     padding-top: 0 !important;
   }
   .text{
-    font-size: 1rem !important;
+    font-size: 1rem;
   }
-  .card_btn-BUY, .card_btn-sizes{
-    //width: 80px;
+  .card_btn-BUY{
     height: 30px;
+  }
+}
+@media (max-width: 801px) and (min-width: 767px){
+  .text{
+    font-size: 0.6rem;
+  }
+  .btn-sm{
+    font-size: 0.6rem;
+    padding: 2px 4px 2px 4px;
+    // line-height: 20px;
+  }
+  .card_btn-BUY{
+    height: 22px;
   }
 }
 @media (max-width: 767px){
@@ -115,8 +107,7 @@
   .text{
     font-size: 1.5rem !important;
   }
-  .card_btn-BUY, .card_btn-sizes{
-    //width: 80px;
+  .card_btn-BUY{
     height: 40px;
   }
   .card-body{
@@ -124,7 +115,7 @@
   }
 }
 @media (max-width: 480px){
-  .card_btn-BUY, .card_btn-sizes{
+  .card_btn-BUY{
     max-width: 40vw;
     height: 30px;
     font-size: 10px !important;

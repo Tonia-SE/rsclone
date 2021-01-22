@@ -1,16 +1,32 @@
-import { useSelector } from 'react-redux';
+import { stringify } from 'querystring';
 import { alertTimeout, backendServer, rateUrl } from '../consts';
 //import { SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_COLOR } from "./actionTypes";
-import { ADD_STAR, ADD_TO_SHOPCART, FETCH_CARDS, FETCH_CARD_INFO, FETCH_CATEGORIES, HIDE_ALERT, HIDE_LOADER, REMOVE_FROM_CART, REMOVE_STAR, SET_CARDID, SET_CURRENCY, SET_LANG, SET_QUANTITY, SET_SIZE, SHOW_ALERT, SHOW_LOADER } from './actionTypes';
+import { ADD_STAR, 
+        ADD_TO_SHOPCART,
+        FETCH_CARDS, 
+        FETCH_CARD_INFO, 
+        FETCH_CATEGORIES, 
+        HIDE_ALERT, 
+        HIDE_LOADER, 
+        LOGIN_USER, 
+        REGISTER_USER, 
+        REMOVE_FROM_CART, 
+        REMOVE_STAR, 
+        SET_CARDID, 
+        SET_CURRENCY, 
+        SET_LANG, 
+        SET_QUANTITY, 
+        SET_SIZE, 
+        SHOW_ALERT, 
+        SHOW_LOADER } from './actionTypes';
 import { DispatchAlbum } from './albumReducer';
-import { DispatchCard, ICardState } from './cardReducer';
+import { DispatchAuth } from './authReducer';
+import { DispatchCard, } from './cardReducer';
 import { DispatchCategory } from './controlsReducer';
 import { DispatchCurrency } from './currencyReducer';
 import { DispatchLang } from './langReducer';
 import { DispatchMessage } from './messageReducer';
-import { ApplicationState } from './rootReducer';
 import { DispatchShopCart, IPosition } from './shoppingCartReducer';
-import { DispatchStar } from './starReducer';
 
 // interface Idispatch {
 //   dispatch (type: string, payload: string) {
@@ -39,9 +55,9 @@ export function fetchCard(cardId: string) {
     try {
       //dispatch(showLoader())
       const response = await fetch(`${backendServer}/cards?_id=${cardId}`);
+      response.status
       const json = await response.json();      
       dispatch({ type: FETCH_CARD_INFO, payload: json[0] });
-      console.log(json);
       //dispatch(hideLoader())
     } catch (e) {
       //dispatch(showAlert('Ошибка загрузки'))
@@ -49,7 +65,6 @@ export function fetchCard(cardId: string) {
     }
   };
 }
-
 
 export function chooseCategory(categoryName: string) {
     //console.log(id);
@@ -76,6 +91,7 @@ export function setCurrency(value: string) {
         const response = await fetch(rateUrl);
         const json = await response.json();
         rate = json.Valute.USD.Value;
+        console.log(rate);
       }
       dispatch({ type: SET_CURRENCY, payload: {
         value: value,
@@ -101,9 +117,7 @@ export function changeLang(value: string) {
 
 export function setSize(size: string) {
   return (dispatch: DispatchCard) => {
-    if(size !== 'SIZE' && size !== 'РАЗМЕР') {
-      dispatch({ type: SET_SIZE, currentSize: size });
-    }
+    dispatch({ type: SET_SIZE, currentSize: size });
   };
 }
 
@@ -118,13 +132,13 @@ export function setQuantity(quantity: number, key: string)  {
         }
       })
     } else {
-      console.log("Add alert here: ");
+      //console.log("Add alert here: ");
     }
   };
 } 
 
 export function addPosition(id: string, size: string, currentPositions:Array<IPosition>, lang: string) {
-  if(size !== 'SIZE') {
+  if(size !== 'SIZE' && size !== 'РАЗМЕР') {
     const isPositionAlreadyExists = currentPositions.find((position: IPosition) => {
       if(position.id === id && position.size === size) {
         return true
@@ -154,14 +168,14 @@ export function addPosition(id: string, size: string, currentPositions:Array<IPo
       if (lang === 'eng') {
         return showAlert("The same position is already in cart");
       } else {
-        return showAlert("Такой размер уже есть в корзине");
+        return showAlert("Такой размер уже в корзине");
       }
     }
   } else {
     if (lang === 'eng') {
-      return showAlert('Choose a size, please')
+      return showAlert('Choose a size')
     } else {
-      return showAlert("Выберите размер, пожалуйста");
+      return showAlert("Выберите размер");
     }
   }
 }
@@ -174,6 +188,7 @@ export function removeFromCart(key: string) {
 }
 
 export function toggleNavbarDropdownMenu() {
+
   const menu = document.getElementById('navbarSupportedContent');
   const auth = document.getElementById('navbarSupportedRegForms');
   if(auth.classList.toString().includes('show')) {
@@ -181,6 +196,13 @@ export function toggleNavbarDropdownMenu() {
   }
   if(menu.classList.toString().includes('show')) {
     menu.classList.toggle('show');
+  }
+}
+
+export function toggleCategoryBtns() {
+  const categoryBtn = document.getElementById('category');
+  if(!categoryBtn.classList.toString().includes('none')) {
+    categoryBtn.classList.toggle('none');
   }
 }
 
@@ -212,7 +234,7 @@ export function proceedToCheckout(lang: string) {
   if(lang === 'eng') {
     return showAlert("Login first, please")
   }
-  return showAlert("Войдите в личный кабинет, пожалуйста")
+  return showAlert("Войдите в личный кабинет")
 }
 
 export function addStar(id: string) {
@@ -230,6 +252,90 @@ export function removeStar(id: string) {
           type: REMOVE_STAR,
           cardId: id
       })
+  }
+}
+
+
+export function loginUser(user:string, password: string, messageSuccess: string, messageError: string) {
+  return async (dispatch: any) => {
+      let isLoggendIn = false
+      try {            
+          //dispatch(showLoader())
+          //console.log(JSON.stringify({user: user, password: password}));
+          const response = await fetch(`${backendServer}/auth/login`, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            //mode: 'no-cors',
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            //credentials: '', // include, *same-origin, omit
+            body: JSON.stringify({user: user, password: password}), // body data type must match "Content-Type" header
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *client
+          })
+          const json = await response.json()
+          if (response.status === 200 ) { 
+            dispatch(showAlert(messageSuccess))
+            isLoggendIn = true 
+          } else if(response.status === 403) {
+            dispatch(showAlert(messageError))
+          }
+          dispatch({
+            type: LOGIN_USER,
+            payload: {
+              userName: user,
+              errorText: json.result,
+              isLoggedIn: isLoggendIn
+            }
+        })
+          //dispatch(hideLoader())
+      } catch(e) {
+            // dispatch(showAlert('Ошибка загрузки'))
+            // dispatch(hideLoader())
+        }      
+  }
+}
+
+export function regUser(user:string, password: string, messageSuccess: string, messageError: string) {
+  return async (dispatch: any) => {
+      let isRegistred = false
+      try {            
+          //dispatch(showLoader())
+          console.log(JSON.stringify({user: user, password: password}));
+          const response = await fetch(`${backendServer}/auth/register`, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            //mode: 'no-cors',
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            //credentials: '', // include, *same-origin, omit
+            body: JSON.stringify({user: user, password: password}), // body data type must match "Content-Type" header
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *client
+          })
+          const json = await response.json()
+          if (response.status === 200) { 
+            isRegistred = true 
+            dispatch(showAlert(messageSuccess))
+          } else if (response.status === 403) {
+            dispatch(showAlert(messageError))
+          }
+          dispatch({
+            type: REGISTER_USER,
+            payload: {
+              userName: user,
+              errorText: json.result,
+              isLoggedIn: false,
+              isRegristred: isRegistred
+            }
+        })
+          //dispatch(hideLoader())
+      } catch(e) {
+            // dispatch(showAlert('Ошибка загрузки'))
+            // dispatch(hideLoader())
+        }      
   }
 }
 

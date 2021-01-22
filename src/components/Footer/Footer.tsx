@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { ApplicationState } from '../../redux/rootReducer';
 
 export const Footer: React.FC = () => {
@@ -8,7 +9,7 @@ export const Footer: React.FC = () => {
     return (
       <div className="container-fluid text-center text-md-left pt-3 page-footer">
         <div className="row">
-          <div className="col-md-6 mt-md-0 mt-3 pl-4 font-16" id="text-column-1">
+          <div className="col-md-6 mt-md-0 pl-4 font-16" id="text-column-1">
             <h5>KIGURUMI</h5>
             <p>
               A costumed character wears a costume that usually (but not always) covers the performer's face. These range from theme park "walk-around" or "meetable" characters, the
@@ -20,14 +21,10 @@ export const Footer: React.FC = () => {
             <h5 className="text-uppercase">Contacts</h5>
             <ul className="list-unstyled">
               <li>
-                <a href="https://www.google.com/intl/ru/gmail/about/" target="blank">
-                  www.google.com
-                </a>
+                www.google.com
               </li>
               <li>
-                <a href="https://play.google.com/store/apps/details?id=com.google.android.dialer&hl=ru&gl=US" target="blank">
-                  +7-499-951-84
-                </a>
+                +7-499-951-84
               </li>
             </ul>
           </div>
@@ -40,9 +37,9 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="https://boxberry.ru/" target="blank">
-                  Delivery: anywhere you wish
-                </a>
+              <Link to='/delivery'>
+                Delivery: anywhere you wish
+              </ Link>
               </li>
               <li>
                 <a href="https://pay.google.com/intl/ru_ru/about/" target="blank">
@@ -50,11 +47,9 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="https://ru.wikipedia.org/wiki/%D0%9D%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D0%B1%D0%B0%D0%BD%D0%BA_%D0%A8%D0%B2%D0%B5%D0%B9%D1%86%D0%B0%D1%80%D0%B8%D0%B8"
-                  target="blank">
+                <Link to='/warranty'>
                   Warranty: 100%
-                </a>
+                </ Link>
               </li>
             </ul>
           </div>
@@ -73,7 +68,7 @@ export const Footer: React.FC = () => {
     return (
       <div className="container-fluid text-center text-md-left pt-3 page-footer">
         <div className="row">
-          <div className="col-md-6 mt-3 pl-4 font-16 mb-2" id="text-column-1">
+          <div className="col-md-6 pl-4 font-16 mb-2" id="text-column-1">
             <h5 className="text-uppercase">KIGURUMI</h5>
             <p className="">
             Это мега популярная одежда для дома и сна родом из Японии. 
@@ -85,14 +80,10 @@ export const Footer: React.FC = () => {
             <h5 className="text-uppercase">Контакты</h5>
             <ul className="list-unstyled">
               <li>
-                <a href="https://www.google.com/intl/ru/gmail/about/" target="blank">
-                  www.google.com
-                </a>
+                www.google.com
               </li>
               <li>
-                <a href="https://play.google.com/store/apps/details?id=com.google.android.dialer&hl=ru&gl=US" target="blank">
-                  +7-499-951-84
-                </a>
+                +7-499-951-84
               </li>
             </ul>
           </div>
@@ -105,9 +96,9 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="https://boxberry.ru/" target="blank">
-                  Доставка: куда пожелаете
-                </a>
+                <Link to='/delivery'>
+                    Доставка: куда пожелаете
+                </ Link>
               </li>
               <li>
                 <a href="https://pay.google.com/intl/ru_ru/about/" target="blank">
@@ -115,11 +106,9 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="https://ru.wikipedia.org/wiki/%D0%9D%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D0%B1%D0%B0%D0%BD%D0%BA_%D0%A8%D0%B2%D0%B5%D0%B9%D1%86%D0%B0%D1%80%D0%B8%D0%B8"
-                  target="blank">
+                <Link to='/warranty'>
                   Гарантия: 100%
-                </a>
+                </ Link>
               </li>
             </ul>
           </div>

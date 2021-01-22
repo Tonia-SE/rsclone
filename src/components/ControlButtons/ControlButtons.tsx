@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { chooseCategory } from '../../redux/actions';
+import { chooseCategory, toggleCategoryBtns } from '../../redux/actions';
+import { SHOW_CARDS } from '../../redux/actionTypes';
 //import {chooseCategory} from '../redux/actions';
 import { ApplicationState } from '../../redux/rootReducer';
 
@@ -12,8 +13,8 @@ interface ICategory {
 const ControlButtons: React.FC = () => {
   const dispatch = useDispatch();
   const categories = useSelector((state: ApplicationState) => state.controls.fetchedCategoires);
-  console.log(categories);
   const lang = useSelector((state: ApplicationState)  => state.lang);
+  
 
   
   //const loading = useSelector(state => state.app.loading)
@@ -26,36 +27,32 @@ const ControlButtons: React.FC = () => {
   // }
 
   return (
-    <div>
+    // <div className='container jc' id="category">
+    <div className='row jc ml-0 mr-0'>
       {categories.map((category) => {
         const titleEng = category.titleEng
         const titleRu = category.titleRu
-        const categoryBtnClassName = `btn btn-secondary btn-primary ${category.color}`;
-        if(lang.value === 'eng') {
+        
+        let titleText = (lang.value === 'eng')? titleEng: titleRu;
+        console.log(titleText);
+        const categoryBtnClassName = `col-4 p-5 ${category.color}`;
+        const className = `${categoryBtnClassName}`
           return (
             <button
-              className={categoryBtnClassName}
+              className={className}
               key={category.color}
               id={category.color}
-              onClick={(event) => dispatch(chooseCategory(event.currentTarget.getAttribute('id')))}
+              onClick={(event) => {
+                dispatch(chooseCategory(event.currentTarget.getAttribute('id')))
+                dispatch({type: SHOW_CARDS, show: true})
+              }}
             >
-              {titleEng}
+              {titleText}
             </button>
           );
-        } else {
-          return (
-            <button
-              className={categoryBtnClassName}
-              key={category.color}
-              id={category.color}
-              onClick={(event) => dispatch(chooseCategory(event.currentTarget.getAttribute('id')))}
-            >
-              {titleRu}
-            </button>
-          );
-        }
       })}
     </div>
+    // </div>
   );
 };
 

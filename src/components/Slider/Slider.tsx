@@ -30,9 +30,6 @@ export const KigurumiSlider: React.FC = () => {
           <Carousel.Item style={{'maxHeight':"514px"}} key={'5'} interval={3000}>
             <img style={{'maxHeight':"514px"}}  className="d-block w-100"  src={`${backendServer}/static/images/slider__5.jpg`}/>
           </Carousel.Item>
-          <Carousel.Item style={{'maxHeight':"514px"}} key={'6'} interval={3000}>
-            <img style={{'maxHeight':"514px"}}  className="d-block w-100"  src={`${backendServer}/static/images/slider__6.jpg`}/>
-          </Carousel.Item>
         </Carousel>
   );
 };

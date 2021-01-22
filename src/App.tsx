@@ -21,9 +21,9 @@ import ControlButtons from './components/ControlButtons/ControlButtons';
 import { useDispatch } from 'react-redux';
 import { chooseCategory, fetchCategories } from '../src/redux/actions';
 import { initialCategoryName } from './consts';
-import { Footer } from './components/Footer/Footer';
-import { Navbar } from './components/Navbar/Navbar';
-import { LogInForm, SignUpForm } from './components/Regforms/Regforms';
+// import { Footer } from './components/Footer/Footer';
+// import { Navbar } from './components/Navbar/Navbar';
+// import { LogInForm, SignUpForm } from './components/Regforms/Regforms';
 import { KigurumiSlider } from './components/Slider/Slider';
 import './index.scss';
 

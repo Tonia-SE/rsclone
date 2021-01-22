@@ -1,6 +1,6 @@
 $background-color-1:  rgba(44, 138, 138, 1) !important;
-$background-color-3: #48A9A6 !important;
-$background-color-2:  #9CEAEF  !important;
+$background-color-2: #73bd49 !important;
+$background-color-3:  #9CEAEF  !important;
 $background-color-4: rgb(224, 253, 245) !important;
 $background-color-5: rgba(42, 163, 163, 0.3);
 //$background-color-6: #ED6A5A !important;
@@ -10,6 +10,11 @@ $color-2: rgb(255, 255, 255) !important;
 $color-3: rgb(44, 138, 138) !important;
 $color-4: rgb(60, 201, 211) !important;
 $color-5: rgba(140, 230, 230, 0.3) !important;
+$color-6: #f9c74f;
+$color-7: #f8961e;
+$color-8: #f94144;
+$color-9: #e9adb7;
+$color-10: #7343aa;
 
 @mixin id_album(){
     border-radius: 0 !important;

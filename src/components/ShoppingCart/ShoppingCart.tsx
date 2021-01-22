@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { backendServer } from '../../consts';
 import { ApplicationState } from '../../redux/rootReducer';
 import { IPosition } from '../../redux/shoppingCartReducer';
-import { fetchCard, proceedToCheckout, removeFromCart, setQuantity, showAlert } from '../../redux/actions';
+import { fetchCard, proceedToCheckout, removeFromCart, setQuantity, setSize, showAlert } from '../../redux/actions';
 import { ICardState } from '../../redux/cardReducer';
 import { Link } from 'react-router-dom';
 import { Message } from '../Message/Message';
@@ -92,7 +92,7 @@ const ShoppingCart: React.FC = () => {
           return ( 
             <tr key={key} id={key} className="position">
               <td scope="row" className="align-middle">
-              <Link to={`/card:${position.id}`} id={position.id} onClick={(event)=> {dispatch(fetchCard(event.currentTarget.id))}}>
+              <Link to={`/card?id=${position.id}`} onClick={()=> { dispatch(setSize(position.size)) }}>
                 <img className="shoppingCart-image" src={imageUrl}/>
               </Link>
               </td>
