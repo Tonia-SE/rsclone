@@ -1,33 +1,31 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { backendServer } from '../../consts';
-import { ApplicationState } from '../../redux/rootReducer';
-import { IPosition } from '../../redux/shoppingCartReducer';
-import { fetchCard, proceedToCheckout, removeFromCart, setQuantity, setSize, showAlert } from '../../redux/actions';
-import { ICardState } from '../../redux/cardReducer';
+import { ApplicationState } from '../../store/rootReducer';
+import { IPosition } from '../../store/shoppingCartReducer';
+import { proceedToCheckout, removeFromCart, setQuantity, setSize } from '../../store/actions';
 import { Link } from 'react-router-dom';
 import { Message } from '../Message/Message';
-
-// interface IShoppingCartProps {
-//   goods: Array<string>
-// }
+import { OrderDailog } from '../OrderDailog/OrderDailog'
 
 const ShoppingCart: React.FC = () => {
   //const loading = useSelector(state => state.app.loading)
+  const [modalShow, setModalShow] = React.useState(false);
   const dispatch = useDispatch();
   const cart = useSelector((state: ApplicationState)  => state.shopCart)
   const currency = useSelector((state: ApplicationState) => state.currency.info)
+  const auth = useSelector((state: ApplicationState) => state.auth.isLoggedIn)
   const totalOrderPrice: Array<number> = [];
   const colSpanOrder = 1;
   const colSpanMessage = 4;
   const lang = useSelector((state: ApplicationState)  => state.lang);
-  //const card = useSelector((state: ApplicationState)  => state.card)
   let title = (lang.value === 'eng')?'Title': 'Модель'
   let size = (lang.value === 'eng')?'Size': 'Размер'
   let quantity = (lang.value === 'eng')?'Quantity': 'Количество'
   let price = (lang.value === 'eng')?'Price': 'Цена'
   let checkout = (lang.value === 'eng')?'CHECKOUT': 'КУПИТЬ'
   let total = (lang.value === 'eng')?'Total:': 'Сумма:'
+
   
   const countTotal = () => {
     const total = totalOrderPrice.reduce((a, b) => a + b);  
@@ -63,6 +61,9 @@ const ShoppingCart: React.FC = () => {
   } else {
     return (
       <div className="table-wrapper">
+        <OrderDailog
+        show={modalShow}
+        onHide={() => setModalShow(false)}/>
         <table className="table mt-4 mb-4">
           <thead className="light">
             <tr>
@@ -80,7 +81,7 @@ const ShoppingCart: React.FC = () => {
             const imageUrl = backendServer + position.imageUrl;
             let total = '';
             if (currency.value !== '$') {
-              const totalPrice = (Math.round((Math.trunc(position.price * currency.rate)/100)) * 100 - 1) * position.quantity;
+              const totalPrice = (+(position.price * currency.rate).toFixed(0)) * position.quantity;
               totalOrderPrice.push(totalPrice);
               total = `${totalPrice} ${currency.value}`
             } 
@@ -121,8 +122,7 @@ const ShoppingCart: React.FC = () => {
               </td>
               <td className="align-middle number">{total}</td>
               <td className="align-middle" onClick={() => {
-                        dispatch(removeFromCart(key))
-                      }}>
+                        dispatch(removeFromCart(key))}}>
                 <div className="center">        
                   <img className="trashbin" src="./assets/images/trashbin.ico"/>
                 </div>
@@ -148,7 +148,12 @@ const ShoppingCart: React.FC = () => {
                 <Message />
               </td>
               <td colSpan={colSpanOrder} className="align-middle">
-                <button className="btn checkout center" onClick={() => dispatch(proceedToCheckout(lang.value))}>
+                <button className="btn checkout center" onClick={() => {
+                  if(!auth) {
+                    dispatch(proceedToCheckout(lang.value))
+                  } else {
+                    setModalShow(true)}}
+                }>
                   {checkout}
                 </button>
               </td>

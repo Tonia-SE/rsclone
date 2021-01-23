@@ -8,23 +8,23 @@
 // $('#carouselExampleControls').carousel({
 //   interval: 3000
 // })
-import React, { useState } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
-import { rootReducer } from './redux/rootReducer';
+import { rootReducer } from './store/rootReducer';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { compose, createStore, applyMiddleware, Store } from 'redux';
-import {Route, BrowserRouter as Router, Switch, RouteProps} from 'react-router-dom'
+import { compose, createStore, applyMiddleware } from 'redux';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import App from './App';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart'
-import { Navbar } from "./components/Navbar/Navbar";
-import { Message } from './components/Message/Message';
+import { KigurumiNavbar } from "./components/Navbar/Navbar";
 import Card from './components/Card/Card';
 import { Delivery } from './components/Delivery/Delivery';
 import { Warranty } from './components/Warranty/Warranty';
 import { Footer } from './components/Footer/Footer';
-import { toggleNavbarDropdownMenu } from './redux/actions';
 import { LogInForm, SignUpForm } from './components/Regforms/Regforms';
+import { Payment } from './components/Payment/Payment';
+import { About } from './components/About/About';
 
 // import { spamWordsMiddleWare } from './redux/middleWare';
 
@@ -54,18 +54,18 @@ const routing = (
     <Router>
       <Provider store={store}>
         <div className="body">
-          <Navbar />
+          <KigurumiNavbar />
           <LogInForm />
           <SignUpForm />
-            <div className="page" onClick={()=>{toggleNavbarDropdownMenu()}}>
-                <Switch>
-                    <Route exact path="/" component={App} />
-                    <Route exact path="/shopping_cart" component={ShoppingCart} />
-                    <Route exact path="/card" component={Card} />
-                    <Route exact path="/delivery" component={Delivery} />
-                    <Route exact path="/warranty" component={Warranty} />
-                </Switch>
-            </div>
+            <Switch>
+                <Route exact path="/" component={App} />
+                <Route exact path="/shopping_cart" component={ShoppingCart} />
+                <Route exact path="/card" component={Card} />
+                <Route exact path="/delivery" component={Delivery} />
+                <Route exact path="/warranty" component={Warranty} />
+                <Route exact path="/payment" component={Payment} />
+                <Route exact path="/about" component={About} />
+            </Switch>
           <Footer />
         </div>  
       </Provider>

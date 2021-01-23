@@ -1,12 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addStar, removeStar } from '../../redux/actions';
-import { ICard } from '../../redux/albumReducer';
-import { ApplicationState } from '../../redux/rootReducer';
-//import { useTabIndex } from 'react-tabindex';
-
-// const tabIndex:number = 0;
-//import { useTabIndex } from 'react-tabindex';
+import { addStar, removeStar } from '../../store/actions';
+import { ICard } from '../../store/albumReducer';
+import { ApplicationState } from '../../store/rootReducer';
 
 interface IStarProps {
   id: string
@@ -35,4 +31,4 @@ export const Star: React.FC<IStarProps> = (props) => {
     </small>  
   )  
 }
-    
+

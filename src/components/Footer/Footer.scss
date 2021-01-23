@@ -5,11 +5,11 @@
 }
 .list-unstyled a{
   text-decoration: none !important;
-  color: rgba(44, 138, 138, 1) !important;;
+  color: rgba(44, 138, 138, 1) !important;
 }
 .list-unstyled a:hover{
   text-decoration: none !important;
-  color: rgb(255, 255, 255) !important;;
+  color: rgb(255, 255, 255) !important;
 }
 .footer-copyright{
   display: flex;
@@ -44,6 +44,9 @@
   font-size: 16px;
 }
 @media (max-width: 768px){
+  .my-margin{
+    margin-top: 20px;
+  }
   .container-fluid{
     padding: 0 20px 0 20px !important;
   }

@@ -2,7 +2,7 @@ import { FETCH_CARD_INFO, SET_SIZE } from './actionTypes';
 
 export interface ICardState {
   _id: string;    
-  catgory: string;
+  category: string;
   imageUrl: string;
   titleEng: string;
   titleRu: string;
@@ -18,7 +18,7 @@ interface ICardAction {
   payload?: {    
     amount: Array<[string, number]>;
     _id: string;
-    catgory: string;
+    category: string;
     imageUrl: string;
     titleEng: string;
     titleRu: string;
@@ -40,7 +40,7 @@ export type DispatchCard = (args: ICardAction) => ICardAction;
 const initialState: ICardState = {
   amount: [],
   _id: "",    
-  catgory: "",
+  category: "",
   imageUrl: "",
   titleRu: "",
   titleEng: "",

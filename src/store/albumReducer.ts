@@ -1,21 +1,5 @@
-//import { SET_COLOR } from "./types"
 import { SHOW_CARDS, ADD_STAR, FETCH_CARDS, REMOVE_STAR } from './actionTypes';
 
-// const initialState = {
-//     fetchedCards: [],
-//     color: 'adult'
-// }
-// export const cardsReducer = (state = initialState, action) => {
-//     switch(action.type) {
-//         case FETCH_CARDS:
-//             return {...state, fetchedCards: action.payload}
-//         case SET_COLOR:
-//             return {...state, color: action.payload}
-//         default: return state
-//     }
-// }
-
-//import { FETCH_CATEGORIES } from './actionTypes';
 export interface ICard {
   _id: string;
   imageUrl: string;

@@ -58,7 +58,7 @@ div.nav-link{
   color: rgba(0,0,0,.9);
 }
 .react-link{
-  max-width: 80px;
+  max-width: 120px;
 }
 .nav-link{
   max-width: 150px;
@@ -92,13 +92,12 @@ div.nav-link{
 #dropdownMenuNav{
   background-color:  $background-color-1;
 }
-// #dropdownMenuNav a:hover{
-//   text-decoration: none;
-//   color: $color-2;
-// }
 #dropdownMenuNav div:hover{
   text-decoration: none;
   color: $color-2;
+}
+.about_us{
+  display: inline;
 }
 .country:hover{
   color:  $color-2;
@@ -121,6 +120,9 @@ div.nav-link{
   }
   a, div .add-font-size{
     font-size: 1rem;
+  }
+  .react-link{
+    max-width: 70px;
   }
 }
 @media (max-width: 576px){

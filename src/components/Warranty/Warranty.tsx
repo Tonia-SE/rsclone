@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { ApplicationState } from '../../redux/rootReducer';
+import { ApplicationState } from '../../store/rootReducer';
 
 export const Warranty: React.FC = () => {
+
   const lang = useSelector((state: ApplicationState)  => state.lang);
   if(lang.value === 'eng') {
     return (    

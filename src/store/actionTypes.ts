@@ -29,3 +29,4 @@ export const REMOVE_FROM_CART = 'CART/REMOVE_FROM_CART'
 
 export const LOGIN_USER = 'USER/LOGIN'
 export const REGISTER_USER = 'USER/REGISTER'
+export const LOGOUT_USER = 'USER/LOGOUT'

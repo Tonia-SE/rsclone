@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, regUser, showAlert, toggleNavbarDropdownMenu } from '../../redux/actions';
-import { ApplicationState } from '../../redux/rootReducer';
-//import { useTabIndex } from 'react-tabindex';
-import { Modal, ModalDialog } from 'react-bootstrap' 
+import { loginUser, regUser, showAlert } from '../../store/actions';
+import { ApplicationState } from '../../store/rootReducer';
 import { Message } from '../Message/Message';
 const tabIndex:number = -1;
-
-
-
-// const loginHandler = () => {
-
-// }
 
 export const LogInForm: React.FC = () => {
   const dispatch = useDispatch();
@@ -59,8 +51,8 @@ export const LogInForm: React.FC = () => {
             </form>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-dismiss="modal">{cancel}</button>
-            <button type="button" className="btn btn-primary" id="loginBtn"
+            <button type="button" className="btn btn-secondary okBtn" data-dismiss="modal">{cancel}</button>
+            <button type="button" className="btn btn-primary confirmBtn" id="loginBtn"
               onClick={()=>{
                 if(password.trim() === '' || password === undefined){
                   dispatch(showAlert(alertEmptyPasswordField))
@@ -141,8 +133,8 @@ export const SignUpForm: React.FC = () => {
             </form>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-dismiss="modal">{cancel}</button>
-            <button type="button" className="btn btn-primary" id="signUpBtn"
+            <button type="button" className="btn btn-secondary okBtn" data-dismiss="modal">{cancel}</button>
+            <button type="button" className="btn btn-primary confirmBtn" id="signUpBtn"
               onClick={()=>{
                 if(password.trim() === '' || password2.trim() === '' || password === undefined || password2 === undefined){
                   dispatch(showAlert(alertEmptyPasswordField))

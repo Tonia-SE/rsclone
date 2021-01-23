@@ -1,15 +1,17 @@
 @import '../../_variables';
 
 .text-muted{
-  color: $color-4;
+  color: $color-6 !important;
   text-align: right !important;
   font-size: 2rem !important;
   margin-right: 15px;
   margin-top: 3%;
 }
+#star{
+  margin: 10px 20px 0 0;
+}
 @media (max-width: 992px){
   .text-muted{
-    margin-top: 0px !important;
     font-size: 1.5rem !important;
   }
 }

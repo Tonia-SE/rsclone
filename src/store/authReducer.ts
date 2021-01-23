@@ -1,4 +1,4 @@
-import { LOGIN_USER, REGISTER_USER } from './actionTypes';
+import { LOGIN_USER, LOGOUT_USER, REGISTER_USER } from './actionTypes';
 
 export interface IAuthState {
   isRegristred?: boolean;
@@ -19,16 +19,27 @@ interface IAuthAction {
 
 export type DispatchAuth = (args: IAuthAction) => IAuthAction;
 
+
 const initialState: IAuthState = {
   userName: '',
   isLoggedIn: false,
   errorText: ''
-};	
+};
 
-export const authReducer = (state: IAuthState = initialState, action: IAuthAction ) => {
+let authState = {...initialState}
+const savedState = localStorage.getItem('authstate')
+if(savedState !== null) {
+  authState = JSON.parse(savedState)
+}
+
+export const authReducer = (state: IAuthState = authState, action: IAuthAction ) => {
   switch (action.type) {
     case LOGIN_USER:
-      return { ...action.payload };  
+      localStorage.setItem('authstate', JSON.stringify(action.payload))
+      return { ...action.payload };
+    case LOGOUT_USER:
+      localStorage.removeItem('authstate')
+      return { ...initialState };
     case REGISTER_USER:
       return { ...action.payload }
     default:

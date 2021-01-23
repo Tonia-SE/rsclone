@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { ApplicationState } from '../../redux/rootReducer';
+import { ApplicationState } from '../../store/rootReducer';
 
 export const Footer: React.FC = () => {
   const lang = useSelector((state: ApplicationState)  => state.lang);
@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
     return (
       <div className="container-fluid text-center text-md-left pt-3 page-footer">
         <div className="row">
-          <div className="col-md-6 mt-md-0 pl-4 font-16" id="text-column-1">
+          <div className="col-md-6 mt-md-0 pl-4 font-16 my-margin" id="text-column-1">
             <h5>KIGURUMI</h5>
             <p>
               A costumed character wears a costume that usually (but not always) covers the performer's face. These range from theme park "walk-around" or "meetable" characters, the
@@ -32,9 +32,9 @@ export const Footer: React.FC = () => {
             <h5>KIGURUMI me</h5>
             <ul className="list-unstyled">
               <li>
-                <a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%B8%D0%B3%D1%83%D1%80%D1%83%D0%BC%D0%B8" target="blank">
+                <Link to='/about'>
                   About us: we are awesome!!!
-                </a>
+                  </ Link>
               </li>
               <li>
               <Link to='/delivery'>
@@ -42,9 +42,9 @@ export const Footer: React.FC = () => {
               </ Link>
               </li>
               <li>
-                <a href="https://pay.google.com/intl/ru_ru/about/" target="blank">
-                  Payment: by card
-                </a>
+              <Link to='/payment'>
+                Payment: by card
+              </ Link>
               </li>
               <li>
                 <Link to='/warranty'>
@@ -91,19 +91,19 @@ export const Footer: React.FC = () => {
             <h5>KIGURUMI me</h5>
             <ul className="list-unstyled">
               <li>
-                <a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%B8%D0%B3%D1%83%D1%80%D1%83%D0%BC%D0%B8" target="blank">
+                <Link to='/about'>
                   О нас: мы великолепны!!!
-                </a>
-              </li>
-              <li>
-                <Link to='/delivery'>
-                    Доставка: куда пожелаете
                 </ Link>
               </li>
               <li>
-                <a href="https://pay.google.com/intl/ru_ru/about/" target="blank">
+                <Link to='/delivery'>
+                  Доставка: куда пожелаете
+                </ Link>
+              </li>
+              <li>
+                <Link to='/payment'>
                   Оплата: картой
-                </a>
+                </Link>
               </li>
               <li>
                 <Link to='/warranty'>

@@ -1,4 +1,3 @@
-import { stringify } from 'querystring';
 import { alertTimeout, backendServer, rateUrl } from '../consts';
 //import { SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_COLOR } from "./actionTypes";
 import { ADD_STAR, 
@@ -20,7 +19,6 @@ import { ADD_STAR,
         SHOW_ALERT, 
         SHOW_LOADER } from './actionTypes';
 import { DispatchAlbum } from './albumReducer';
-import { DispatchAuth } from './authReducer';
 import { DispatchCard, } from './cardReducer';
 import { DispatchCategory } from './controlsReducer';
 import { DispatchCurrency } from './currencyReducer';
@@ -43,7 +41,7 @@ export function fetchCategories() {
       const json = await response.json();
       dispatch({ type: FETCH_CATEGORIES, payload: json });      
       //dispatch(hideLoader())
-    } catch (e) {
+    } catch(e) {
       //dispatch(showAlert('Ошибка загрузки'))
       //dispatch(hideLoader())
     }
@@ -59,7 +57,7 @@ export function fetchCard(cardId: string) {
       const json = await response.json();      
       dispatch({ type: FETCH_CARD_INFO, payload: json[0] });
       //dispatch(hideLoader())
-    } catch (e) {
+    } catch(e) {
       //dispatch(showAlert('Ошибка загрузки'))
       //dispatch(hideLoader())
     }
@@ -188,7 +186,7 @@ export function removeFromCart(key: string) {
 }
 
 export function toggleNavbarDropdownMenu() {
-
+  console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
   const menu = document.getElementById('navbarSupportedContent');
   const auth = document.getElementById('navbarSupportedRegForms');
   if(auth.classList.toString().includes('show')) {
@@ -196,13 +194,6 @@ export function toggleNavbarDropdownMenu() {
   }
   if(menu.classList.toString().includes('show')) {
     menu.classList.toggle('show');
-  }
-}
-
-export function toggleCategoryBtns() {
-  const categoryBtn = document.getElementById('category');
-  if(!categoryBtn.classList.toString().includes('none')) {
-    categoryBtn.classList.toggle('none');
   }
 }
 
@@ -255,19 +246,19 @@ export function removeStar(id: string) {
   }
 }
 
-
 export function loginUser(user:string, password: string, messageSuccess: string, messageError: string) {
   return async (dispatch: any) => {
       let isLoggendIn = false
       try {            
           //dispatch(showLoader())
           //console.log(JSON.stringify({user: user, password: password}));
+          const data = btoa(JSON.stringify({user: user, password: password}));
           const response = await fetch(`${backendServer}/auth/login`, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             //mode: 'no-cors',
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             //credentials: '', // include, *same-origin, omit
-            body: JSON.stringify({user: user, password: password}), // body data type must match "Content-Type" header
+            body: JSON.stringify({data: data}), // body data type must match "Content-Type" header
             headers: {
               'Content-Type': 'application/json'
             },
@@ -300,15 +291,14 @@ export function loginUser(user:string, password: string, messageSuccess: string,
 export function regUser(user:string, password: string, messageSuccess: string, messageError: string) {
   return async (dispatch: any) => {
       let isRegistred = false
-      try {            
-          //dispatch(showLoader())
-          console.log(JSON.stringify({user: user, password: password}));
+      try {          
+          const data = btoa(JSON.stringify({user: user, password: password}));
           const response = await fetch(`${backendServer}/auth/register`, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             //mode: 'no-cors',
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             //credentials: '', // include, *same-origin, omit
-            body: JSON.stringify({user: user, password: password}), // body data type must match "Content-Type" header
+            body: JSON.stringify({data: data}), // body data type must match "Content-Type" header
             headers: {
               'Content-Type': 'application/json'
             },
@@ -338,6 +328,7 @@ export function regUser(user:string, password: string, messageSuccess: string, m
         }      
   }
 }
+
 
 // export function starSetID(id: string) {
 //   return (dispatch: DispatchStar) => {

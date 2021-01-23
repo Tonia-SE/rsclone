@@ -1,16 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { backendServer, initialCategoryName } from '../../consts';
-import { ApplicationState } from '../../redux/rootReducer';
-import { addPosition, chooseCategory, fetchCard, setSize } from '../../redux/actions';
+import { backendServer } from '../../consts';
+import { ApplicationState } from '../../store/rootReducer';
+import { addPosition, setSize } from '../../store/actions';
 import { Message } from '../Message/Message';
 import { Star } from '../Star/Star';
 import { useLocation } from 'react-router-dom';
-
-
-// interface ICardProps {
-//   cardId: string;
-// }
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -22,21 +17,17 @@ const Card: React.FC = () => {
   const dispatch = useDispatch();
   const currentSize = useSelector((state: ApplicationState)  => state.card.currentSize)
   const cards = useSelector((state: ApplicationState)  => state.album.album.cards)
+  // const category = useSelector((state: ApplicationState)  => state.card.category)
 
+  // const pageClassName =`page_wrapper card-bg-color-${category}`
+  // const btnBuyClassName =`btn btn-outline-secondary my-padding card_btn-buy-${category}`
+  // const btnSizeClassName =`btn btn-outline-secondary dropdown-toggle dropdown my-padding card_btn-sizes-${category}`
   let card = cards.find(card => {
     if (card._id === cardId) {
       return true
     }
     return false
   })
-
-  // if ( card === undefined ) {
-  //   dispatch(fetchCard(cardId))
-  //   card = useSelector((state: ApplicationState)  => state.card)
-  // }
-
-  
-
   
   const currentPositions = useSelector((state: ApplicationState)  => state.shopCart.positions)
   const lang = useSelector((state: ApplicationState)  => state.lang)
@@ -55,8 +46,7 @@ const Card: React.FC = () => {
   const currency = useSelector((state: ApplicationState) => state.currency.info)
   let priceCurrent = `${card.price} ${currency.value}`
   if (currency.value !== '$') {
-    const price = Math.round((Math.trunc(+card.price * currency.rate)/100)) * 100 - 1
-    priceCurrent = `${price} ${currency.value}`
+    priceCurrent = `${Math.trunc(+ card.price * currency.rate)} ${currency.value}`
   }
   return ( 
     <div className="page_wrapper card-bg-color">         
@@ -71,8 +61,6 @@ const Card: React.FC = () => {
           <Message />
           <div className="d-flex justify-content-between align-items-center">
             <div className="btn-group mt-2 mb-3">
-              {/* <a className="buttonBuy" href="/"> */}
-              
               <button className="btn btn-outline-secondary card_btn-buy my-padding" id={card._id} type="button"
                   onClick={() => {
                     dispatch(addPosition(card._id, currentSize, currentPositions, lang.value))
