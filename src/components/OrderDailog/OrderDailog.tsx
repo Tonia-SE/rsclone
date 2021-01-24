@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap'  
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { CLEAR_CART } from '../../store/actionTypes';
 import { ApplicationState } from '../../store/rootReducer';
 
 interface IProps {
@@ -9,9 +10,16 @@ interface IProps {
 }
 
 export const OrderDailog: React.FC<IProps> = (props) => {
-  const date = (new Date().getMonth() < 9)? `${new Date().getDate()}.0${new Date().getMonth() + 1}.${new Date().getFullYear()}`: `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`
-  const id = Date.now().toString();
-  console.log(date);
+  const dispatch = useDispatch();
+  const lang = useSelector((state: ApplicationState)  => state.lang);
+  const orderId = useSelector((state: ApplicationState)  => state.order.orderId);
+  const orderDate = useSelector((state: ApplicationState)  => state.order.orderData);
+  const orderTotal= useSelector((state: ApplicationState)  => state.order.total);
+  let modalTitleText = (lang.value === 'eng')? 'Thanks for shopping!': 'Спасибо за покупку!';
+  let modalBodyTextTitle = (lang.value === 'eng')? 'Order №': 'Заказ №';
+  let modalBodyText = (lang.value === 'eng')?
+  `total price ${orderTotal} $ is successfully issued ${orderDate}. Our manager will contact you within half an hour to check the details.`
+  : `oт ${orderDate} на сумму ${orderTotal} ₽ успешно оформлен. Наш менеджер свяжется с вами в течение получаса для уточнения деталей заказа.`;
   //const categories = useSelector((state: ApplicationState) => state.s);
   return (
     <Modal
@@ -21,17 +29,19 @@ export const OrderDailog: React.FC<IProps> = (props) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Спасибо за покупку!
+          {modalTitleText}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Заказ № {id}</h4>
+        <h4>{modalBodyTextTitle}{orderId}</h4>
         <p>
-          oт {date} на сумму 555₽ успешно оформлен. Наш сотрудник свяжется с вами в течение получаса для уточнения деталей заказа.
+          {modalBodyText}
         </p>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide} className="okBtn">ОК</Button>
+      <button type="button" className="okBtn btn btn-primary" onClick={() =>{{props.onHide} dispatch({type: CLEAR_CART})}}>
+        ОК
+      </button>
       </Modal.Footer>
     </Modal>
   );

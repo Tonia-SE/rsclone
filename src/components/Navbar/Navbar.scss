@@ -2,6 +2,7 @@
 
 .navbar{
   background-color:  $background-color-1;
+  //max-height: 86px;
 }
 .navbar-brand{
   margin-right: 14%;
@@ -74,6 +75,7 @@ div.nav-link{
   border: none;
 }
 #icon1{
+  padding-top: 10px;
   border: none;
 }
 #auth{

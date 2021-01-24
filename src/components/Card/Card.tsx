@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { backendServer } from '../../consts';
 import { ApplicationState } from '../../store/rootReducer';
-import { addPosition, setSize } from '../../store/actions';
+import { addPosition, setSize, showAlert } from '../../store/actions';
 import { Message } from '../Message/Message';
 import { Star } from '../Star/Star';
 import { useLocation } from 'react-router-dom';
@@ -58,12 +58,17 @@ const Card: React.FC = () => {
             {priceCurrent}
           </small>
           <p className="card-text cd-txt">{(lang.value === 'eng')? titleEng: titleRu}</p>
-          <Message />
+          <Message {...{className: "my-danger"}}/>
           <div className="d-flex justify-content-between align-items-center">
             <div className="btn-group mt-2 mb-3">
               <button className="btn btn-outline-secondary card_btn-buy my-padding" id={card._id} type="button"
                   onClick={() => {
-                    dispatch(addPosition(card._id, currentSize, currentPositions, lang.value))
+                    if(currentSize.trim() === "" || currentSize === null || currentSize === undefined) {
+                      dispatch(showAlert((lang.value === 'eng')? "Choose a size": "Выберите размер"))
+                      
+                    } else {
+                      dispatch(addPosition(card._id, currentSize, currentPositions, lang.value))
+                    }
                   }}
                   >
                 {buyBtn}

@@ -25,6 +25,7 @@ import { Footer } from './components/Footer/Footer';
 import { LogInForm, SignUpForm } from './components/Regforms/Regforms';
 import { Payment } from './components/Payment/Payment';
 import { About } from './components/About/About';
+import { Profile } from './components/Profile/Profile';
 
 // import { spamWordsMiddleWare } from './redux/middleWare';
 
@@ -65,6 +66,7 @@ const routing = (
                 <Route exact path="/warranty" component={Warranty} />
                 <Route exact path="/payment" component={Payment} />
                 <Route exact path="/about" component={About} />
+                <Route exact path="/profile" component={Profile} />
             </Switch>
           <Footer />
         </div>  

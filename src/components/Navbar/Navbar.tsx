@@ -13,8 +13,8 @@ export const KigurumiNavbar: React.FC = () => {
   const shopCart = useSelector((state: ApplicationState)  => state.shopCart);
   const lang = useSelector((state: ApplicationState)  => state.lang);
   const auth = useSelector((state: ApplicationState)  => state.auth);
-  auth.userName
-  auth.isLoggedIn
+  // auth.userName
+  // auth.isLoggedIn
   let authClassName = (auth.isLoggedIn === false)? 'nav-item active': 'nav-item active d-none'
   let LogOutClassName = (auth.isLoggedIn === false)? 'nav-item active d-none': 'nav-item active'
   let authImg = (auth.isLoggedIn === false)? './assets/images/authorization.ico': './assets/images/auth_user.ico'
@@ -27,6 +27,8 @@ export const KigurumiNavbar: React.FC = () => {
   let shoppingIn = (lang.value === 'eng')? 'Shopping in': 'Страна';
   let ru = (lang.value === 'eng')? 'Russia': 'Россия';
   let eng = (lang.value === 'eng')? 'USA': 'США';
+  let link = (auth.isLoggedIn === false)? '': '/profile';
+  let dataToggle = (auth.isLoggedIn === false)? "collapse": '';
   let qty = 0;
   if (shopCart.positions.length !== 0) {
     qty = shopCart.positions.map((position) => position.quantity).reduce((a, b)=> a + b)
@@ -57,17 +59,20 @@ export const KigurumiNavbar: React.FC = () => {
           </li>
         </ul>
       </div>
-      <button
-        className="navbar-toggler"
-        type="button"
-        id="icon1"
-        data-toggle="collapse"
-        data-target="#navbarSupportedRegForms"
-        aria-controls="navbarSupportedRegForms"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
-        <img id="auth" src={authImg} alt="Authorization"/>
-      </button>
+      <Link to={link}>
+        <button
+          className="navbar-toggler"
+          type="button"
+          id="icon1"
+          data-toggle={dataToggle}
+          data-target="#navbarSupportedRegForms"
+          aria-controls="navbarSupportedRegForms"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          >
+          <img id="auth" src={authImg} alt="Authorization"/>
+        </button>
+      </ Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -92,7 +97,7 @@ export const KigurumiNavbar: React.FC = () => {
               {signup}
             </a>
           </li>
-          <li className={LogOutClassName}>
+          {/* <li className={LogOutClassName}>
             <a className="nav-link add-font-size" href="/" onClick={() => {dispatch({type: LOGOUT_USER})}}>
               {logOut}
             </a>
@@ -101,7 +106,7 @@ export const KigurumiNavbar: React.FC = () => {
             <a className="nav-link add-font-size" href="/">
               {auth.userName}
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
       <div className="collapse navbar-collapse" id="navbarSupportedContent" >

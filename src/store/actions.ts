@@ -14,6 +14,8 @@ import { ADD_STAR,
         SET_CARDID, 
         SET_CURRENCY, 
         SET_LANG, 
+        SET_NAME, 
+        SET_ORDER, 
         SET_QUANTITY, 
         SET_SIZE, 
         SHOW_ALERT, 
@@ -24,6 +26,7 @@ import { DispatchCategory } from './controlsReducer';
 import { DispatchCurrency } from './currencyReducer';
 import { DispatchLang } from './langReducer';
 import { DispatchMessage } from './messageReducer';
+import { DispatchOrder } from './orderReducer';
 import { DispatchShopCart, IPosition } from './shoppingCartReducer';
 
 // interface Idispatch {
@@ -186,7 +189,6 @@ export function removeFromCart(key: string) {
 }
 
 export function toggleNavbarDropdownMenu() {
-  console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
   const menu = document.getElementById('navbarSupportedContent');
   const auth = document.getElementById('navbarSupportedRegForms');
   if(auth.classList.toString().includes('show')) {
@@ -213,7 +215,7 @@ export function showAlert(text: string) {
     return (dispatch: DispatchMessage) => {
         dispatch({
             type: SHOW_ALERT,
-            text: text
+            text: text, 
         })
         setTimeout(() => {
             dispatch({type: HIDE_ALERT})
@@ -223,7 +225,7 @@ export function showAlert(text: string) {
 
 export function proceedToCheckout(lang: string) {
   if(lang === 'eng') {
-    return showAlert("Login first, please")
+    return showAlert("Log in first, please")
   }
   return showAlert("Войдите в личный кабинет")
 }
@@ -269,6 +271,7 @@ export function loginUser(user:string, password: string, messageSuccess: string,
           if (response.status === 200 ) { 
             dispatch(showAlert(messageSuccess))
             isLoggendIn = true 
+            dispatch({type: SET_NAME, name: user})
           } else if(response.status === 403) {
             dispatch(showAlert(messageError))
           }
@@ -328,6 +331,26 @@ export function regUser(user:string, password: string, messageSuccess: string, m
         }      
   }
 }
+
+export function setOrder(orderId: string, total: number, positions: Array<IPosition>, orderData: string) {
+  return (dispatch: DispatchOrder) => {
+      dispatch({
+          type: SET_ORDER,
+          orderId: orderId, 
+          total: total,
+          positions: positions,
+          orderData: orderData
+      })
+  }
+}
+// export const profileReducer = (state: IProfileState = initialState, action: IProfileAction ) => {
+//   switch (action.type) {
+//     case SET_ORDER:
+//       return { ...state, orderId: action.orderId, total: action.total, positions: action.positions, orderData: action.orderData}; 
+//     default:
+//       return state;
+//   }
+// };
 
 
 // export function starSetID(id: string) {

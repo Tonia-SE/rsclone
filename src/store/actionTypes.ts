@@ -26,7 +26,16 @@ export const REMOVE_STAR = 'CARDS/REMOVE_STAR'
 export const ADD_TO_SHOPCART = 'CART/ADD_TO_SHOPCART'
 export const SET_QUANTITY = 'CART/SET_QUANTITY'
 export const REMOVE_FROM_CART = 'CART/REMOVE_FROM_CART'
+export const CLEAR_CART = 'CART/CLEAR_CART'
 
 export const LOGIN_USER = 'USER/LOGIN'
 export const REGISTER_USER = 'USER/REGISTER'
 export const LOGOUT_USER = 'USER/LOGOUT'
+
+export const SET_ORDER = 'ORDER/SET_ORDER'
+
+export const ADD_ORDER = 'PROFILE/ADD_ORDER'
+export const REMOVE_ORDER = 'PROFILE/REMOVE_ORDER'
+export const SET_NAME = 'PROFILE/SET_NAME'
+
+//export const SET_TOTAL = 'PROFILE/SET_TOTAL'

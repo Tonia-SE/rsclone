@@ -2,7 +2,7 @@ import { HIDE_ALERT, SHOW_ALERT } from './actionTypes';
 
 export interface IMessageState {
   text?: string;
-  isOn: boolean; 
+  isOn: boolean;
 }
 
 interface IMessageAction {

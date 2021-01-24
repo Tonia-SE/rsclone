@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { loginUser, regUser, showAlert } from '../../store/actions';
+import { SET_NAME } from '../../store/actionTypes';
 import { ApplicationState } from '../../store/rootReducer';
 import { Message } from '../Message/Message';
 const tabIndex:number = -1;
@@ -8,6 +10,8 @@ const tabIndex:number = -1;
 export const LogInForm: React.FC = () => {
   const dispatch = useDispatch();
   const lang = useSelector((state: ApplicationState)  => state.lang);
+  const isLoggedIn = useSelector((state: ApplicationState)  => state.auth.isLoggedIn);
+  //const profileName = useSelector((state: ApplicationState)  => state.auth.userName);
   let logInMessage = (lang.value === 'eng')? 'Log in to your account': 'Вход в личный кабинет';
   let email = (lang.value === 'eng')? 'Email': 'Электронная почта';
   let passwordField = (lang.value === 'eng')? 'Password': 'Пароль';
@@ -46,7 +50,7 @@ export const LogInForm: React.FC = () => {
                 <label htmlFor="loginPassword">{passwordField}</label>
                 <input type="password" className="form-control" id="loginPassword" placeholder={passwordField} 
                 onChange={(event) => {setPassword(event.currentTarget.value)}}/>
-                <Message />
+                <Message {...{className:"my-danger"}}/>
               </div>
             </form>
           </div>
@@ -98,6 +102,7 @@ export const SignUpForm: React.FC = () => {
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('')
+  const [className, setClassName] = React.useState('');
 
   return (
     <div className="modal" tabIndex={tabIndex} id="signUpModal">
@@ -128,7 +133,7 @@ export const SignUpForm: React.FC = () => {
                 onChange={(event) => {
                   setPassword2(event.currentTarget.value)
                 }}/>
-                  <Message />
+                  <Message {...{className: ""}}/>
               </div>
             </form>
           </div>

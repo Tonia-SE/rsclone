@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { backendServer } from '../../consts';
 import { ApplicationState } from '../../store/rootReducer';
 import { IPosition } from '../../store/shoppingCartReducer';
-import { proceedToCheckout, removeFromCart, setQuantity, setSize } from '../../store/actions';
+import { proceedToCheckout, removeFromCart, setOrder, setQuantity, setSize } from '../../store/actions';
 import { Link } from 'react-router-dom';
 import { Message } from '../Message/Message';
 import { OrderDailog } from '../OrderDailog/OrderDailog'
+import { CLEAR_CART } from '../../store/actionTypes';
 
 const ShoppingCart: React.FC = () => {
   //const loading = useSelector(state => state.app.loading)
@@ -19,13 +20,16 @@ const ShoppingCart: React.FC = () => {
   const colSpanOrder = 1;
   const colSpanMessage = 4;
   const lang = useSelector((state: ApplicationState)  => state.lang);
+  const date = (new Date().getMonth() < 9)?
+            `${new Date().getDate()}.0${new Date().getMonth() + 1}.${new Date().getFullYear()}`:
+            `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`
+  const orderId = Date.now() + ""          
   let title = (lang.value === 'eng')?'Title': 'Модель'
   let size = (lang.value === 'eng')?'Size': 'Размер'
   let quantity = (lang.value === 'eng')?'Quantity': 'Количество'
   let price = (lang.value === 'eng')?'Price': 'Цена'
   let checkout = (lang.value === 'eng')?'CHECKOUT': 'КУПИТЬ'
   let total = (lang.value === 'eng')?'Total:': 'Сумма:'
-
   
   const countTotal = () => {
     const total = totalOrderPrice.reduce((a, b) => a + b);  
@@ -35,7 +39,7 @@ const ShoppingCart: React.FC = () => {
     }    
     return res
   }
-  
+
   if (cart.positions.length === 0) {
     if(lang.value === 'eng') {
       return (    
@@ -145,15 +149,18 @@ const ShoppingCart: React.FC = () => {
             </tr>
             <tr className="table-borderless">
               <td colSpan={colSpanMessage} id="shopCart-message">
-                <Message />
+                <Message {...{className: "my-danger"}}/>
               </td>
               <td colSpan={colSpanOrder} className="align-middle">
                 <button className="btn checkout center" onClick={() => {
                   if(!auth) {
                     dispatch(proceedToCheckout(lang.value))
                   } else {
-                    setModalShow(true)}}
-                }>
+                    setModalShow(true)
+                    dispatch(setOrder(orderId, +(countTotal().slice(0, -2)), cart.positions, date))
+                    localStorage.removeItem('shopCart')
+                  }
+                }}>
                   {checkout}
                 </button>
               </td>

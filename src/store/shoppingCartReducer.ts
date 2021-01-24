@@ -1,4 +1,4 @@
-import { ADD_TO_SHOPCART, REMOVE_FROM_CART, SET_QUANTITY } from './actionTypes';
+import { ADD_TO_SHOPCART, REMOVE_FROM_CART, SET_QUANTITY, CLEAR_CART } from './actionTypes';
 
 export interface IShopCartState {
   positions: Array<IPosition>
@@ -29,16 +29,19 @@ interface IShopCartAction {
 
 export type DispatchShopCart = (args: IShopCartAction) => IShopCartAction;
 
-let positions: Array<IPosition> = []
-const savedShopCart = localStorage.getItem('shopCart')
-  if(savedShopCart !== null) {
-    positions = JSON.parse(savedShopCart)
-  }
 const initialState: IShopCartState = {
-  positions: positions
+  positions: []
 };
 
-export const shopCartReducer = (state: IShopCartState = initialState, action: IShopCartAction ) => {
+let savedState = {...initialState}
+
+const savedShopCart = localStorage.getItem('shopCart')
+  if(savedShopCart !== null) {
+    //positions = JSON.parse(savedShopCart)
+    savedState.positions = JSON.parse(savedShopCart)
+  }
+
+export const shopCartReducer = (state: IShopCartState = savedState, action: IShopCartAction ) => {
   switch (action.type) {
     case ADD_TO_SHOPCART:
       const isPositionAlradyExists = state.positions.find((position: IPosition) => {
@@ -72,7 +75,11 @@ export const shopCartReducer = (state: IShopCartState = initialState, action: IS
         return true
       })
       localStorage.setItem('shopCart', JSON.stringify(afterDelPositions))
-      return {...state, positions: afterDelPositions}   
+      return {...state, positions: afterDelPositions}  
+
+    case CLEAR_CART:  
+      return {...state, positions: []}
+
     default:
       return state;
   }
