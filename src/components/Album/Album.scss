@@ -7,9 +7,9 @@
   background-color: $background-color-2;
 }
 .slippers{
-  background-color: $background-color-3;
+  background-color: $color-7;
 }
-.newCategory{
+.toys{
   background-color: $color-6;
 }
 .title-wrapper{
@@ -30,7 +30,7 @@
 .card_btn-buy-adult,
 .card_btn-buy-slippers,
 .card_btn-buy-kids,
-.card_btn-buy-newCategory{
+.card_btn-buy-toys{
   @include card-btn();
   background-color: none;
 }
@@ -43,15 +43,13 @@
 }
 .card_btn-buy-kids:hover,
 .card_btn-buy-kids:focus{
-  @include card-btn();
   background-color: $background-color-2;
   color: $color-2;
   font-weight: 400;
   border-color: $background-color-2;
 }
-.card_btn-buy-newCategory:hover,
-.card_btn-buy-newCategory:focus{
-  @include card-btn();
+.card_btn-buy-toys:hover,
+.card_btn-buy-toys:focus{
   background-color: $color-6;
   color: $color-2;
   font-weight: 400;
@@ -59,11 +57,10 @@
 }
 .card_btn-buy-slippers:hover,
 .card_btn-buy-slippers:focus{
-  @include card-btn();
-  background-color: $background-color-3;
+  background-color:$color-7;
   color: $color-2;
   font-weight: 400;
-  border-color: $background-color-3;
+  border-color: $color-7;
 }
 #price{
   font-size: 2.5rem;
@@ -129,6 +126,17 @@
   }
 }
 @media (max-width: 480px){
+
+  .card_btn-buy-adult,
+  .card_btn-buy-slippers,
+  .card_btn-buy-kids,
+  .card_btn-buy-toys{
+  @include card-btn();
+  background-color: none;
+  font-size: 12px !important;
+  padding-right: 5px;
+  padding-left: 5px;
+}
   .card_btn-BUY{
     max-width: 40vw;
     height: 30px;

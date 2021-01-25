@@ -58,7 +58,7 @@ const Card: React.FC = () => {
             {priceCurrent}
           </small>
           <p className="card-text cd-txt">{(lang.value === 'eng')? titleEng: titleRu}</p>
-          <Message {...{className: "my-danger"}}/>
+          <Message />
           <div className="d-flex justify-content-between align-items-center">
             <div className="btn-group mt-2 mb-3">
               <button className="btn btn-outline-secondary card_btn-buy my-padding" id={card._id} type="button"

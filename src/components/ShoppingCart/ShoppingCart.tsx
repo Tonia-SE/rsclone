@@ -7,7 +7,7 @@ import { proceedToCheckout, removeFromCart, setOrder, setQuantity, setSize } fro
 import { Link } from 'react-router-dom';
 import { Message } from '../Message/Message';
 import { OrderDailog } from '../OrderDailog/OrderDailog'
-import { CLEAR_CART } from '../../store/actionTypes';
+import { ADD_ORDER, CLEAR_CART, SET_NAME } from '../../store/actionTypes';
 
 const ShoppingCart: React.FC = () => {
   //const loading = useSelector(state => state.app.loading)
@@ -15,6 +15,7 @@ const ShoppingCart: React.FC = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state: ApplicationState)  => state.shopCart)
   const currency = useSelector((state: ApplicationState) => state.currency.info)
+  const userName = useSelector((state: ApplicationState) => state.auth.userName)
   const auth = useSelector((state: ApplicationState) => state.auth.isLoggedIn)
   const totalOrderPrice: Array<number> = [];
   const colSpanOrder = 1;
@@ -23,7 +24,9 @@ const ShoppingCart: React.FC = () => {
   const date = (new Date().getMonth() < 9)?
             `${new Date().getDate()}.0${new Date().getMonth() + 1}.${new Date().getFullYear()}`:
             `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`
-  const orderId = Date.now() + ""          
+  const orderId = (Date.now() + "").slice(-6);
+  const order = useSelector((state: ApplicationState) => state.order) 
+        
   let title = (lang.value === 'eng')?'Title': 'Модель'
   let size = (lang.value === 'eng')?'Size': 'Размер'
   let quantity = (lang.value === 'eng')?'Quantity': 'Количество'
@@ -97,9 +100,9 @@ const ShoppingCart: React.FC = () => {
           return ( 
             <tr key={key} id={key} className="position">
               <td scope="row" className="align-middle">
-              <Link to={`/card?id=${position.id}`} onClick={()=> { dispatch(setSize(position.size)) }}>
-                <img className="shoppingCart-image" src={imageUrl}/>
-              </Link>
+                <Link to={`/card?id=${position.id}`} onClick={()=> { dispatch(setSize(position.size)) }}>
+                  <img className="shoppingCart-image" src={imageUrl}/>
+                </Link>
               </td>
               <td className="align-middle number">{positionTitle}</td>
               <td className="align-middle number">{position.size}</td>
@@ -149,7 +152,7 @@ const ShoppingCart: React.FC = () => {
             </tr>
             <tr className="table-borderless">
               <td colSpan={colSpanMessage} id="shopCart-message">
-                <Message {...{className: "my-danger"}}/>
+                <Message />
               </td>
               <td colSpan={colSpanOrder} className="align-middle">
                 <button className="btn checkout center" onClick={() => {
@@ -157,8 +160,10 @@ const ShoppingCart: React.FC = () => {
                     dispatch(proceedToCheckout(lang.value))
                   } else {
                     setModalShow(true)
-                    dispatch(setOrder(orderId, +(countTotal().slice(0, -2)), cart.positions, date))
+                    dispatch(setOrder(orderId, countTotal(), cart.positions, date))
                     localStorage.removeItem('shopCart')
+                    dispatch({type: SET_NAME, name: userName})
+                    dispatch({type: ADD_ORDER, order:{ orderId: orderId, total: countTotal(), positions: cart.positions, orderData: date}})
                   }
                 }}>
                   {checkout}

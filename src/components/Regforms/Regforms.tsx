@@ -50,7 +50,7 @@ export const LogInForm: React.FC = () => {
                 <label htmlFor="loginPassword">{passwordField}</label>
                 <input type="password" className="form-control" id="loginPassword" placeholder={passwordField} 
                 onChange={(event) => {setPassword(event.currentTarget.value)}}/>
-                <Message {...{className:"my-danger"}}/>
+                <Message />
               </div>
             </form>
           </div>
@@ -67,11 +67,7 @@ export const LogInForm: React.FC = () => {
                 if(!(/\S+@\S+\.\S+/.test(userName))){
                   dispatch(showAlert(alertWrongEmail))
                 } else {
-                  if(password.length < 6){
-                    dispatch(showAlert(alertShortPassword))
-                  } else {
-                    dispatch(loginUser(userName, password, alertTextSuccess, alertWrongEmailOrPassword));
-                  }
+                  dispatch(loginUser(userName, password, alertTextSuccess, alertWrongEmailOrPassword));
                 }
               }}>
               {logInBtn}
@@ -133,7 +129,7 @@ export const SignUpForm: React.FC = () => {
                 onChange={(event) => {
                   setPassword2(event.currentTarget.value)
                 }}/>
-                  <Message {...{className: ""}}/>
+                  <Message />
               </div>
             </form>
           </div>

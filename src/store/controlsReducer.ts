@@ -1,6 +1,6 @@
 import { FETCH_CATEGORIES } from './actionTypes';
 
-interface ICategory {
+export interface ICategory {
   _id: string;
   titleEng: string;
   titleRu: string;

@@ -3,7 +3,7 @@ import { IPosition } from './shoppingCartReducer';
 
 export interface IOrderState {
   orderId: string;
-  total: number;
+  total: string;
   positions: Array<IPosition>
   orderData: string
 }
@@ -11,7 +11,7 @@ export interface IOrderState {
 interface IOrderAction {
   type: string;
   orderId: string;
-  total: number;
+  total: string;
   positions: Array<IPosition>
   orderData: string
 }
@@ -20,7 +20,7 @@ export type DispatchOrder = (args: IOrderAction) => IOrderAction;
 
 const initialState: IOrderState = {
   orderId: '',
-  total: 0,
+  total: '',
   positions: [],
   orderData: ''
 };	

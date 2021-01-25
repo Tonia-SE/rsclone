@@ -39,15 +39,14 @@ const Album = () => {
               return (              
                 <div className="col-md-4 pt-3" key={card._id}>
                   <div className="card mb-4 shadow-sm" key={card._id}>                    
-                    <Star id={card._id}/>
+                    {/* <Star id={card._id}/> */}
                     <Link to={`/card?id=${card._id}`} onClick={()=> { dispatch(setSize(currentSize)) }} >
-                      <img src={imageUrl} alt="KIGURUMI me" className="bd-placeholder-img card-img-top" width="0" />
+                      <img src={imageUrl} alt="KIGURUMI me" className="bd-placeholder-img card-img-top p-2" width="0" />
                     </Link>
                     <div className="card-body">
                       <small className="text-muted price mb-3" id="price">
                         {priceCurrent}
                       </small>
-                      
                         <p className="card-text text mb-2">{title}</p>      
                         <Link to={`/card?id=${card._id}`} 
                           onClick={()=> { dispatch(setSize(currentSize)) }}>

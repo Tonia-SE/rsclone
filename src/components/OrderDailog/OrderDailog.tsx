@@ -18,8 +18,8 @@ export const OrderDailog: React.FC<IProps> = (props) => {
   let modalTitleText = (lang.value === 'eng')? 'Thanks for shopping!': 'Спасибо за покупку!';
   let modalBodyTextTitle = (lang.value === 'eng')? 'Order №': 'Заказ №';
   let modalBodyText = (lang.value === 'eng')?
-  `total price ${orderTotal} $ is successfully issued ${orderDate}. Our manager will contact you within half an hour to check the details.`
-  : `oт ${orderDate} на сумму ${orderTotal} ₽ успешно оформлен. Наш менеджер свяжется с вами в течение получаса для уточнения деталей заказа.`;
+  `total price ${orderTotal} is successfully issued ${orderDate}. Our manager will contact you within half an hour to check the details.`
+  : `oт ${orderDate} на сумму ${orderTotal} успешно оформлен. Наш менеджер свяжется с вами в течение получаса для уточнения деталей заказа.`;
   //const categories = useSelector((state: ApplicationState) => state.s);
   return (
     <Modal

@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ApplicationState } from '../../store/rootReducer';
 import { changeLang, setCurrency, setSize, toggleNavbarDropdownMenu } from '../../store/actions'
 import { LogInForm } from '../Regforms/Regforms';
-import { LOGOUT_USER } from '../../store/actionTypes';
-
 
 export const KigurumiNavbar: React.FC = () => {
 
@@ -13,25 +11,25 @@ export const KigurumiNavbar: React.FC = () => {
   const shopCart = useSelector((state: ApplicationState)  => state.shopCart);
   const lang = useSelector((state: ApplicationState)  => state.lang);
   const auth = useSelector((state: ApplicationState)  => state.auth);
-  // auth.userName
-  // auth.isLoggedIn
   let authClassName = (auth.isLoggedIn === false)? 'nav-item active': 'nav-item active d-none'
-  let LogOutClassName = (auth.isLoggedIn === false)? 'nav-item active d-none': 'nav-item active'
   let authImg = (auth.isLoggedIn === false)? './assets/images/authorization.ico': './assets/images/auth_user.ico'
   let logIn = (lang.value === 'eng')? 'Login': 'Вход';
   let signup = (lang.value === 'eng')? 'Sign up': 'Регистрация';
-  let logOut = (lang.value === 'eng')? 'Log out': 'Выйти';
   let aboutUs = (lang.value === 'eng')? 'About us': 'О нас';
   let delivery = (lang.value === 'eng')? 'Delivery': 'Доставка';
   let payment = (lang.value === 'eng')? 'Payment': 'Оплата';
   let shoppingIn = (lang.value === 'eng')? 'Shopping in': 'Страна';
   let ru = (lang.value === 'eng')? 'Russia': 'Россия';
   let eng = (lang.value === 'eng')? 'USA': 'США';
-  let link = (auth.isLoggedIn === false)? '': '/profile';
+  
   let dataToggle = (auth.isLoggedIn === false)? "collapse": '';
   let qty = 0;
   if (shopCart.positions.length !== 0) {
     qty = shopCart.positions.map((position) => position.quantity).reduce((a, b)=> a + b)
+  }
+  let link = 
+  function getCurrentLink() {
+    return `${window.location.pathname}${window.location.search}`
   }
   
   return (
@@ -59,20 +57,21 @@ export const KigurumiNavbar: React.FC = () => {
           </li>
         </ul>
       </div>
-      <Link to={link}>
-        <button
-          className="navbar-toggler"
-          type="button"
-          id="icon1"
-          data-toggle={dataToggle}
-          data-target="#navbarSupportedRegForms"
-          aria-controls="navbarSupportedRegForms"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          >
-          <img id="auth" src={authImg} alt="Authorization"/>
-        </button>
-      </ Link>
+      
+      <button
+        className="navbar-toggler"
+        type="button"
+        id="icon1"
+        data-toggle={dataToggle}
+        data-target="#navbarSupportedRegForms"
+        aria-controls="navbarSupportedRegForms"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+          <Link to={(auth.isLoggedIn === false)? link: '/profile'}>
+            <img id="auth" src={authImg} alt="Authorization"/>
+          </ Link>
+      </button>
+
       <button
         className="navbar-toggler"
         type="button"
@@ -97,16 +96,6 @@ export const KigurumiNavbar: React.FC = () => {
               {signup}
             </a>
           </li>
-          {/* <li className={LogOutClassName}>
-            <a className="nav-link add-font-size" href="/" onClick={() => {dispatch({type: LOGOUT_USER})}}>
-              {logOut}
-            </a>
-          </li>
-          <li className={LogOutClassName}>
-            <a className="nav-link add-font-size" href="/">
-              {auth.userName}
-            </a>
-          </li> */}
         </ul>
       </div>
       <div className="collapse navbar-collapse" id="navbarSupportedContent" >
@@ -142,7 +131,6 @@ export const KigurumiNavbar: React.FC = () => {
                 dispatch(setCurrency('₽'))
                 dispatch(setSize("РАЗМЕР"))
                 toggleNavbarDropdownMenu()}}>
-                  
                 {ru}
                 <img id="Russia" src="./assets/images/russiaFlag.ico" alt="Russia flag"/>
               </div>
@@ -151,7 +139,7 @@ export const KigurumiNavbar: React.FC = () => {
                 dispatch(setCurrency('$'))
                 dispatch(setSize("SIZE"))
                 toggleNavbarDropdownMenu()}}>
-                  {eng}
+                {eng}
                 <img id="USA" src="./assets/images/UnitedStatesFlag.ico" alt="USA flag"/>
               </div>
             </div>

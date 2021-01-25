@@ -15,17 +15,17 @@
   @include center();
 }
 #slippers{
-  background-color: $background-color-3;
+  background-color: $color-7;
   @include id_album();
   @include center();
 }
-#newCategory{
+#toys{
   background-color: $color-6;
   @include id_album();
   @include center();
 }
 #kids:hover, #kids:focus, #kids:active,
-#newCategory:hover, #newCategory:focus, #newCategory:active{
+#toys:hover, #toys:focus, #toys:active{
   color: $color-2;
 }
 #adult:hover{
@@ -48,7 +48,7 @@ small:hover, small:focus, small:visited, small:active, small:target{
 }
 @media (max-width: 850px){
   #adult, #kids, #slippers,
-  #newCategory{
+  #toys{
     font-size: 1rem;
   }
 }
@@ -57,7 +57,7 @@ small:hover, small:focus, small:visited, small:active, small:target{
 }
 @media (max-width: 600px){
   #adult, #kids, #slippers,
-  #newCategory{
+  #toys{
     font-size: 0.8rem;
   }
   .p-5{
@@ -66,7 +66,7 @@ small:hover, small:focus, small:visited, small:active, small:target{
 }
 @media (max-width: 600px){
   #adult, #kids, #slippers,
-  #newCategory{
+  #toys{
     font-size: 0.7rem;
   }
   .col-4{

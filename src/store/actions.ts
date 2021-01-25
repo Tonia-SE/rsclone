@@ -211,11 +211,12 @@ export function hideLoader() {
     }
 }
 
-export function showAlert(text: string) {
+export function showAlert(text: string, className: string = 'my-danger') {
     return (dispatch: DispatchMessage) => {
         dispatch({
             type: SHOW_ALERT,
-            text: text, 
+            text: text,
+            className: className 
         })
         setTimeout(() => {
             dispatch({type: HIDE_ALERT})
@@ -269,7 +270,7 @@ export function loginUser(user:string, password: string, messageSuccess: string,
           })
           const json = await response.json()
           if (response.status === 200 ) { 
-            dispatch(showAlert(messageSuccess))
+            dispatch(showAlert(messageSuccess, "my-success"))
             isLoggendIn = true 
             dispatch({type: SET_NAME, name: user})
           } else if(response.status === 403) {
@@ -311,7 +312,7 @@ export function regUser(user:string, password: string, messageSuccess: string, m
           const json = await response.json()
           if (response.status === 200) { 
             isRegistred = true 
-            dispatch(showAlert(messageSuccess))
+            dispatch(showAlert(messageSuccess, "my-success"))
           } else if (response.status === 403) {
             dispatch(showAlert(messageError))
           }
@@ -332,7 +333,7 @@ export function regUser(user:string, password: string, messageSuccess: string, m
   }
 }
 
-export function setOrder(orderId: string, total: number, positions: Array<IPosition>, orderData: string) {
+export function setOrder(orderId: string, total: string, positions: Array<IPosition>, orderData: string) {
   return (dispatch: DispatchOrder) => {
       dispatch({
           type: SET_ORDER,
