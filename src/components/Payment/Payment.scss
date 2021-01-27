@@ -1,4 +1,4 @@
-@import '../../_variables';
+@import '../../styles/_variables';
 
 .payment{
   background-color: $color-10;
@@ -27,7 +27,6 @@
   text-align: center;
   text-decoration: underline;
 }
-
 @media (max-width: 840px){
   .payment_wrapper{
     max-width: 80%;

@@ -1,28 +1,19 @@
-// import * as React from 'react';
-// import * as ReactDOM from 'react-dom';
-// import App from './App';
-// // import $ from 'jquery';
-
-// ReactDOM.render(<App />, document.querySelector('#body'));
-
-// $('#carouselExampleControls').carousel({
-//   interval: 3000
-// })
 import React from 'react';
 import { render } from 'react-dom';
 import { rootReducer } from './store/rootReducer';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { compose, createStore, applyMiddleware } from 'redux';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import App from './App';
-import ShoppingCart from './components/ShoppingCart/ShoppingCart'
-import { KigurumiNavbar } from "./components/Navbar/Navbar";
-import Card from './components/Card/Card';
+import { ShoppingCart } from './components/ShoppingCart/ShoppingCart';
+import { KigurumiNavbar } from './components/Navbar/Navbar';
+import { Card } from './components/Card/Card';
 import { Delivery } from './components/Delivery/Delivery';
 import { Warranty } from './components/Warranty/Warranty';
 import { Footer } from './components/Footer/Footer';
-import { LogInForm, SignUpForm } from './components/Regforms/Regforms';
+import { LogInForm } from './components/Regforms/LogInForm';
+import { SignUpForm } from './components/Regforms/SignUpForm';
 import { Payment } from './components/Payment/Payment';
 import { About } from './components/About/About';
 import { Profile } from './components/Profile/Profile';
@@ -52,28 +43,28 @@ const store = createStore(
 );
 
 const routing = (
-    <Router>
-      <Provider store={store}>
-        <div className="body">
-          <KigurumiNavbar />
-          <LogInForm />
-          <SignUpForm />
-            <Switch>
-                <Route exact path="/" component={App} />
-                <Route exact path="/shopping_cart" component={ShoppingCart} />
-                <Route exact path="/card" component={Card} />
-                <Route exact path="/delivery" component={Delivery} />
-                <Route exact path="/warranty" component={Warranty} />
-                <Route exact path="/payment" component={Payment} />
-                <Route exact path="/about" component={About} />
-                <Route exact path="/profile" component={Profile} />
-            </Switch>
-          <Footer />
-        </div>  
-      </Provider>
-    </Router>
-)
-render(routing, document.getElementById('body'))
+  <Router>
+    <Provider store={store}>
+      <div className="body">
+        <KigurumiNavbar />
+        <LogInForm />
+        <SignUpForm />
+        <Switch>
+          <Route exact path="/" component={App} />
+          <Route exact path="/shopping_cart" component={ShoppingCart} />
+          <Route exact path="/card" component={Card} />
+          <Route exact path="/delivery" component={Delivery} />
+          <Route exact path="/warranty" component={Warranty} />
+          <Route exact path="/payment" component={Payment} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/profile" component={Profile} />
+        </Switch>
+        <Footer />
+      </div>
+    </Provider>
+  </Router>
+);
+render(routing, document.querySelector('#body'));
 
 //saga.run(sagaWatcher)
 

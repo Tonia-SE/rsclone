@@ -1,4 +1,4 @@
-@import '../../_variables';
+@import '../../styles/_variables';
 
 .adult{
   background-color: $background-color-1;
@@ -84,7 +84,6 @@
   }
   #price{
     font-size: 1.8rem;
-    color: #6c757d !important;
   }
   .card-text{
     margin-top: 0px !important;
@@ -126,7 +125,6 @@
   }
 }
 @media (max-width: 480px){
-
   .card_btn-buy-adult,
   .card_btn-buy-slippers,
   .card_btn-buy-kids,

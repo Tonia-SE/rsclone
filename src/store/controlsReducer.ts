@@ -1,4 +1,6 @@
-import { FETCH_CATEGORIES } from './actionTypes';
+import { FETCH_CATEGORIES, HIDE_LOADER, SHOW_LOADER } from './actionTypes';
+import { backendServer } from '../consts';
+import { DispatchLoader } from './loaderReducer';
 
 export interface ICategory {
   _id: string;
@@ -20,16 +22,27 @@ interface ICategoryAction {
 export type DispatchCategory = (args: ICategoryAction) => ICategoryAction;
 
 const initialState: ICategoryState = {
-  //categoryId: 1,
   fetchedCategoires: [],
 };
 export const controlsReducer = (state: ICategoryState = initialState, action: ICategoryAction) => {
   switch (action.type) {
     case FETCH_CATEGORIES:
       return { ...state, fetchedCategoires: action.payload };
-    // case SET_CATEGORY:
-    //     return {...state, categoryId: action.payload}
     default:
       return state;
   }
 };
+
+export function fetchCategories() {
+  return async (dispatch: DispatchCategory | DispatchLoader) => {
+    try {
+      dispatch({ type: SHOW_LOADER, payload: undefined, isLoading: true });
+      const response = await fetch(`${backendServer}/categories`);
+      const json = await response.json();
+      dispatch({ type: FETCH_CATEGORIES, payload: json, isLoading: undefined });
+      setTimeout(() => {
+        dispatch({ type: HIDE_LOADER, payload: undefined, isLoading: false });
+      }, 1000);
+    } catch (e) {}
+  };
+}

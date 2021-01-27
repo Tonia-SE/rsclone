@@ -1,4 +1,4 @@
-@import '../../_variables';
+@import '../../styles/_variables';
 
 .warranty{
   background-color: $background-color-3;
@@ -26,7 +26,6 @@
   text-align: center;
   text-decoration: underline;
 }
-
 @media (max-width: 840px){
   .warranty_wrapper{
     max-width: 80%;

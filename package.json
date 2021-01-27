@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env NODE_ENV=development webpack serve --config ./config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.prod.js",
     "prettier": "prettier --loglevel warn --write \"src/**/*.{ts,tsx}\"",
@@ -61,5 +60,8 @@
     "redux": "^4.0.5",
     "redux-devtools": "^3.7.0",
     "redux-thunk": "^2.3.0"
+  },
+  "dependencies": {
+    "css-minimizer-webpack-plugin": "^1.2.0"
   }
 }

@@ -1,8 +1,7 @@
-@import '../../_variables';
+@import '../../styles/_variables';
 
 .navbar{
   background-color:  $background-color-1;
-  //max-height: 86px;
 }
 .navbar-brand{
   margin-right: 14%;
@@ -48,7 +47,7 @@
   width: 11px;
   height: 11px;
 }
-#shoppingCard-quantity {
+#shoppingCard-quantity{
   font-size: 8px;
 }
 div.nav-link{
@@ -76,23 +75,24 @@ div.nav-link{
 }
 #icon1{
   padding-top: 10px;
-  border: none;
+  border: none !important;
 }
 #auth{
   width: 30px;
+  padding-bottom: 15px;
 }
 #navbarSupportedContent{
   font-size: 1.2rem !important;
 }
 #navbarSupportedContent a:hover{
   color: $color-2;
-  background-color:  $background-color-1;
+  background-color: $background-color-1;
 }
 .dropdown-menu{
   border: none !important;
 }
 #dropdownMenuNav{
-  background-color:  $background-color-1;
+  background-color: $background-color-1;
 }
 #dropdownMenuNav div:hover{
   text-decoration: none;
@@ -103,7 +103,7 @@ div.nav-link{
 }
 .country:hover{
   color:  $color-2;
-  background-color:  $background-color-1;
+  background-color: $background-color-1;
 }
 #Russia{
   width: 20px;

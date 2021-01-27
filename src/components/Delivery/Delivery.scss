@@ -1,4 +1,4 @@
-@import '../../_variables';
+@import '../../styles/_variables';
 
 .delivery{
   width: 120px;
@@ -30,7 +30,6 @@
   text-align: center;
   font-size: 2.5rem;
 }
-
 @media (max-width: 840px){
   .delivery_wrapper{
     max-width: 80%;

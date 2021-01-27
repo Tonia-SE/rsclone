@@ -1,4 +1,4 @@
-@import '../../_variables';
+@import '../../styles/_variables';
 
 .empty-shoppingCart{
   background-color: $color-7;
@@ -25,7 +25,7 @@
   text-decoration: underline;
 }
 .main-page-link:hover{
-  color: $color-2;
+  color: rgb(233, 218, 190);
 }
 .table{
   width: 80%;

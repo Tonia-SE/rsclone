@@ -9,6 +9,7 @@ import { langReducer, ILangState } from './langReducer';
 import { authReducer, IAuthState } from './authReducer';
 import { orderReducer, IOrderState } from './orderReducer';
 import { profileReducer, IProfileState } from './profileReducer';
+import { ILoaderState, loaderReducer } from './loaderReducer';
 
 export interface ApplicationState {
   controls: ICategoryState;
@@ -20,7 +21,8 @@ export interface ApplicationState {
   lang: ILangState;
   auth: IAuthState;
   order: IOrderState;
-  profile: IProfileState
+  profile: IProfileState;
+  loader: ILoaderState;
 }
 
 export const rootReducer: Reducer<ApplicationState> = combineReducers<ApplicationState>({
@@ -33,5 +35,6 @@ export const rootReducer: Reducer<ApplicationState> = combineReducers<Applicatio
   lang: langReducer,
   auth: authReducer,
   order: orderReducer,
-  profile: profileReducer
+  profile: profileReducer,
+  loader: loaderReducer,
 });

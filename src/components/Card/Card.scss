@@ -1,17 +1,5 @@
-@import '../../_variables';
+@import '../../styles/_variables';
 
-// .card-bg-color-adult{
-//   background-color: $background-color-1
-// }
-// .card-bg-color-slippers{
-//   background-color: $background-color-3
-// }
-// .card-bg-color-kids{
-//   background-color: $background-color-2
-// }
-// .card-bg-color-newCategory{
-//   background-color: $color-6
-// }
 .card-bg-color{
   background-color: $background-color-2
 }
@@ -32,14 +20,14 @@
 .card_btn-buy{
   max-width: 20vw;
   height: 40px;
-  background-color: $color-2 !important;
+  background-color: $color-2;
   line-height: 1.8;
 }
 .card_btn-sizes:hover,
 .card_btn-buy:hover,
 .card_btn-sizes:focus,
 .card_btn-buy:focus{
-  background-color: $background-color-2 !important;
+  background-color: $background-color-2;
   color: $color-2;
   font-weight: 400;
   border-color: $background-color-2;

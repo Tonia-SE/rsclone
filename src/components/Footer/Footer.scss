@@ -1,4 +1,5 @@
-@import '../../_variables';
+// @import '../../_variables';
+@import '../../styles/_variables';
 
 .page-footer{
   background-color: rgba(44, 138, 138, 0.3) !important;
@@ -48,7 +49,7 @@
     margin-top: 20px;
   }
   .container-fluid{
-    padding: 0 20px 0 20px !important;
+    padding: 20px 20px 0 20px !important;
   }
   #text-column-1{
     padding: 0 20px 0 20px !important;

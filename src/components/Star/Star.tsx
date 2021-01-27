@@ -1,48 +1,66 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addStar, removeStar, showAlert } from '../../store/actions';
-import { ICard } from '../../store/albumReducer';
+import { addToWishList } from '../../store/profileReducer';
+import { showAlert } from '../../store/messageReducer';
 import { ApplicationState } from '../../store/rootReducer';
-import { ADD_TO_WHISHES, REMOVE_FROM_WHISHES, SET_NAME } from '../../store/actionTypes';
+import { REMOVE_FROM_WHISHES } from '../../store/actionTypes';
+import { IPosition } from '../../store/shoppingCartReducer';
 
-interface IStarProps {
-  id: string
+interface IStarProperties {
+  id: string;
 }
 
-export const Star: React.FC<IStarProps> = (props) => {
+export const Star: React.FC<IStarProperties> = (properties) => {
 
   const dispatch = useDispatch();
-  const cards = useSelector((state: ApplicationState)  => state.album.album.cards);
-  const lang = useSelector((state: ApplicationState)  => state.lang);
-  const messageTextAdd = (lang.value === 'eng')? "Added to whish list": "Товар добавлен в избранное"
-  const messageTextDelete = (lang.value === 'eng')? "Removed from whish list": "Товар удален из избранного"
-  const card = cards.find((card:ICard) => {
-    if (card._id === props.id) {
+  const lang = useSelector((state: ApplicationState) => state.lang);
+  const messageTextAdd = lang.value === 'eng' ? 'Added to whish list' : 'Товар добавлен в избранное';
+  const messageTextDelete = lang.value === 'eng' ? 'Removed from whish list' : 'Товар удален из избранного';
+  const currentSize = useSelector((state: ApplicationState) => state.card.currentSize);
+  const currentProfile = useSelector((state: ApplicationState) => state.profile);
+  const auth = useSelector((state: ApplicationState) => state.auth);
+  const wish = currentProfile.wishes.find((wish: IPosition) => {
+    if (wish.id === properties.id && wish.size === currentSize) {
       return true;
     }
-    return false;    
-  })
-  if(card !== undefined && card.star) {
+    return false;
+  });
+  console.log(currentProfile.wishes);
+  console.log(wish);
+  if (wish !== undefined) {
     return (
       <>
-        <div className="text-muted" id="star" onClick={() =>{
-          dispatch(removeStar(props.id))
-          dispatch(showAlert(messageTextDelete, "my-danger"))
-          dispatch({ type: REMOVE_FROM_WHISHES, wish: {_id: card._id} })}}>
+        <div
+          className="text-muted"
+          id="star"
+          onClick={() => {
+            dispatch(showAlert(messageTextDelete, 'my-danger'));
+            dispatch({ type: REMOVE_FROM_WHISHES, wish: { id: properties.id, size: currentSize } });
+          }}>
           ★
         </div>
       </>
-    )  
+    );
   }
   return (
     <>
-      <div className="text-muted" id="star" onClick={() => {
-                      dispatch(addStar(props.id))
-                      dispatch(showAlert(messageTextAdd, "my-success"))
-                      dispatch({ type: ADD_TO_WHISHES, wish: card })}}>
+      <div
+        className="text-muted"
+        id="star"
+        onClick={() => {
+          if (auth.isLoggedIn) {
+            if (currentSize.trim() === '' || currentSize === null || currentSize === undefined || currentSize === 'SIZE' || currentSize === 'РАЗМЕР') {
+              dispatch(showAlert(lang.value === 'eng' ? 'Choose a size' : 'Выберите размер'));
+            } else {
+              dispatch(addToWishList(auth.userName, properties.id, currentSize, currentProfile.wishes, lang.value));
+              dispatch(showAlert(messageTextAdd, 'my-success'));
+            }
+          } else {
+            dispatch(showAlert(lang.value === 'eng' ? 'Log in first, please' : 'Войдите в личный кабинет'));
+          }
+        }}>
         ☆
       </div>
-    </> 
-  )
-}
-
+    </>
+  );
+};
