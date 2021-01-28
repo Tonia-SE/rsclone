@@ -37,6 +37,7 @@ export const Album: React.FC = () => {
                       onClick={() => {
                         dispatch(setSize(currentSize));
                       }}>
+                      {isLoader && Spinner}
                       <img src={imageUrl} alt="KIGURUMI me" className="bd-placeholder-img card-img-top p-2" width="0" />
                     </Link>
                     <div className="card-body">

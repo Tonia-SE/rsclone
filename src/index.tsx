@@ -18,13 +18,6 @@ import { Payment } from './components/Payment/Payment';
 import { About } from './components/About/About';
 import { Profile } from './components/Profile/Profile';
 
-// import { spamWordsMiddleWare } from './redux/middleWare';
-
-//import createSagaMiddleWare from 'redux-saga'
-//import { sagaWatcher } from './redux/sagas';
-
-//const saga = createSagaMiddleWare()
-
 declare global {
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
@@ -36,7 +29,6 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   rootReducer,
   compose(
-    // applyMiddleware(thunk, spamWordsMiddleWare),
     applyMiddleware(thunk),
     composeEnhancers()
   )
@@ -66,13 +58,3 @@ const routing = (
 );
 render(routing, document.querySelector('#body'));
 
-//saga.run(sagaWatcher)
-
-// const app = (
-//   <Provider store={store}>
-//     <App />
-//   </Provider>
-// );
-
-// render(app, document.getElementById('body'));
-// import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'

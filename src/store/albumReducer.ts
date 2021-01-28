@@ -102,9 +102,7 @@ export function chooseCategory(categoryName: string) {
       const response = await fetch(`${backendServer}/${categoryName}`);
       const json = await response.json();
       dispatch({ type: FETCH_CARDS, payload: { cards: json, color: categoryName }, isLoading: undefined });
-      setTimeout(() => {
-        dispatch({ type: HIDE_LOADER, payload: undefined, isLoading: false });
-      }, 300);
+      dispatch({ type: HIDE_LOADER, payload: undefined, isLoading: false });
     } catch (e) {
       dispatch({ type: HIDE_LOADER, payload: undefined, isLoading: false });
     }

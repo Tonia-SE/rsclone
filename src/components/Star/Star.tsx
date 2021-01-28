@@ -24,8 +24,6 @@ export const Star: React.FC<IStarProperties> = (properties) => {
     }
     return false;
   });
-  console.log(currentProfile.wishes);
-  console.log(wish);
   if (wish !== undefined) {
     return (
       <>

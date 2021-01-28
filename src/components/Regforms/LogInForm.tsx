@@ -41,9 +41,9 @@ export const LogInForm: React.FC = () => {
                 <input
                   type="email"
                   className="form-control"
-                  id="loginEmail"
                   aria-describedby="emailHelp"
                   placeholder={inputMessage}
+                  autoComplete="off"
                   onChange={(event) => {
                     setUserName(event.currentTarget.value);
                   }}
@@ -55,8 +55,8 @@ export const LogInForm: React.FC = () => {
                 <input
                   type="password"
                   className="form-control"
-                  id="loginPassword"
                   placeholder={passwordField}
+                  autoComplete="off"
                   onChange={(event) => {
                     setPassword(event.currentTarget.value);
                   }}

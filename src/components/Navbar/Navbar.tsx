@@ -7,6 +7,7 @@ import { setSize } from '../../store/cardReducer';
 import { changeLang } from '../../store/langReducer';
 import { setCurrency } from '../../store/currencyReducer';
 import { LogInForm } from '../Regforms/LogInForm';
+import { LOGOUT_USER } from '../../store/actionTypes';
 
 export const KigurumiNavbar: React.FC = () => {
   const dispatch = useDispatch();
@@ -67,7 +68,7 @@ export const KigurumiNavbar: React.FC = () => {
             aria-expanded="false"
             aria-label="Toggle navigation">
             <Link to={auth.isLoggedIn === false ? link : '/profile'}>
-              <img id="auth" src={authImg} alt="Authorization" />
+              <img id="auth" src={authImg} alt="Authorization"/>
             </Link>
           </button>
           <button

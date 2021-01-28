@@ -48,6 +48,7 @@ export const SignUpForm: React.FC = () => {
                   id="signUpEmail"
                   aria-describedby="emailHelp"
                   placeholder={inputMessage}
+                  autoComplete="off"
                   onChange={(event) => {
                     setUserName(event.currentTarget.value);
                   }}
@@ -60,6 +61,7 @@ export const SignUpForm: React.FC = () => {
                   className="form-control"
                   id="signUpPassword"
                   placeholder={passwordField}
+                  autoComplete="off"
                   onChange={(event) => {
                     setPassword(event.currentTarget.value);
                   }}
@@ -72,6 +74,7 @@ export const SignUpForm: React.FC = () => {
                   className="form-control"
                   id="signUpConfirmPassword"
                   placeholder={passwordField}
+                  autoComplete="off"
                   onChange={(event) => {
                     setPassword2(event.currentTarget.value);
                   }}

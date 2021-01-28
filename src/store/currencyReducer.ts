@@ -49,7 +49,6 @@ export function setCurrency(value: string) {
         const response = await fetch(rateUrl);
         const json = await response.json();
         rate = json.Valute.USD.Value;
-        console.log(rate);
       }
       dispatch({
         type: SET_CURRENCY,
