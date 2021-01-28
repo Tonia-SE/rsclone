@@ -1,5 +1,7 @@
 @import '../../styles/_variables';
 
 .spinner-wrapper{
-  @include center()
+  @include center();
+  margin-top: 5%;
+  margin-bottom: 5%;
 }

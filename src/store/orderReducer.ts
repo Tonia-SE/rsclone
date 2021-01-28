@@ -47,19 +47,19 @@ export function setOrder(user: string, orderId: string, total: string, positions
     try {
       await fetch(`${backendServer}/profile/orders`, {
         method: 'POST',
-        cache: 'no-cache', 
+        cache: 'no-cache',
         body: JSON.stringify({
           user: user,
           orderId: orderId,
           total: total,
           positions: positions,
           orderData: orderData,
-        }), 
+        }),
         headers: {
           'Content-Type': 'application/json',
         },
         redirect: 'follow',
-        referrerPolicy: 'no-referrer', 
+        referrerPolicy: 'no-referrer',
       });
     } catch (e) {}
   };

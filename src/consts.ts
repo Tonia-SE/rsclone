@@ -1,4 +1,7 @@
-export const backendServer = 'http://localhost:8000';
+//export const backendServer = 'http://localhost:8000';
+//import 'dotenv-defaults/config'
+export const backendServer = 'https://kigurumi-backend.herokuapp.com';
+
 export const initialCategoryName = 'adult';
 export const rateUrl = 'https://www.cbr-xml-daily.ru/daily_json.js';
 export const alertTimeout = 2000;

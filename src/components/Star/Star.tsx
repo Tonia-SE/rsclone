@@ -11,7 +11,6 @@ interface IStarProperties {
 }
 
 export const Star: React.FC<IStarProperties> = (properties) => {
-
   const dispatch = useDispatch();
   const lang = useSelector((state: ApplicationState) => state.lang);
   const messageTextAdd = lang.value === 'eng' ? 'Added to whish list' : 'Товар добавлен в избранное';

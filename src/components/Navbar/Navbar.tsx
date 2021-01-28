@@ -9,7 +9,6 @@ import { setCurrency } from '../../store/currencyReducer';
 import { LogInForm } from '../Regforms/LogInForm';
 
 export const KigurumiNavbar: React.FC = () => {
-
   const dispatch = useDispatch();
   const shopCart = useSelector((state: ApplicationState) => state.shopCart);
   const lang = useSelector((state: ApplicationState) => state.lang);

@@ -4,7 +4,6 @@ import { REMOVE_ORDER } from '../../store/actionTypes';
 import { ApplicationState } from '../../store/rootReducer';
 
 export const TableOrders: React.FC = () => {
-  
   const dispatch = useDispatch();
   const lang = useSelector((state: ApplicationState) => state.lang);
   const profileOrders = useSelector((state: ApplicationState) => state.profile.orders);
@@ -27,7 +26,7 @@ export const TableOrders: React.FC = () => {
               <td>{order.orderId}</td>
               <td>{order.orderData}</td>
               <td>{order.total}</td>
-              <td>{lang.value === 'eng' ? ' processed' : 'cборка'}</td>
+              <td>{lang.value === 'eng' ? ' processing' : 'cборка'}</td>
               <td
                 className="txt-right"
                 onClick={() => {

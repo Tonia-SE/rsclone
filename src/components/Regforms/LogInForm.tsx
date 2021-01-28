@@ -4,16 +4,14 @@ import { loginUser } from '../../store/authReducer';
 import { showAlert } from '../../store/messageReducer';
 import { ApplicationState } from '../../store/rootReducer';
 import { Message } from '../Message/Message';
-import { Spinner } from '../Spinner/Spinner';
+
 const tabIndex = -1;
 
 export const LogInForm: React.FC = () => {
-  
   const dispatch = useDispatch();
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const lang = useSelector((state: ApplicationState) => state.lang);
-  const isLoading = useSelector((state: ApplicationState) => state.loader.isLoading);
   const logInMessage = lang.value === 'eng' ? 'Log in to your account' : 'Вход в личный кабинет';
   const email = lang.value === 'eng' ? 'Email' : 'Электронная почта';
   const passwordField = lang.value === 'eng' ? 'Password' : 'Пароль';
@@ -67,7 +65,6 @@ export const LogInForm: React.FC = () => {
               </div>
             </form>
           </div>
-          {isLoading && <Spinner />}
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary okBtn" data-dismiss="modal">
               {cancel}

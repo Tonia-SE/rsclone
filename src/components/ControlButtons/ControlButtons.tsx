@@ -6,11 +6,11 @@ import { ICategory } from '../../store/controlsReducer';
 import { ApplicationState } from '../../store/rootReducer';
 
 export const ControlButtons: React.FC = () => {
-  
   const dispatch = useDispatch();
   const categories = useSelector((state: ApplicationState) => state.controls.fetchedCategoires);
   const sortedCategories: Array<ICategory> = [];
-  categories.forEach((category) => {    //stupid solution, but have no idea what parameter to sort by
+  categories.forEach((category) => {
+    //stupid solution, but have no idea what parameter to sort by
     if (category.titleEng === 'YOUR KIGURUMI') {
       sortedCategories[0] = category;
     }
@@ -50,4 +50,3 @@ export const ControlButtons: React.FC = () => {
     </div>
   );
 };
-

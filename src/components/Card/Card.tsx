@@ -14,7 +14,6 @@ function useQuery() {
 }
 
 export const Card: React.FC = () => {
-
   const cardId = useQuery().get('id');
   const dispatch = useDispatch();
   const currentSize = useSelector((state: ApplicationState) => state.card.currentSize);
@@ -92,5 +91,3 @@ export const Card: React.FC = () => {
     </div>
   );
 };
-
-

@@ -56,12 +56,12 @@ export function loginUser(user: string, password: string, messageSuccess: string
       const data = btoa(JSON.stringify({ user: user, password: password }));
       const response = await fetch(`${backendServer}/auth/login`, {
         method: 'POST',
-        cache: 'no-cache', 
-        body: JSON.stringify({ data: data }), 
+        cache: 'no-cache',
+        body: JSON.stringify({ data: data }),
         headers: {
           'Content-Type': 'application/json',
         },
-        redirect: 'follow', 
+        redirect: 'follow',
         referrerPolicy: 'no-referrer',
       });
       const json = await response.json();
@@ -99,13 +99,13 @@ export function regUser(user: string, password: string, messageSuccess: string, 
       const data = btoa(JSON.stringify({ user: user, password: password }));
       const response = await fetch(`${backendServer}/auth/register`, {
         method: 'POST',
-        cache: 'no-cache', 
-        body: JSON.stringify({ data: data }), 
+        cache: 'no-cache',
+        body: JSON.stringify({ data: data }),
         headers: {
           'Content-Type': 'application/json',
         },
         redirect: 'follow',
-        referrerPolicy: 'no-referrer', 
+        referrerPolicy: 'no-referrer',
       });
       const json = await response.json();
       if (response.status === 200) {

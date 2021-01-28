@@ -105,17 +105,17 @@ export function addToWishList(user: string, id: string, size: string, currentWhi
 
           await fetch(`${backendServer}/profile/wish_list`, {
             method: 'POST',
-            cache: 'no-cache', 
+            cache: 'no-cache',
             body: JSON.stringify({
               user: user,
               id: id,
               size: size,
-            }), 
+            }),
             headers: {
               'Content-Type': 'application/json',
             },
-            redirect: 'follow', 
-            referrerPolicy: 'no-referrer', 
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
           });
         } catch (e) {}
       };

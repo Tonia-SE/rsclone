@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import { ApplicationState } from '../../store/rootReducer';
 
 export const Footer: React.FC = () => {
-
   const lang = useSelector((state: ApplicationState) => state.lang);
-  
+
   return lang.value === 'eng' ? (
     <div className="container-fluid text-center text-md-left pt-3 page-footer">
       <div className="row">
@@ -50,6 +49,9 @@ export const Footer: React.FC = () => {
             https://github.com/Tonia-SE
           </a>
         </div>
+        <a href="https://rs.school/">
+          <img id="logo" alt="RS school" src="https://rs.school/images/rs_school_js.svg" />
+        </a>
       </div>
     </div>
   ) : (
@@ -94,6 +96,9 @@ export const Footer: React.FC = () => {
             https://github.com/Tonia-SE
           </a>
         </div>
+        <a href="https://rs.school/">
+          <img id="logo" alt="RS school" src="https://rs.school/images/rs_school_js.svg" />
+        </a>
       </div>
     </div>
   );

@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { ApplicationState } from '../../store/rootReducer';
 
 export const Message: React.FC = () => {
-  
   const message = useSelector((state: ApplicationState) => state.message);
 
   return message.isOn === true ? (

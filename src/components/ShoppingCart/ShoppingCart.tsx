@@ -14,7 +14,6 @@ import { OrderDailog } from '../OrderDailog/OrderDailog';
 import { ADD_ORDER, SET_NAME } from '../../store/actionTypes';
 
 export const ShoppingCart: React.FC = () => {
-
   const [modalShow, setModalShow] = React.useState(false);
   const dispatch = useDispatch();
   const cart = useSelector((state: ApplicationState) => state.shopCart);

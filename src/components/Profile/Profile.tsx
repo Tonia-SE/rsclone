@@ -6,7 +6,6 @@ import { TableWishes } from './TableWishes';
 import { TableOrders } from './TableOrders';
 
 export const Profile: React.FC = () => {
-  
   const dispatch = useDispatch();
   const lang = useSelector((state: ApplicationState) => state.lang);
   const profileName = useSelector((state: ApplicationState) => state.profile.name);

@@ -4,17 +4,15 @@ import { regUser } from '../../store/authReducer';
 import { showAlert } from '../../store/messageReducer';
 import { ApplicationState } from '../../store/rootReducer';
 import { Message } from '../Message/Message';
-import { Spinner } from '../Spinner/Spinner';
+
 const tabIndex = -1;
 
 export const SignUpForm: React.FC = () => {
-  
   const dispatch = useDispatch();
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
   const lang = useSelector((state: ApplicationState) => state.lang);
-  const isLoading = useSelector((state: ApplicationState) => state.loader.isLoading);
   const email = lang.value === 'eng' ? 'Email' : 'Электронная почта';
   const passwordField = lang.value === 'eng' ? 'Password' : 'Пароль';
   const cancel = lang.value === 'eng' ? 'Ok' : 'ОК';
@@ -82,7 +80,6 @@ export const SignUpForm: React.FC = () => {
               </div>
             </form>
           </div>
-          {isLoading && <Spinner />}
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary okBtn" data-dismiss="modal">
               {cancel}

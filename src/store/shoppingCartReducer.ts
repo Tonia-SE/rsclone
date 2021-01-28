@@ -98,7 +98,8 @@ export function setQuantity(quantity: number, key: string) {
           quantity: quantity,
         },
       });
-    } else {}
+    } else {
+    }
   };
 }
 

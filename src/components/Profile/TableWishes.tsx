@@ -7,7 +7,6 @@ import { REMOVE_FROM_WHISHES } from '../../store/actionTypes';
 import { ApplicationState } from '../../store/rootReducer';
 
 export const TableWishes: React.FC = () => {
-
   const dispatch = useDispatch();
   const lang = useSelector((state: ApplicationState) => state.lang);
   const profileWishes = useSelector((state: ApplicationState) => state.profile.wishes);
@@ -34,13 +33,7 @@ export const TableWishes: React.FC = () => {
           return (
             <tr className="tr-hover" key={`${wish.id}${wish.size}`}>
               <td>
-                <Link
-                  to={`/card?id=${wish.id}`}
-                  onClick={() => {
-                    dispatch(setSize(lang.value === 'eng' ? 'SIZE' : 'РАЗМЕР'));
-                  }}>
-                  <img className="wishes-image" src={imageUrl} />
-                </Link>
+                <img className="wishes-image" src={imageUrl} />
               </td>
               <td>{lang.value === 'eng' ? wish.titleEng : wish.titleRu}</td>
               <td>{wish.size}</td>

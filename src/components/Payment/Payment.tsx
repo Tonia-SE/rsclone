@@ -3,9 +3,8 @@ import { useSelector } from 'react-redux';
 import { ApplicationState } from '../../store/rootReducer';
 
 export const Payment: React.FC = () => {
-
   const lang = useSelector((state: ApplicationState) => state.lang);
-  
+
   return lang.value === 'eng' ? (
     <div className="payment">
       <div className="payment_wrapper">

@@ -10,7 +10,6 @@ interface IProperties {
 }
 
 export const OrderDailog: React.FC<IProperties> = (properties) => {
-
   const dispatch = useDispatch();
   const lang = useSelector((state: ApplicationState) => state.lang);
   const orderId = useSelector((state: ApplicationState) => state.order.orderId);
