@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
   const lang = useSelector((state: ApplicationState) => state.lang);
 
   return lang.value === 'eng' ? (
-    <div className="container-fluid text-center text-md-left pt-3 page-footer">
+    <div className="container-fluid text-center text-md-left pt-4 page-footer">
       <div className="row">
         <div className="col-md-6 mt-md-0 pl-4 font-16 my-margin" id="text-column-1">
           <h5>KIGURUMI</h5>
@@ -55,7 +55,7 @@ export const Footer: React.FC = () => {
       </div>
     </div>
   ) : (
-    <div className="container-fluid text-center text-md-left pt-3 page-footer">
+    <div className="container-fluid text-center text-md-left pt-4 page-footer">
       <div className="row">
         <div className="col-md-6 pl-4 font-16 mb-2" id="text-column-1">
           <h5 className="text-uppercase">KIGURUMI</h5>

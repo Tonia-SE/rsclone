@@ -36,7 +36,7 @@ export const KigurumiNavbar: React.FC = () => {
   return (
     <div className="header">
       <LogInForm />
-      <div className="navbar navbar-light bg-light pt-2 pb-2">
+      <div className="navbar navbar-light bg-light pt-4 pb-4">
         <a className="navbar-brand" href="/">
           <img id="logo" src="./assets/images/logo.svg" width="30" height="30" className="d-inline-block align-top" alt="" />
           KIGURUMI me
