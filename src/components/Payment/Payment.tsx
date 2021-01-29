@@ -10,7 +10,7 @@ export const Payment: React.FC = () => {
     <div className="payment">
       <div className="payment_wrapper">
         <img className="payment-img" src="./assets/images/payment.ico" alt="payment" />
-        <p className="payment_message">ONLAIN EASY PAY</p>
+        <p className="payment_message">ONLINE EASY PAY</p>
         <p className="main_payment">details with checkout</p>
       </div>
     </div>

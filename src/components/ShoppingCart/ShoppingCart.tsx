@@ -99,13 +99,7 @@ export const ShoppingCart: React.FC = () => {
               return (
                 <tr key={key} id={key} className="position">
                   <td scope="row" className="align-middle">
-                    <Link
-                      to={`/card?id=${position.id}`}
-                      onClick={() => {
-                        dispatch(setSize(position.size));
-                      }}>
-                      <img className="shoppingCart-image" src={imageUrl} />
-                    </Link>
+                    <img className="shoppingCart-image" src={imageUrl} />
                   </td>
                   <td className="align-middle number">{positionTitle}</td>
                   <td className="align-middle number">{position.size}</td>
