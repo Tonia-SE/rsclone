@@ -1,11 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { REMOVE_ORDER } from '../../store/actionTypes';
+import { deleteOrder } from '../../store/profileReducer';
 import { ApplicationState } from '../../store/rootReducer';
 
 export const TableOrders: React.FC = () => {
   const dispatch = useDispatch();
   const lang = useSelector((state: ApplicationState) => state.lang);
+  const userName = useSelector((state: ApplicationState) => state.auth.userName);
   const profileOrders = useSelector((state: ApplicationState) => state.profile.orders);
 
   return profileOrders.length > 0 ? (
@@ -30,7 +32,8 @@ export const TableOrders: React.FC = () => {
               <td
                 className="txt-right"
                 onClick={() => {
-                  dispatch({ type: REMOVE_ORDER, orderId: order.orderId });
+                  dispatch(deleteOrder(userName, order.orderId))
+                  //dispatch({ type: REMOVE_ORDER, orderId: order.orderId });
                 }}>
                 <img className="trashbin mr-4" src="./assets/images/trashbin.ico" />
               </td>

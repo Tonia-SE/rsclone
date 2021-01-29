@@ -76,6 +76,27 @@ export const profileReducer = (state: IProfileState = profileState, action: IPro
   }
 };
 
+export function deleteOrder(user: string, orderId: string) {
+  return async (dispatch: DispatchProfile) => {    
+    dispatch({ type: REMOVE_ORDER, orderId: orderId })
+    try {
+      await fetch(`${backendServer}/profile/orders`, {
+        method: 'DELETE',
+        cache: 'no-cache',
+        body: JSON.stringify({
+          user: user,
+          orderId: orderId,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+      });
+    } catch (e) {}
+  };
+}
+
 export function addToWishList(user: string, id: string, size: string, currentWhishes: Array<IPosition>, lang: string) {
   if (size !== 'SIZE' && size !== 'РАЗМЕР') {
     const isWishAlreadyExists = currentWhishes.find((whish: IPosition) => {
