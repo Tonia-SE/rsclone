@@ -7,8 +7,6 @@ import { removeFromCart } from '../../store/shoppingCartReducer';
 import { proceedToCheckout } from '../../store/actions';
 import { setOrder } from '../../store/orderReducer';
 import { setQuantity } from '../../store/shoppingCartReducer';
-import { setSize } from '../../store/cardReducer';
-import { Link } from 'react-router-dom';
 import { Message } from '../Message/Message';
 import { OrderDailog } from '../OrderDailog/OrderDailog';
 import { ADD_ORDER, SET_NAME } from '../../store/actionTypes';

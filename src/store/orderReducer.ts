@@ -64,3 +64,4 @@ export function setOrder(user: string, orderId: string, total: string, positions
     } catch (e) {}
   };
 }
+

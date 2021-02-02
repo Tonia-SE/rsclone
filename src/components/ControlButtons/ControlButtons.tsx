@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { chooseCategory } from '../../store/albumReducer';
+import { fetchCards } from '../../store/albumReducer';
 import { SHOW_CARDS } from '../../store/actionTypes';
 import { ICategory } from '../../store/controlsReducer';
 import { ApplicationState } from '../../store/rootReducer';
@@ -40,7 +40,7 @@ export const ControlButtons: React.FC = () => {
             key={category.color}
             id={category.color}
             onClick={(event) => {
-              dispatch(chooseCategory(event.currentTarget.getAttribute('id')));
+              dispatch(fetchCards(event.currentTarget.getAttribute('id')));
               dispatch({ type: SHOW_CARDS, show: true });
             }}>
             {titleText}

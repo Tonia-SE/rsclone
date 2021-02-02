@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToWishList } from '../../store/profileReducer';
+import { addToWishList, deleteWish } from '../../store/profileReducer';
 import { showAlert } from '../../store/messageReducer';
 import { ApplicationState } from '../../store/rootReducer';
 import { REMOVE_FROM_WHISHES } from '../../store/actionTypes';
@@ -13,6 +13,7 @@ interface IStarProperties {
 export const Star: React.FC<IStarProperties> = (properties) => {
   const dispatch = useDispatch();
   const lang = useSelector((state: ApplicationState) => state.lang);
+  const userName = useSelector((state: ApplicationState) => state.auth.userName);
   const messageTextAdd = lang.value === 'eng' ? 'Added to whish list' : 'Товар добавлен в избранное';
   const messageTextDelete = lang.value === 'eng' ? 'Removed from whish list' : 'Товар удален из избранного';
   const currentSize = useSelector((state: ApplicationState) => state.card.currentSize);
@@ -33,6 +34,7 @@ export const Star: React.FC<IStarProperties> = (properties) => {
           onClick={() => {
             dispatch(showAlert(messageTextDelete, 'my-danger'));
             dispatch({ type: REMOVE_FROM_WHISHES, wish: { id: properties.id, size: currentSize } });
+            dispatch(deleteWish(userName, properties.id, currentSize));
           }}>
           ★
         </div>

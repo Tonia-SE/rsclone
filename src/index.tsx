@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { compose, createStore, applyMiddleware } from 'redux';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import App from './App';
+import Main from './Main';
 import { ShoppingCart } from './components/ShoppingCart/ShoppingCart';
 import { KigurumiNavbar } from './components/Navbar/Navbar';
 import { Card } from './components/Card/Card';
@@ -42,7 +42,7 @@ const routing = (
         <LogInForm />
         <SignUpForm />
         <Switch>
-          <Route exact path="/" component={App} />
+          <Route exact path="/" component={Main} />
           <Route exact path="/shopping_cart" component={ShoppingCart} />
           <Route exact path="/card" component={Card} />
           <Route exact path="/delivery" component={Delivery} />
@@ -56,5 +56,5 @@ const routing = (
     </Provider>
   </Router>
 );
-render(routing, document.querySelector('#body'));
+render(routing, document.querySelector('#root'));
 

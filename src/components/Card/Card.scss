@@ -21,12 +21,10 @@
   max-width: 20vw;
   height: 40px;
   background-color: $color-2;
-  line-height: 1.8;
 }
 .card_btn-sizes:hover,
-.card_btn-buy:hover,
 .card_btn-sizes:focus,
-.card_btn-buy:focus{
+.card_btn-buy:hover{
   background-color: $background-color-2;
   color: $color-2;
   font-weight: 400;

@@ -12,9 +12,8 @@ export const Footer: React.FC = () => {
         <div className="col-md-6 mt-md-0 pl-4 font-16 my-margin" id="text-column-1">
           <h5>KIGURUMI</h5>
           <p>
-            A costumed character wears a costume that usually (but not always) covers the performer's face. These range from theme park "walk-around" or "meetable" characters, the
-            mascots of corporations, schools, or sports teams to novelty act performers. Some costumes cover the performer's face; others, especially those in theme parks, may
-            leave the performer's face visible.
+          In Japanese, a kigurumi (着ぐるみ) is a costumed performer who represents a cartoon character. It is very important in the Harajuku fashion. 
+          The name literally translates to "wearing a soft toy". The costumed characters at Disneyland are considered kigurami.
           </p>
         </div>
         <div className="col-md-3 mb-md-0 mb-3 font-16" id="text-column-2">
@@ -60,8 +59,8 @@ export const Footer: React.FC = () => {
         <div className="col-md-6 pl-4 font-16 mb-2" id="text-column-1">
           <h5 className="text-uppercase">KIGURUMI</h5>
           <p className="">
-            Это мега популярная одежда для дома и сна родом из Японии. Она представляет собой удобный цельный комбинезон, изображающий животного или персонажа мультфильма. Есть
-            даже кигуруми в виде фруктов. С японского название переводится как «носить мягкую игрушку».
+            Это мега популярная одежда для дома и сна родом из Японии. Она представляет собой удобный цельный комбинезон, изображающий животного или 
+            персонажа мультфильма. Есть даже кигуруми в виде фруктов. С японского название переводится как «носить мягкую игрушку».
           </p>
         </div>
         <div className="col-md-3 mb-3 font-16" id="text-column-2">

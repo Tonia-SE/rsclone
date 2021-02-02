@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import { backendServer, sliderInterval } from '../../consts';
 import { Carousel } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { ApplicationState } from '../../store/rootReducer';
+import { Spinner } from '../Spinner/Spinner';
 
-const carouselImges: Array<string> = [];
-for (let index = 1; index < 7; index++) {
-  carouselImges.push(`${backendServer}/static/images/slider__${index}.jpg`);
-}
 export const KigurumiSlider: React.FC = () => {
+  
   const [index, setIndex] = useState(0);
+  const isLoader = useSelector((state: ApplicationState) => state.loader.isLoading);
   const handleSelect = (selectedIndex: number) => {
     setIndex(selectedIndex);
   };
 
-  return (
+  return isLoader ? ( 
+    <Spinner />
+  ) : (
     <Carousel indicators={false} activeIndex={index} onSelect={handleSelect}>
       <Carousel.Item style={{ maxHeight: '514px' }} key={'1'} interval={sliderInterval}>
         <img style={{ maxHeight: '514px' }} className="d-block w-100" src={`${backendServer}/static/images/slider__1.jpg`} />
@@ -29,3 +32,4 @@ export const KigurumiSlider: React.FC = () => {
     </Carousel>
   );
 };
+

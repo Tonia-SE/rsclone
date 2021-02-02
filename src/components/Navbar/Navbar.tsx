@@ -7,7 +7,6 @@ import { setSize } from '../../store/cardReducer';
 import { changeLang } from '../../store/langReducer';
 import { setCurrency } from '../../store/currencyReducer';
 import { LogInForm } from '../Regforms/LogInForm';
-import { LOGOUT_USER } from '../../store/actionTypes';
 
 export const KigurumiNavbar: React.FC = () => {
   const dispatch = useDispatch();
@@ -36,7 +35,7 @@ export const KigurumiNavbar: React.FC = () => {
   return (
     <div className="header">
       <LogInForm />
-      <div className="navbar navbar-light bg-light pt-4 pb-4">
+      <div className="navbar navbar-light bg-light">
         <a className="navbar-brand" href="/">
           <img id="logo" src="./assets/images/logo.svg" width="30" height="30" className="d-inline-block align-top" alt="" />
           KIGURUMI me

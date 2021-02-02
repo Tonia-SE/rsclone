@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { REMOVE_ORDER } from '../../store/actionTypes';
 import { deleteOrder } from '../../store/profileReducer';
 import { ApplicationState } from '../../store/rootReducer';
 

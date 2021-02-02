@@ -14,6 +14,8 @@ interface IProfileAction {
   type: string;
   name?: string;
   wish?: IPosition;
+  wishId?: string;
+  wishSize?: string;
   order?: IOrderState;
   orderId?: string;
 }
@@ -62,7 +64,7 @@ export const profileReducer = (state: IProfileState = profileState, action: IPro
 
     case REMOVE_FROM_WHISHES:
       const newWishes = state.wishes.filter((wish) => {
-        if (wish.id === action.wish.id && wish.size === action.wish.size) {
+        if (wish.id === action.wishId && wish.size === action.wishSize) {
           return false;
         }
         return true;
@@ -154,4 +156,26 @@ export function addToWishList(user: string, id: string, size: string, currentWhi
       return showAlert('Выберите размер');
     }
   }
+}
+
+export function deleteWish(user: string, wishId: string, size: string) {
+  return async (dispatch: DispatchProfile) => {    
+    dispatch({ type: REMOVE_FROM_WHISHES, wishId: wishId, wishSize: size })
+    try {
+      await fetch(`${backendServer}/profile/wish_list`, {
+        method: 'DELETE',
+        cache: 'no-cache',
+        body: JSON.stringify({
+          user: user,
+          wishId: wishId,
+          size: size
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+      });
+    } catch (e) {}
+  };
 }

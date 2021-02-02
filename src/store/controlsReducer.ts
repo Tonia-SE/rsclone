@@ -40,9 +40,7 @@ export function fetchCategories() {
       const response = await fetch(`${backendServer}/categories`);
       const json = await response.json();
       dispatch({ type: FETCH_CATEGORIES, payload: json, isLoading: undefined });
-      setTimeout(() => {
-        dispatch({ type: HIDE_LOADER, payload: undefined, isLoading: false });
-      }, 1000);
+      dispatch({ type: HIDE_LOADER, payload: undefined, isLoading: false });
     } catch (e) {}
   };
 }

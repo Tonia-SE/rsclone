@@ -20,6 +20,10 @@
 .mr-auto{
   margin-right: 0 !important;
 }
+.bg-light{
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
 #logo{
   max-width: 40px;
 }
@@ -125,6 +129,10 @@ div.nav-link{
   }
   .react-link{
     max-width: 70px;
+  }
+  .bg-light{
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 @media (max-width: 576px){

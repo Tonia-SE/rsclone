@@ -95,7 +95,7 @@ export const albumReducer = (state: IAlbumState = initialState, action: IAlbumAc
   }
 };
 
-export function chooseCategory(categoryName: string) {
+export function fetchCards(categoryName: string) {
   return async (dispatch: DispatchAlbum | DispatchLoader) => {
     try {
       dispatch({ type: SHOW_LOADER, payload: undefined, isLoading: true });

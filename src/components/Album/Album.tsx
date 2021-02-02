@@ -32,11 +32,7 @@ export const Album: React.FC = () => {
               return (
                 <div className="col-md-4 pt-3" key={card._id}>
                   <div className="card mb-4 shadow-sm" key={card._id}>
-                    <Link
-                      to={`/card?id=${card._id}`}
-                      onClick={() => {
-                        dispatch(setSize(currentSize));
-                      }}>
+                    <Link to={`/card?id=${card._id}`}>
                       {isLoader && Spinner}
                       <img src={imageUrl} alt="KIGURUMI me" className="bd-placeholder-img card-img-top p-2" width="0" />
                     </Link>

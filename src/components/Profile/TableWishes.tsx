@@ -1,16 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { backendServer } from '../../consts';
-import { setSize } from '../../store/cardReducer';
-import { REMOVE_FROM_WHISHES } from '../../store/actionTypes';
 import { ApplicationState } from '../../store/rootReducer';
+import { deleteWish } from '../../store/profileReducer';
+import { REMOVE_FROM_WHISHES } from '../../store/actionTypes';
 
 export const TableWishes: React.FC = () => {
   const dispatch = useDispatch();
   const lang = useSelector((state: ApplicationState) => state.lang);
   const profileWishes = useSelector((state: ApplicationState) => state.profile.wishes);
   const currency = useSelector((state: ApplicationState) => state.currency.info);
+  const userName = useSelector((state: ApplicationState) => state.auth.userName);
 
   return profileWishes.length > 0 ? (
     <table className="table table-hover responsive mb-5">
@@ -43,7 +43,7 @@ export const TableWishes: React.FC = () => {
               <td
                 className="txt-right"
                 onClick={() => {
-                  dispatch({ type: REMOVE_FROM_WHISHES, wish: { id: wish.id, size: wish.size } });
+                  dispatch(deleteWish( userName, wish.id, wish.size));
                 }}>
                 <img className="trashbin mr-4" src="./assets/images/trashbin.ico" />
               </td>

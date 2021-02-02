@@ -1,5 +1,3 @@
-export const CREATE_POST = 'POST/CREATE_POST';
-
 export const SHOW_LOADER = 'APP/SHOW_LOADER';
 export const HIDE_LOADER = 'APP/HIDE_LOADER';
 export const SHOW_ALERT = 'APP/SHOW_ALERT';
@@ -9,8 +7,6 @@ export const FETCH_CATEGORIES = 'CONTROLS/FETCH_CATEGORIES';
 
 export const FETCH_CARDS = 'CARDS/FETCH_CARDS';
 export const SHOW_CARDS = 'CARDS/SHOW_CARDS';
-export const HIDE_CARDS = 'CARDS/HIDE_CARDS';
-export const SET_COLOR = 'CARDS/SET_COLOR';
 export const FETCH_CARD_INFO = 'CARDS/FETCH_CARD_INFO';
 export const SET_SIZE = 'CARDS/SET_SIZE';
 export const SET_CURRENCY = 'CARDS/SET_CURRENCY';
@@ -18,8 +14,6 @@ export const ADD_STAR = 'CARDS/ADD_STAR';
 export const REMOVE_STAR = 'CARDS/REMOVE_STAR';
 
 export const SET_LANG = 'STATE/SET_LANG';
-
-export const SET_CARDID = 'CARD/SET_CARDID';
 
 export const ADD_TO_SHOPCART = 'CART/ADD_TO_SHOPCART';
 export const SET_QUANTITY = 'CART/SET_QUANTITY';
@@ -38,3 +32,4 @@ export const SET_NAME = 'PROFILE/SET_NAME';
 
 export const ADD_TO_WHISHES = 'PROFILE/ADD_TO_WHISHES';
 export const REMOVE_FROM_WHISHES = 'PROFILE/REMOVE_FROM_WHISHES';
+
