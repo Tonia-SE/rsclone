@@ -13,7 +13,15 @@ export function toggleNavbarDropdownMenu() {
 
 export function proceedToCheckout(lang: string) {
   if (lang === 'eng') {
-    return showAlert('Log in first, please');
+    return showAlert('Log in first, please', 'my-danger', 'order-message');
   }
-  return showAlert('Войдите в личный кабинет');
+  return showAlert('Войдите в личный кабинет', 'my-danger', 'order-message');
+}
+
+export function sumOfArray(arr: Array<number>) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum = sum + arr[i];
+  }
+  return sum;
 }

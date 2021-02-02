@@ -6,7 +6,7 @@ export interface IOrderState {
   orderId: string;
   total: string;
   positions: Array<IPosition>;
-  orderData: string;
+  orderDate: string;
 }
 
 interface IOrderAction {
@@ -14,7 +14,7 @@ interface IOrderAction {
   orderId: string;
   total: string;
   positions: Array<IPosition>;
-  orderData: string;
+  orderDate: string;
 }
 
 export type DispatchOrder = (args: IOrderAction) => IOrderAction;
@@ -23,13 +23,13 @@ const initialState: IOrderState = {
   orderId: '',
   total: '',
   positions: [],
-  orderData: '',
+  orderDate: '',
 };
 
 export const orderReducer = (state: IOrderState = initialState, action: IOrderAction) => {
   switch (action.type) {
     case SET_ORDER:
-      return { ...state, orderId: action.orderId, total: action.total, positions: action.positions, orderData: action.orderData };
+      return { ...state, orderId: action.orderId, total: action.total, positions: action.positions, orderData: action.orderDate };
     default:
       return state;
   }
@@ -42,7 +42,7 @@ export function setOrder(user: string, orderId: string, total: string, positions
       orderId: orderId,
       total: total,
       positions: positions,
-      orderData: orderData,
+      orderDate: orderData,
     });
     try {
       await fetch(`${backendServer}/profile/orders`, {
@@ -64,4 +64,3 @@ export function setOrder(user: string, orderId: string, total: string, positions
     } catch (e) {}
   };
 }
-

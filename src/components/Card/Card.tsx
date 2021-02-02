@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { backendServer } from '../../consts';
 import { ApplicationState } from '../../store/rootReducer';
 import { addPosition } from '../../store/shoppingCartReducer';
 import { showAlert } from '../../store/messageReducer';
-import { setSize } from '../../store/cardReducer';
+import { fetchCard, setSize } from '../../store/cardReducer';
 import { Message } from '../Message/Message';
 import { Star } from '../Star/Star';
 import { useLocation } from 'react-router-dom';
@@ -16,21 +16,27 @@ function useQuery() {
 export const Card: React.FC = () => {
   const cardId = useQuery().get('id');
   const dispatch = useDispatch();
-  const currentSize = useSelector((state: ApplicationState) => state.card.currentSize);
-  const cards = useSelector((state: ApplicationState) => state.album.album.cards);
-  const card = cards.find((card) => {
-    if (card._id === cardId) {
-      return true;
-    }
-    return false;
-  });
-  const currentPositions = useSelector((state: ApplicationState) => state.shopCart.positions);
+
   const lang = useSelector((state: ApplicationState) => state.lang);
+  const card = useSelector((state: ApplicationState) => state.card);
+  const currentPositions = useSelector((state: ApplicationState) => state.shopCart.positions);
+  const currency = useSelector((state: ApplicationState) => state.currency.info);
+
+  useEffect(() => {
+    if (!card._id) {
+      dispatch(fetchCard(cardId));
+    }
+    if (!card.currentSize) {
+      dispatch(setSize(lang.value === 'eng' ? 'SIZE' : 'РАЗМЕР'));
+    }
+  }, []);
+
+  const currentSize = card.currentSize;
   const titleEng = card.titleEng;
   const titleRu = card.titleRu;
   const buyButton = lang.value === 'eng' ? 'BUY' : 'КУПИТЬ';
   const imageUrl = backendServer + card.imageUrl;
-  const currency = useSelector((state: ApplicationState) => state.currency.info);
+
   let priceCurrent = `${card.price} ${currency.value}`;
   if (currency.value !== '$') {
     priceCurrent = `${Math.trunc(+card.price * currency.rate)} ${currency.value}`;
@@ -54,7 +60,7 @@ export const Card: React.FC = () => {
                 type="button"
                 onClick={() => {
                   if (currentSize.trim() === '' || currentSize === null || currentSize === undefined) {
-                    dispatch(showAlert(lang.value === 'eng' ? 'Choose a size' : 'Выберите размер'));
+                    dispatch(showAlert(lang.value === 'eng' ? 'Choose a size' : 'Выберите размер', 'my-danger', 'none'));
                   } else {
                     dispatch(addPosition(card._id, currentSize, currentPositions, lang.value));
                   }

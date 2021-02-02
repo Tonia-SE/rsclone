@@ -22,5 +22,3 @@ export const Warranty: React.FC = () => {
     </div>
   );
 };
-
-

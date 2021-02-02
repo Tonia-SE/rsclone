@@ -133,16 +133,16 @@ export function addPosition(id: string, size: string, currentPositions: Array<IP
       };
     } else {
       if (lang === 'eng') {
-        return showAlert('The same position is already in cart');
+        return showAlert('The same position is already in cart', 'my-danger', 'none');
       } else {
-        return showAlert('Такой размер уже в корзине');
+        return showAlert('Такой размер уже в корзине', 'my-danger', 'none');
       }
     }
   } else {
     if (lang === 'eng') {
-      return showAlert('Choose a size');
+      return showAlert('Choose a size', 'my-danger', 'none');
     } else {
-      return showAlert('Выберите размер');
+      return showAlert('Выберите размер', 'my-danger', 'none');
     }
   }
 }

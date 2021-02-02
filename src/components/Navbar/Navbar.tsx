@@ -6,7 +6,12 @@ import { toggleNavbarDropdownMenu } from '../../store/actions';
 import { setSize } from '../../store/cardReducer';
 import { changeLang } from '../../store/langReducer';
 import { setCurrency } from '../../store/currencyReducer';
+import { sumOfArray } from '../../store/actions';
 import { LogInForm } from '../Regforms/LogInForm';
+
+const link = function getCurrentLink() {
+  return `${window.location.pathname}${window.location.search}`;
+};
 
 export const KigurumiNavbar: React.FC = () => {
   const dispatch = useDispatch();
@@ -26,11 +31,9 @@ export const KigurumiNavbar: React.FC = () => {
   const dataToggle = auth.isLoggedIn === false ? 'collapse' : '';
   let qty = 0;
   if (shopCart.positions.length > 0) {
-    qty = shopCart.positions.map((position) => position.quantity).reduce((a, b) => a + b);
+    const array = shopCart.positions.map((position) => position.quantity);
+    qty = sumOfArray(array);
   }
-  const link = function getCurrentLink() {
-    return `${window.location.pathname}${window.location.search}`;
-  };
 
   return (
     <div className="header">
@@ -67,7 +70,7 @@ export const KigurumiNavbar: React.FC = () => {
             aria-expanded="false"
             aria-label="Toggle navigation">
             <Link to={auth.isLoggedIn === false ? link : '/profile'}>
-              <img id="auth" src={authImg} alt="Authorization"/>
+              <img id="auth" src={authImg} alt="Authorization" />
             </Link>
           </button>
           <button

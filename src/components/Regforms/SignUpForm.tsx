@@ -93,23 +93,23 @@ export const SignUpForm: React.FC = () => {
               id="signUpBtn"
               onClick={() => {
                 if (password.trim() === '' || password2.trim() === '' || password === undefined || password2 === undefined) {
-                  dispatch(showAlert(alertEmptyPasswordField));
+                  dispatch(showAlert(alertEmptyPasswordField, 'my-danger', 'none'));
                 }
                 if (userName.trim() === '' || userName === undefined) {
-                  dispatch(showAlert(alertEmptyEmailField));
+                  dispatch(showAlert(alertEmptyEmailField, 'my-danger', 'none'));
                 }
                 if (password === password2) {
                   if (!/\S+@\S+\.\S+/.test(userName)) {
-                    dispatch(showAlert(alertWrongEmail));
+                    dispatch(showAlert(alertWrongEmail, 'my-danger', 'none'));
                   } else {
                     if (password.length < 6) {
-                      dispatch(showAlert(alertShortPassword));
+                      dispatch(showAlert(alertShortPassword, 'my-danger', 'none'));
                     } else {
                       dispatch(regUser(userName, password, alertTextSuccess, alertTextUserExit));
                     }
                   }
                 } else {
-                  dispatch(showAlert(alertTextWrongPasswords));
+                  dispatch(showAlert(alertTextWrongPasswords, 'my-danger', 'none'));
                 }
               }}>
               {signupButton}

@@ -1,11 +1,11 @@
 import React from 'react';
+import thunk from 'redux-thunk';
 import { render } from 'react-dom';
 import { rootReducer } from './store/rootReducer';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import { compose, createStore, applyMiddleware } from 'redux';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import Main from './Main';
+import { Main } from './Main';
 import { ShoppingCart } from './components/ShoppingCart/ShoppingCart';
 import { KigurumiNavbar } from './components/Navbar/Navbar';
 import { Card } from './components/Card/Card';
@@ -26,13 +26,7 @@ declare global {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(thunk),
-    composeEnhancers()
-  )
-);
+const store = createStore(rootReducer, compose(applyMiddleware(thunk), composeEnhancers()));
 
 const routing = (
   <Router>
@@ -57,4 +51,3 @@ const routing = (
   </Router>
 );
 render(routing, document.querySelector('#root'));
-

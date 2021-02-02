@@ -42,9 +42,9 @@
 .shoppingCart-image{
   width: 30px;
 }
-#shopCart-message{
-  padding-left: 45%;
-}
+// #shopCart-message{
+//   padding-left: 45%;
+// }
 th, td{
   font-weight: 400;
   border-color: $color-4;
@@ -99,9 +99,15 @@ th, td{
 .total-price{
   font-size: 1.2rem;
 }
-@media (max-width: 992px){
-  #shopCart-message{
-    padding-left: 40%;
+#order-message{
+  width: 40%;
+  margin-left: 55%;
+  text-align: end;
+}
+@media (max-width: 950px){
+  #order-message{
+    width: 50%;
+    margin-left: 45%;
   }
 }
 @media (max-width: 767px){
@@ -116,6 +122,10 @@ th, td{
   }
   .total-price{
     font-size: 1rem;
+  }
+  #order-message{
+    width: 60%;
+    margin-left: 35%;
   }
 }
 @media (max-width: 550px){
@@ -150,13 +160,14 @@ th, td{
   .total-price{
     font-size: 0.8rem;
   }
-  #shopCart-message{
-    padding-left: 30% !important;
-  }
   .empty-shoppingCart_message{
     font-size: 1.8rem;
   }
   .main-page-link{
     font-size: 2.5rem;
+  }
+  #order-message{
+    width: 70%;
+    margin-left: 25%;
   }
 }

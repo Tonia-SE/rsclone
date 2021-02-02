@@ -10,6 +10,8 @@ import { setQuantity } from '../../store/shoppingCartReducer';
 import { Message } from '../Message/Message';
 import { OrderDailog } from '../OrderDailog/OrderDailog';
 import { ADD_ORDER, SET_NAME } from '../../store/actionTypes';
+import { Link } from 'react-router-dom';
+import { sumOfArray } from '../../store/actions';
 
 export const ShoppingCart: React.FC = () => {
   const [modalShow, setModalShow] = React.useState(false);
@@ -34,7 +36,7 @@ export const ShoppingCart: React.FC = () => {
   const total = lang.value === 'eng' ? 'Total:' : 'Сумма:';
   const totalOrderPrice: Array<number> = [];
   const countTotal = () => {
-    const total = totalOrderPrice.reduce((a, b) => a + b);
+    const total = sumOfArray(totalOrderPrice);
     let result = `${total} ${currency.value}`;
     if (currency.value === '$') {
       result = `${total.toFixed(2)} ${currency.value}`;
@@ -97,7 +99,9 @@ export const ShoppingCart: React.FC = () => {
               return (
                 <tr key={key} id={key} className="position">
                   <td scope="row" className="align-middle">
-                    <img className="shoppingCart-image" src={imageUrl} />
+                    <Link to={`/card?id=${position.id}`}>
+                      <img className="shoppingCart-image" src={imageUrl} />
+                    </Link>
                   </td>
                   <td className="align-middle number">{positionTitle}</td>
                   <td className="align-middle number">{position.size}</td>
@@ -162,7 +166,7 @@ export const ShoppingCart: React.FC = () => {
                       dispatch(setOrder(userName, orderId, countTotal(), cart.positions, date));
                       localStorage.removeItem('shopCart');
                       dispatch({ type: SET_NAME, name: userName });
-                      dispatch({ type: ADD_ORDER, order: { orderId: orderId, total: countTotal(), positions: cart.positions, orderData: date } });
+                      //dispatch({ type: ADD_ORDER, order: { orderId: orderId, total: countTotal(), positions: cart.positions, orderData: date } });
                     }
                   }}>
                   {checkout}

@@ -1,4 +1,4 @@
-import { ADD_ORDER, ADD_TO_WHISHES, REMOVE_FROM_WHISHES, REMOVE_ORDER, SET_NAME } from './actionTypes';
+import { FETCH_WISHES, FETCH_ORDERS, ADD_TO_WHISHES, REMOVE_FROM_WHISHES, REMOVE_ORDER, SET_NAME } from './actionTypes';
 import { IOrderState } from './orderReducer';
 import { IPosition } from './shoppingCartReducer';
 import { showAlert } from './messageReducer';
@@ -18,6 +18,8 @@ interface IProfileAction {
   wishSize?: string;
   order?: IOrderState;
   orderId?: string;
+  orders?: Array<IOrderState>
+  wishes?: Array<IPosition>
 }
 
 export type DispatchProfile = (args: IProfileAction) => IProfileAction;
@@ -28,19 +30,26 @@ const initialState: IProfileState = {
   orders: [],
 };
 
-let profileState = { ...initialState };
+let profileState = { ...initialState }
 
-const savedState = localStorage.getItem('profile');
-if (savedState !== null) {
-  profileState = JSON.parse(savedState);
+const savedName = localStorage.getItem('userName');
+if (savedName !== null) {
+  profileState.name = savedName
 }
+
+// const savedState = localStorage.getItem('profile');
+// if (savedState !== null) {
+//   profileState = JSON.parse(savedState);
+// }
 
 export const profileReducer = (state: IProfileState = profileState, action: IProfileAction) => {
   switch (action.type) {
-    case ADD_ORDER:
-      state.orders.push(action.order);
-      localStorage.setItem('profile', JSON.stringify(state));
-      return { ...state };
+    // case ADD_ORDER:
+    //   state.orders.push(action.order);
+    //   localStorage.setItem('profile', JSON.stringify(state));
+    //   return { ...state };
+    case FETCH_ORDERS:
+      return { ...state, orders: action.orders };
 
     case REMOVE_ORDER:
       const newOrders = state.orders.filter((order) => {
@@ -50,17 +59,21 @@ export const profileReducer = (state: IProfileState = profileState, action: IPro
         return false;
       });
       const newState = { ...state, orders: newOrders };
-      localStorage.setItem('profile', JSON.stringify(newState));
+      //localStorage.setItem('profile', JSON.stringify(newState));
       return { ...newState };
 
     case SET_NAME:
-      return { ...state, name: action.name };
+      localStorage.setItem('userName', action.name);
+      return { ...state, name: action.name };      
 
     case ADD_TO_WHISHES:
       state.wishes.push(action.wish);
       const updatedProfileState = { ...state, wishes: state.wishes };
-      localStorage.setItem('profile', JSON.stringify(updatedProfileState));
+      //localStorage.setItem('profile', JSON.stringify(updatedProfileState));
       return { ...updatedProfileState };
+
+    case FETCH_WISHES:
+      return { ...state, wishes: action.wishes };
 
     case REMOVE_FROM_WHISHES:
       const newWishes = state.wishes.filter((wish) => {
@@ -70,7 +83,7 @@ export const profileReducer = (state: IProfileState = profileState, action: IPro
         return true;
       });
       const newProfileState = { ...state, wishes: newWishes };
-      localStorage.setItem('profile', JSON.stringify(newProfileState));
+      //localStorage.setItem('profile', JSON.stringify(newProfileState));
       return { ...newProfileState };
 
     default:
@@ -78,9 +91,30 @@ export const profileReducer = (state: IProfileState = profileState, action: IPro
   }
 };
 
-export function deleteOrder(user: string, orderId: string) {
+
+export function fetchWishes(user: string) {
   return async (dispatch: DispatchProfile) => {    
-    dispatch({ type: REMOVE_ORDER, orderId: orderId })
+    try {
+      const response = await fetch(`${backendServer}/profile/whish_list?user=${user}`);
+      const json = await response.json();
+      dispatch({ type: FETCH_WISHES, wishes: json });
+    } catch (e) {}
+  };
+}
+
+export function fetchOrders(user: string) {
+  return async (dispatch: DispatchProfile) => {    
+    try {
+      const response = await fetch(`${backendServer}/profile/orders?user=${user}`);
+      const json = await response.json();
+      dispatch({ type: FETCH_ORDERS, orders: json });
+    } catch (e) {}
+  };
+}
+
+export function deleteOrder(user: string, orderId: string) {
+  return async (dispatch: DispatchProfile) => {
+    dispatch({ type: REMOVE_ORDER, orderId: orderId });
     try {
       await fetch(`${backendServer}/profile/orders`, {
         method: 'DELETE',
@@ -132,6 +166,10 @@ export function addToWishList(user: string, id: string, size: string, currentWhi
             body: JSON.stringify({
               user: user,
               id: id,
+              titleEng: json[0].titleEng,
+              titleRu: json[0].titleRu,
+              imageUrl: json[0].imageUrl,
+              price: json[0].price,
               size: size,
             }),
             headers: {
@@ -144,23 +182,23 @@ export function addToWishList(user: string, id: string, size: string, currentWhi
       };
     } else {
       if (lang === 'eng') {
-        return showAlert('The same position is already in whish list');
+        return showAlert('The same position is already in whish list', 'my-danger', 'none');
       } else {
-        return showAlert('Такой размер уже в избранном');
+        return showAlert('Такой размер уже в избранном', 'my-danger', 'none');
       }
     }
   } else {
     if (lang === 'eng') {
-      return showAlert('Choose a size');
+      return showAlert('Choose a size', 'my-danger', 'none');
     } else {
-      return showAlert('Выберите размер');
+      return showAlert('Выберите размер', 'my-danger', 'none');
     }
   }
 }
 
 export function deleteWish(user: string, wishId: string, size: string) {
-  return async (dispatch: DispatchProfile) => {    
-    dispatch({ type: REMOVE_FROM_WHISHES, wishId: wishId, wishSize: size })
+  return async (dispatch: DispatchProfile) => {
+    dispatch({ type: REMOVE_FROM_WHISHES, wishId: wishId, wishSize: size });
     try {
       await fetch(`${backendServer}/profile/wish_list`, {
         method: 'DELETE',
@@ -168,7 +206,7 @@ export function deleteWish(user: string, wishId: string, size: string) {
         body: JSON.stringify({
           user: user,
           wishId: wishId,
-          size: size
+          size: size,
         }),
         headers: {
           'Content-Type': 'application/json',

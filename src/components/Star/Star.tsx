@@ -32,7 +32,7 @@ export const Star: React.FC<IStarProperties> = (properties) => {
           className="text-muted"
           id="star"
           onClick={() => {
-            dispatch(showAlert(messageTextDelete, 'my-danger'));
+            dispatch(showAlert(messageTextDelete, 'my-danger', 'none'));
             dispatch({ type: REMOVE_FROM_WHISHES, wish: { id: properties.id, size: currentSize } });
             dispatch(deleteWish(userName, properties.id, currentSize));
           }}>
@@ -49,13 +49,13 @@ export const Star: React.FC<IStarProperties> = (properties) => {
         onClick={() => {
           if (auth.isLoggedIn) {
             if (currentSize.trim() === '' || currentSize === null || currentSize === undefined || currentSize === 'SIZE' || currentSize === 'РАЗМЕР') {
-              dispatch(showAlert(lang.value === 'eng' ? 'Choose a size' : 'Выберите размер'));
+              dispatch(showAlert(lang.value === 'eng' ? 'Choose a size' : 'Выберите размер', 'my-danger', 'none'));
             } else {
               dispatch(addToWishList(auth.userName, properties.id, currentSize, currentProfile.wishes, lang.value));
-              dispatch(showAlert(messageTextAdd, 'my-success'));
+              dispatch(showAlert(messageTextAdd, 'my-success', ''));
             }
           } else {
-            dispatch(showAlert(lang.value === 'eng' ? 'Log in first, please' : 'Войдите в личный кабинет'));
+            dispatch(showAlert(lang.value === 'eng' ? 'Log in first, please' : 'Войдите в личный кабинет', 'my-danger', 'none'));
           }
         }}>
         ☆

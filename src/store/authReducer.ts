@@ -66,11 +66,11 @@ export function loginUser(user: string, password: string, messageSuccess: string
       });
       const json = await response.json();
       if (response.status === 200) {
-        dispatch(showAlert(messageSuccess, 'my-success'));
+        dispatch(showAlert(messageSuccess, 'my-success', 'none'));
         isLoggendIn = true;
         dispatch({ type: SET_NAME, name: user });
       } else if (response.status === 403) {
-        dispatch(showAlert(messageError));
+        dispatch(showAlert(messageError, 'my-danger', 'none'));
       }
       dispatch({
         type: LOGIN_USER,
@@ -110,9 +110,9 @@ export function regUser(user: string, password: string, messageSuccess: string, 
       const json = await response.json();
       if (response.status === 200) {
         isRegistred = true;
-        dispatch(showAlert(messageSuccess, 'my-success'));
+        dispatch(showAlert(messageSuccess, 'my-success', 'none'));
       } else if (response.status === 403) {
-        dispatch(showAlert(messageError));
+        dispatch(showAlert(messageError, 'my-danger', 'none'));
       }
       dispatch({
         type: REGISTER_USER,

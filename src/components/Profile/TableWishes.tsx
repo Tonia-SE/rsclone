@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { backendServer } from '../../consts';
 import { ApplicationState } from '../../store/rootReducer';
-import { deleteWish } from '../../store/profileReducer';
-import { REMOVE_FROM_WHISHES } from '../../store/actionTypes';
+import { deleteWish, fetchWishes } from '../../store/profileReducer';
 
 export const TableWishes: React.FC = () => {
   const dispatch = useDispatch();
@@ -11,6 +10,10 @@ export const TableWishes: React.FC = () => {
   const profileWishes = useSelector((state: ApplicationState) => state.profile.wishes);
   const currency = useSelector((state: ApplicationState) => state.currency.info);
   const userName = useSelector((state: ApplicationState) => state.auth.userName);
+
+  useEffect(() => {
+    dispatch(fetchWishes(userName))
+  },[])
 
   return profileWishes.length > 0 ? (
     <table className="table table-hover responsive mb-5">
@@ -43,7 +46,7 @@ export const TableWishes: React.FC = () => {
               <td
                 className="txt-right"
                 onClick={() => {
-                  dispatch(deleteWish( userName, wish.id, wish.size));
+                  dispatch(deleteWish(userName, wish.id, wish.size));
                 }}>
                 <img className="trashbin mr-4" src="./assets/images/trashbin.ico" />
               </td>

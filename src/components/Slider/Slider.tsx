@@ -6,14 +6,13 @@ import { ApplicationState } from '../../store/rootReducer';
 import { Spinner } from '../Spinner/Spinner';
 
 export const KigurumiSlider: React.FC = () => {
-  
   const [index, setIndex] = useState(0);
   const isLoader = useSelector((state: ApplicationState) => state.loader.isLoading);
   const handleSelect = (selectedIndex: number) => {
     setIndex(selectedIndex);
   };
 
-  return isLoader ? ( 
+  return isLoader ? (
     <Spinner />
   ) : (
     <Carousel indicators={false} activeIndex={index} onSelect={handleSelect}>
@@ -32,4 +31,3 @@ export const KigurumiSlider: React.FC = () => {
     </Carousel>
   );
 };
-

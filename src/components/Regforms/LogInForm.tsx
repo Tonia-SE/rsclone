@@ -75,13 +75,13 @@ export const LogInForm: React.FC = () => {
               id="loginBtn"
               onClick={() => {
                 if (password.trim() === '' || password === undefined) {
-                  dispatch(showAlert(alertEmptyPasswordField));
+                  dispatch(showAlert(alertEmptyPasswordField, 'my-danger', 'none'));
                 }
                 if (userName.trim() === '' || userName === undefined) {
-                  dispatch(showAlert(alertEmptyEmailField));
+                  dispatch(showAlert(alertEmptyEmailField, 'my-danger', 'none'));
                 }
                 if (!/\S+@\S+\.\S+/.test(userName)) {
-                  dispatch(showAlert(alertWrongEmail));
+                  dispatch(showAlert(alertWrongEmail, 'my-danger', 'none'));
                 } else {
                   dispatch(loginUser(userName, password, alertTextSuccess, alertWrongEmailOrPassword));
                 }

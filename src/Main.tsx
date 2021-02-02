@@ -6,7 +6,7 @@ import { fetchCategories } from './store/controlsReducer';
 import { KigurumiSlider } from './components/Slider/Slider';
 import './styles/index.scss';
 
-function Main() {
+export const Main: React.FC = () => {
   const dispatch = useDispatch();
   dispatch(fetchCategories());
   return (
@@ -16,6 +16,4 @@ function Main() {
       <Album />
     </>
   );
-}
-
-export default Main;
+};

@@ -1,5 +1,5 @@
 import { backendServer } from '../consts';
-import { SHOW_CARDS, ADD_STAR, FETCH_CARDS, REMOVE_STAR, HIDE_LOADER, SHOW_LOADER } from './actionTypes';
+import { SHOW_CARDS, ADD_STAR, FETCH_CARDS, REMOVE_STAR, HIDE_LOADER, SHOW_LOADER, FETCH_CARD_INFO } from './actionTypes';
 import { DispatchLoader } from './loaderReducer';
 
 export interface ICard {
@@ -39,16 +39,10 @@ if (savedCards !== null) {
   cards = JSON.parse(savedCards);
 }
 
-let color = 'adult';
-const savedColor = localStorage.getItem('color');
-if (savedColor !== null) {
-  color = JSON.parse(savedColor);
-}
-
 const initialState: IAlbumState = {
   album: {
     cards: cards,
-    color: color,
+    color: '',
   },
   show: false,
 };
@@ -60,7 +54,6 @@ export const albumReducer = (state: IAlbumState = initialState, action: IAlbumAc
         card.star = false;
       });
       localStorage.setItem('cards', JSON.stringify(action.payload.cards));
-      localStorage.setItem('color', JSON.stringify(action.payload.color));
       return { ...state, album: action.payload };
     case SHOW_CARDS:
       return { ...state, show: action.show };
@@ -108,7 +101,6 @@ export function fetchCards(categoryName: string) {
     }
   };
 }
-
 export function addStar(id: string) {
   return (dispatch: DispatchAlbum) => {
     dispatch({

@@ -9,8 +9,11 @@
 .sizeItem:hover{
   background-color: $background-color-2;
 }
+.single-card{
+  width: 40%;
+}
 .single-card_img{
-  width: 80%;
+  width: 67.5%;
   margin: 0 auto;
 }
 .card-text p{
@@ -34,6 +37,9 @@
   .cd-txt{
     font-size: 1.3rem;
   }
+  .single-card{
+    width: 65%;
+  }
 }
 @media (max-width: 480px){
   .card_btn-sizes{
@@ -41,5 +47,8 @@
   }
   .my-padding{
     padding: 0px 5px 0px 5px;
+  }
+  .single-card{
+    width: 80%;
   }
 }

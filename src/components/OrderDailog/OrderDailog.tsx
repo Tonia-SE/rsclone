@@ -13,7 +13,7 @@ export const OrderDailog: React.FC<IProperties> = (properties) => {
   const dispatch = useDispatch();
   const lang = useSelector((state: ApplicationState) => state.lang);
   const orderId = useSelector((state: ApplicationState) => state.order.orderId);
-  const orderDate = useSelector((state: ApplicationState) => state.order.orderData);
+  const orderDate = useSelector((state: ApplicationState) => state.order.orderDate);
   const orderTotal = useSelector((state: ApplicationState) => state.order.total);
   const modalTitleText = lang.value === 'eng' ? 'Thanks for shopping!' : 'Спасибо за покупку!';
   const modalBodyTextTitle = lang.value === 'eng' ? 'Order №' : 'Заказ №';
