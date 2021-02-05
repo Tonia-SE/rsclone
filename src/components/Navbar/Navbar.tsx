@@ -8,6 +8,7 @@ import { changeLang } from '../../store/langReducer';
 import { setCurrency } from '../../store/currencyReducer';
 import { sumOfArray } from '../../store/actions';
 import { LogInForm } from '../Regforms/LogInForm';
+import { HIDE_ALERT } from '../../store/actionTypes';
 
 const link = function getCurrentLink() {
   return `${window.location.pathname}${window.location.search}`;
@@ -48,7 +49,7 @@ export const KigurumiNavbar: React.FC = () => {
             <ul className="navbar-nav row-direction mr-auto">
               <li className="nav-item active">
                 <div className="shoppingCard-wrapper">
-                  <Link to="/shopping_cart">
+                  <Link to="/shopping_cart" onClick={() => { dispatch({type: HIDE_ALERT}) }}>
                     <div className="nav-link" id="shoppingCart">
                       <img className="shoppingCart add-width" src="./assets/images/shopping-cart-empty.svg" alt="shopping cart" />
                     </div>
@@ -69,7 +70,7 @@ export const KigurumiNavbar: React.FC = () => {
             aria-controls="navbarSupportedRegForms"
             aria-expanded="false"
             aria-label="Toggle navigation">
-            <Link to={auth.isLoggedIn === false ? link : '/profile'}>
+            <Link to={auth.isLoggedIn === false ? link : '/profile'} onClick={() => { dispatch({type: HIDE_ALERT}) }}>
               <img id="auth" src={authImg} alt="Authorization" />
             </Link>
           </button>

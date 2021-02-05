@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { regUser } from '../../store/authReducer';
 import { showAlert } from '../../store/messageReducer';
+import { showRegFormMessage } from '../../store/regFormsMessageReducer';
 import { ApplicationState } from '../../store/rootReducer';
-import { Message } from '../Message/Message';
+import { RegFormsMessage } from './RegFormsMessage';
 
 const tabIndex = -1;
 
@@ -79,7 +80,7 @@ export const SignUpForm: React.FC = () => {
                     setPassword2(event.currentTarget.value);
                   }}
                 />
-                <Message />
+                <RegFormsMessage />
               </div>
             </form>
           </div>
@@ -93,23 +94,23 @@ export const SignUpForm: React.FC = () => {
               id="signUpBtn"
               onClick={() => {
                 if (password.trim() === '' || password2.trim() === '' || password === undefined || password2 === undefined) {
-                  dispatch(showAlert(alertEmptyPasswordField, 'my-danger', 'none'));
+                  dispatch(showRegFormMessage(alertEmptyPasswordField, 'my-danger', 'none'));
                 }
                 if (userName.trim() === '' || userName === undefined) {
-                  dispatch(showAlert(alertEmptyEmailField, 'my-danger', 'none'));
+                  dispatch(showRegFormMessage(alertEmptyEmailField, 'my-danger', 'none'));
                 }
                 if (password === password2) {
                   if (!/\S+@\S+\.\S+/.test(userName)) {
-                    dispatch(showAlert(alertWrongEmail, 'my-danger', 'none'));
+                    dispatch(showRegFormMessage(alertWrongEmail, 'my-danger', 'none'));
                   } else {
                     if (password.length < 6) {
-                      dispatch(showAlert(alertShortPassword, 'my-danger', 'none'));
+                      dispatch(showRegFormMessage(alertShortPassword, 'my-danger', 'none'));
                     } else {
                       dispatch(regUser(userName, password, alertTextSuccess, alertTextUserExit));
                     }
                   }
                 } else {
-                  dispatch(showAlert(alertTextWrongPasswords, 'my-danger', 'none'));
+                  dispatch(showRegFormMessage(alertTextWrongPasswords, 'my-danger', 'none'));
                 }
               }}>
               {signupButton}

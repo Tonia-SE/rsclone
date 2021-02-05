@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../store/authReducer';
-import { showAlert } from '../../store/messageReducer';
+import { showRegFormMessage } from '../../store/regFormsMessageReducer';
 import { ApplicationState } from '../../store/rootReducer';
-import { Message } from '../Message/Message';
+import { RegFormsMessage } from './RegFormsMessage';
 
 const tabIndex = -1;
 
@@ -61,7 +61,7 @@ export const LogInForm: React.FC = () => {
                     setPassword(event.currentTarget.value);
                   }}
                 />
-                <Message />
+                <RegFormsMessage />
               </div>
             </form>
           </div>
@@ -75,13 +75,13 @@ export const LogInForm: React.FC = () => {
               id="loginBtn"
               onClick={() => {
                 if (password.trim() === '' || password === undefined) {
-                  dispatch(showAlert(alertEmptyPasswordField, 'my-danger', 'none'));
+                  dispatch(showRegFormMessage(alertEmptyPasswordField, 'my-danger', 'none'));
                 }
                 if (userName.trim() === '' || userName === undefined) {
-                  dispatch(showAlert(alertEmptyEmailField, 'my-danger', 'none'));
+                  dispatch(showRegFormMessage(alertEmptyEmailField, 'my-danger', 'none'));
                 }
                 if (!/\S+@\S+\.\S+/.test(userName)) {
-                  dispatch(showAlert(alertWrongEmail, 'my-danger', 'none'));
+                  dispatch(showRegFormMessage(alertWrongEmail, 'my-danger', 'none'));
                 } else {
                   dispatch(loginUser(userName, password, alertTextSuccess, alertWrongEmailOrPassword));
                 }

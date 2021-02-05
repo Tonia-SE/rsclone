@@ -9,7 +9,7 @@ import { setOrder } from '../../store/orderReducer';
 import { setQuantity } from '../../store/shoppingCartReducer';
 import { Message } from '../Message/Message';
 import { OrderDailog } from '../OrderDailog/OrderDailog';
-import { ADD_ORDER, SET_NAME } from '../../store/actionTypes';
+import { HIDE_ALERT, SET_NAME } from '../../store/actionTypes';
 import { Link } from 'react-router-dom';
 import { sumOfArray } from '../../store/actions';
 
@@ -99,7 +99,7 @@ export const ShoppingCart: React.FC = () => {
               return (
                 <tr key={key} id={key} className="position">
                   <td scope="row" className="align-middle">
-                    <Link to={`/card?id=${position.id}`}>
+                    <Link to={`/card?id=${position.id}`} onClick={() => { dispatch({type: HIDE_ALERT}) }}>
                       <img className="shoppingCart-image" src={imageUrl} />
                     </Link>
                   </td>
@@ -166,7 +166,6 @@ export const ShoppingCart: React.FC = () => {
                       dispatch(setOrder(userName, orderId, countTotal(), cart.positions, date));
                       localStorage.removeItem('shopCart');
                       dispatch({ type: SET_NAME, name: userName });
-                      //dispatch({ type: ADD_ORDER, order: { orderId: orderId, total: countTotal(), positions: cart.positions, orderData: date } });
                     }
                   }}>
                   {checkout}

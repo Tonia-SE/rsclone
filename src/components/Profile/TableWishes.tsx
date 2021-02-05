@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { backendServer } from '../../consts';
 import { ApplicationState } from '../../store/rootReducer';
 import { deleteWish, fetchWishes } from '../../store/profileReducer';
+import { Link } from 'react-router-dom';
+import { HIDE_ALERT } from '../../store/actionTypes';
 
 export const TableWishes: React.FC = () => {
   const dispatch = useDispatch();
@@ -36,7 +38,9 @@ export const TableWishes: React.FC = () => {
           return (
             <tr className="tr-hover" key={`${wish.id}${wish.size}`}>
               <td>
+              <Link to={`/card?id=${wish.id}`} onClick={() => { dispatch({type: HIDE_ALERT}) }}>
                 <img className="wishes-image" src={imageUrl} />
+              </ Link>
               </td>
               <td>{lang.value === 'eng' ? wish.titleEng : wish.titleRu}</td>
               <td>{wish.size}</td>

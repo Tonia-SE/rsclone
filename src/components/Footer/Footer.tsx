@@ -48,9 +48,6 @@ export const Footer: React.FC = () => {
             https://github.com/Tonia-SE
           </a>
         </div>
-        <a href="https://rs.school/">
-          <img id="logo" alt="RS school" src="https://rs.school/images/rs_school_js.svg" />
-        </a>
       </div>
     </div>
   ) : (
@@ -87,17 +84,6 @@ export const Footer: React.FC = () => {
             </li>
           </ul>
         </div>
-      </div>
-      <div className="footer-copyright py-3 font-16">
-        <div className="inline">
-          © 2021 Copyright:
-          <a href="https://github.com/Tonia-SE" target="blank">
-            https://github.com/Tonia-SE
-          </a>
-        </div>
-        <a href="https://rs.school/">
-          <img id="logo" alt="RS school" src="https://rs.school/images/rs_school_js.svg" />
-        </a>
       </div>
     </div>
   );

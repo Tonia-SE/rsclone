@@ -29,20 +29,20 @@ const initialState: IOrderState = {
 export const orderReducer = (state: IOrderState = initialState, action: IOrderAction) => {
   switch (action.type) {
     case SET_ORDER:
-      return { ...state, orderId: action.orderId, total: action.total, positions: action.positions, orderData: action.orderDate };
+      return { ...state, orderId: action.orderId, total: action.total, positions: action.positions, orderDate: action.orderDate };
     default:
       return state;
   }
 };
 
-export function setOrder(user: string, orderId: string, total: string, positions: Array<IPosition>, orderData: string) {
+export function setOrder(user: string, orderId: string, total: string, positions: Array<IPosition>, orderDate: string) {
   return async (dispatch: DispatchOrder) => {
     dispatch({
       type: SET_ORDER,
       orderId: orderId,
       total: total,
       positions: positions,
-      orderDate: orderData,
+      orderDate: orderDate,
     });
     try {
       await fetch(`${backendServer}/profile/orders`, {
@@ -53,7 +53,7 @@ export function setOrder(user: string, orderId: string, total: string, positions
           orderId: orderId,
           total: total,
           positions: positions,
-          orderData: orderData,
+          orderData: orderDate,
         }),
         headers: {
           'Content-Type': 'application/json',

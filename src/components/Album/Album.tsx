@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { backendServer } from '../../consts';
+import { HIDE_ALERT } from '../../store/actionTypes';
 import { setSize } from '../../store/cardReducer';
 import { ApplicationState } from '../../store/rootReducer';
 import { Spinner } from '../Spinner/Spinner';

@@ -4,12 +4,13 @@ import { cardReducer, ICardState } from './cardReducer';
 import { controlsReducer, ICategoryState } from './controlsReducer';
 import { currencyReducer, ICurrencyState } from './currencyReducer';
 import { messageReducer, IMessageState } from './messageReducer';
+import { regFormMessageReducer, IRegFormMessageState } from './regFormsMessageReducer';
 import { shopCartReducer, IShopCartState } from './shoppingCartReducer';
 import { langReducer, ILangState } from './langReducer';
 import { authReducer, IAuthState } from './authReducer';
 import { orderReducer, IOrderState } from './orderReducer';
 import { profileReducer, IProfileState } from './profileReducer';
-import { ILoaderState, loaderReducer } from './loaderReducer';
+import { loaderReducer, ILoaderState } from './loaderReducer';
 
 export interface ApplicationState {
   controls: ICategoryState;
@@ -18,6 +19,7 @@ export interface ApplicationState {
   currency: ICurrencyState;
   shopCart: IShopCartState;
   message: IMessageState;
+  regFormMessage: IRegFormMessageState;
   lang: ILangState;
   auth: IAuthState;
   order: IOrderState;
@@ -32,6 +34,7 @@ export const rootReducer: Reducer<ApplicationState> = combineReducers<Applicatio
   currency: currencyReducer,
   shopCart: shopCartReducer,
   message: messageReducer,
+  regFormMessage: regFormMessageReducer,
   lang: langReducer,
   auth: authReducer,
   order: orderReducer,

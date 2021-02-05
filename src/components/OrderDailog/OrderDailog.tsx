@@ -19,7 +19,7 @@ export const OrderDailog: React.FC<IProperties> = (properties) => {
   const modalBodyTextTitle = lang.value === 'eng' ? 'Order №' : 'Заказ №';
   const modalBodyText =
     lang.value === 'eng'
-      ? `total price ${orderTotal} is successfully issued ${orderDate}. Our manager will contact you within half an hour to check the details.`
+      ? `total price ${orderTotal} has been successfully issued ${orderDate}. Our manager will contact you within half an hour to check the details.`
       : `oт ${orderDate} на сумму ${orderTotal} успешно оформлен. Наш менеджер свяжется с вами в течение получаса для уточнения деталей заказа.`;
 
   return (
