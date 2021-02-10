@@ -88,6 +88,9 @@ export const Footer: React.FC = () => {
       <div className="footer-copyright py-3 font-16">
         <div className="inline">
           © 2021 Copyright: 
+          <a href="https://github.com/Tonia-SE">
+            https://github.com/Tonia-SE
+          </a>
         </div>
         <a href="https://rs.school/">
           <img id="logo" alt="RS school" src="https://rs.school/images/rs_school_js.svg" />
