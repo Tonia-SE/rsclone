@@ -38,7 +38,9 @@ export const TableWishes: React.FC = () => {
           return (
             <tr className="tr-hover" key={`${wish.id}${wish.size}`}>
               <td>
-              <Link to={`/card?id=${wish.id}`} onClick={() => { dispatch({type: HIDE_ALERT}) }}>
+              <Link to={`/card?id=${wish.id}`} onClick={() => { 
+                console.log(wish.id);
+                dispatch({type: HIDE_ALERT}) }}>
                 <img className="wishes-image" src={imageUrl} />
               </ Link>
               </td>

@@ -23,9 +23,7 @@ export const Card: React.FC = () => {
   const currency = useSelector((state: ApplicationState) => state.currency.info);
 
   useEffect(() => {
-    if (!card._id) {
       dispatch(fetchCard(cardId));
-    }
     if (!card.currentSize) {
       dispatch(setSize(lang.value === 'eng' ? 'SIZE' : 'РАЗМЕР'));
     }

@@ -41,3 +41,9 @@
 10. Препроцессор Sass
 11. Линтер Eslint
 12. Форматтер кода Prettier
+
+
+asdfasdfadsdfasdfdasdf asdfasdfфывафываasdfasdfasdfasdf sdsdfsdf sdfasdfasdfasdfasdfasdfasdfasdfВАФЫВАФЫВАФЫВА ФЫВАФЫВАФЫВАФЫВАФЫВ
+ 
+ффыва фыва фывафыва ASDFФЫВАЫФВАЫВывафывафывsadfasdfasdf фывафываафывафывафывафыв фывафывафыва
+фывафываываasdfasdfasdasdfasdfasdf asdfas dfasdf
