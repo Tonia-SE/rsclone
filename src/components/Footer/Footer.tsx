@@ -47,10 +47,10 @@ export const Footer: React.FC = () => {
           <a href="https://github.com/Tonia-SE" target="blank">
             https://github.com/Tonia-SE
           </a>
-          <a href="https://rs.school/">
-            <img id="logo" alt="RS school" src="https://rs.school/images/rs_school_js.svg" />
-          </a>
         </div>
+        <a target="blank" href="https://rs.school/">
+          <img id="logo" alt="RS school" src="https://rs.school/images/rs_school_js.svg" />
+        </a>
       </div>
     </div>
   ) : (
@@ -94,10 +94,10 @@ export const Footer: React.FC = () => {
           <a href="https://github.com/Tonia-SE" target="blank">
             https://github.com/Tonia-SE
           </a>
-          <a href="https://rs.school/">
-            <img id="logo" alt="RS school" src="https://rs.school/images/rs_school_js.svg" />
-          </a>
         </div>
+        <a target="blank" href="https://rs.school/">
+          <img id="logo" alt="RS school" src="https://rs.school/images/rs_school_js.svg" />
+        </a>
       </div>
     </div>
   );
