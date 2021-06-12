@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 66vh;
+  height: calc(100vh - 441px);
 }
 .delivery_wrapper{
   display: flex;

@@ -70,7 +70,7 @@ export const ShoppingCart: React.FC = () => {
     return (
       <div className="table-wrapper">
         <OrderDailog show={modalShow} onHide={() => setModalShow(false)} />
-        <table className="table mt-4 mb-4">
+        <table className="table mt-3 mb-3">
           <thead className="light">
             <tr>
               <th scope="col"></th>
@@ -105,7 +105,7 @@ export const ShoppingCart: React.FC = () => {
                   </td>
                   <td className="align-middle number">{positionTitle}</td>
                   <td className="align-middle number">{position.size}</td>
-                  <td id="quantity">
+                  <td className="align-middle number" id="quantity">
                     <div className="quantity-wrapper number">
                       {position.quantity}
                       <div className="btn-group column">

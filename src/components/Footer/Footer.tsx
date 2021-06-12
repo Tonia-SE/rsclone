@@ -41,7 +41,7 @@ export const Footer: React.FC = () => {
           </ul>
         </div>
       </div>
-      <div className="footer-copyright py-3 font-16">
+      <div className="footer-copyright py-5 font-16">
         <div className="inline">
           © 2021 Copyright:
           <a href="https://github.com/Tonia-SE" target="blank">
@@ -88,7 +88,7 @@ export const Footer: React.FC = () => {
           </ul>
         </div>
       </div>
-      <div className="footer-copyright py-3 font-16">
+      <div className="footer-copyright py-5 font-16">
         <div className="inline">
           © 2021 Copyright: 
           <a href="https://github.com/Tonia-SE" target="blank">

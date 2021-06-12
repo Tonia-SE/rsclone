@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 66vh;
+  height: calc(100vh - 441px);
 }
 .empty-shoppingCart_wrapper{
   display: flex;
@@ -33,7 +33,7 @@
 .table-wrapper{
   display: flex;
   justify-content: center;
-  min-height: 66vh;
+  height: calc(100vh - 441px);
 }
 .light{
   background-color: $background-color-5;

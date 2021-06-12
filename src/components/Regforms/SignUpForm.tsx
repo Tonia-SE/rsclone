@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { regUser } from '../../store/authReducer';
-import { showAlert } from '../../store/messageReducer';
 import { showRegFormMessage } from '../../store/regFormsMessageReducer';
 import { ApplicationState } from '../../store/rootReducer';
 import { RegFormsMessage } from './RegFormsMessage';
